@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
+    <title>ViraCheck — tekne kontrol, rüzgâr ve koylar</title>
+    <meta name="description" content="ViraCheck'in tarayıcı sürümü: denize açılmadan önce kontrol listeleri, rüzgâr ve deniz durumu, yakındaki koylar, seyir defteri ve tekne kiralama. Hesap yok; verileriniz yalnızca bu tarayıcıda kalır." />
+    <meta name="theme-color" content="#F4F6F8" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/ikon/ikon-180.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="ViraCheck" />
+    <!-- Safari'de App Store akıllı bannerı: iOS'ta yerel uygulamayı önerir. -->
+    <meta name="apple-itunes-app" content="app-id=6806044930" />
+    <meta property="og:title" content="ViraCheck" />
+    <meta property="og:description" content="Tekne kontrol listeleri, rüzgâr ve deniz durumu, koylar ve tekne kiralama — tarayıcıda." />
+    <meta property="og:image" content="https://viracheck.com.tr/ikon/ikon-512.png" />
+    <!--
+      Inter web'de buradan yükleniyor: Türkçe dahil Latin alt kümesi, WOFF2
+      (ağırlık başına ~54 KB; paketteki TTF 343 KB). Aile adları uygulamanın
+      kullandığı adlarla aynı (src/components/text.tsx).
+    -->
+    <style>
+      @font-face { font-family: 'Inter_400Regular'; src: url('/yazi/Inter_400Regular.woff2') format('woff2'); font-display: swap; }
+      @font-face { font-family: 'Inter_500Medium'; src: url('/yazi/Inter_500Medium.woff2') format('woff2'); font-display: swap; }
+      @font-face { font-family: 'Inter_600SemiBold'; src: url('/yazi/Inter_600SemiBold.woff2') format('woff2'); font-display: swap; }
+      @font-face { font-family: 'Inter_700Bold'; src: url('/yazi/Inter_700Bold.woff2') format('woff2'); font-display: swap; }
+      @font-face { font-family: 'Inter_800ExtraBold'; src: url('/yazi/Inter_800ExtraBold.woff2') format('woff2'); font-display: swap; }
+    </style>
+    <!-- react-native-web'in önerdiği kök stil sıfırlaması -->
+    <style id="expo-reset">
+      html, body { height: 100%; }
+      /* Yazı tipi belirtilmeyen metin (SVG içindekiler dahil) Times'a düşmesin. */
+      body { overflow: hidden; background-color: #F4F6F8; font-family: Inter_500Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      #root { display: flex; height: 100%; flex: 1; }
+      .acilis { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+        font: 700 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #0E1C28; letter-spacing: -0.01em; }
+      .acilis img { border-radius: 20px; box-shadow: 0 12px 28px -14px rgba(14, 28, 40, 0.5); }
+      @media (prefers-color-scheme: dark) {
+        body { background-color: #0A1420; }
+        .acilis { color: #E9F2F9; }
+      }
+    </style>
+  <link rel="icon" href="/favicon.ico"/><link rel="preload" href="/_expo/static/css/leaflet-df687fead8c4838a4e6b8bcb2f176a0e.css" as="style">
+<link rel="stylesheet" href="/_expo/static/css/leaflet-df687fead8c4838a4e6b8bcb2f176a0e.css"></head>
+  <body>
+    <noscript>ViraCheck JavaScript ile çalışır; lütfen tarayıcınızda etkinleştirin.</noscript>
+    <!--
+      Açılış ekranı: JavaScript inene kadar görünür, React ilk çizimde yerine
+      geçer (mobildeki splash'in karşılığı). Yazı tipi beklemesin diye sistem
+      yazı tipiyle.
+    -->
+    <div id="root"><div class="acilis" aria-hidden="true"><img src="/ikon/ikon-192.png" width="88" height="88" alt="" /><span>ViraCheck</span></div></div>
+    <script>
+      // Çevrimdışı açılış: yalnızca güvenli bağlamda (HTTPS ya da localhost) kaydedilir.
+      if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+        window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+      }
+    </script>
+  <script src="/_expo/static/js/web/__expo-metro-runtime-1f8f5d3ca6b7f58204d51e14506d73fb.js" defer></script><script src="/_expo/static/js/web/__common-6f7a7ee9bbf7e0626cfee7f0096ef71c.js" defer></script><script src="/_expo/static/js/web/entry-0688d3ca9e2d81bc7364719120f275fe.js" defer></script>
+</body>
+</html>
