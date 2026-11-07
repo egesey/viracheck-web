@@ -24,7 +24,9 @@ self.addEventListener('fetch', (e) => {
 
   // Sayfa gezintisi: önce ağ (yeni sürüm gelsin), ağ yoksa önbellekteki kabuk.
   if (istek.mode === 'navigate') {
-    e.respondWith(fetch(istek).catch(() => caches.match('/')));
+    // cache: 'no-cache' — tarayıcının HTTP önbelleği (GitHub Pages 10 dk)
+    // yeni sürümün yerine eski sayfayı vermesin; her açılışta sunucuya sorulur.
+    e.respondWith(fetch(istek, { cache: 'no-cache' }).catch(() => caches.match('/')));
     return;
   }
   // Statik dosyalar adlarında içerik özeti taşıyor: önce önbellek.
