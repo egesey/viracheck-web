@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>ViraCheck · tanı</title>
+<style>body{font:15px/1.5 -apple-system,system-ui,sans-serif;margin:0;padding:20px;background:#F4F6F8;color:#0E1C28}
+h1{font-size:20px;margin:0 0 12px}.s{background:#fff;border:1px solid #D5DEE6;border-radius:12px;padding:12px 14px;margin:0 0 10px}
+.s b{display:block;font-size:12px;color:#4F6475;text-transform:uppercase;letter-spacing:.04em}.ok{color:#0b7a3e}.no{color:#c62a2f}
+code{font:12px ui-monospace,Menlo,monospace;word-break:break-all}</style></head>
+<body><h1>ViraCheck · tanı</h1><div id="c">Okunuyor…</div>
+<script>
+(async function () {
+  var satir = [];
+  function ekle(ad, deger, iyi) { satir.push('<div class="s"><b>' + ad + '</b><span class="' + (iyi === true ? 'ok' : iyi === false ? 'no' : '') + '">' + deger + '</span></div>'); }
+  var yazilabilir = false;
+  try { localStorage.setItem('vira.tani', String(Date.now())); yazilabilir = localStorage.getItem('vira.tani') !== null; } catch (e) { ekle('Yerel kayıt', 'HATA: ' + e.message, false); }
+  ekle('Yerel kayıt yazılabiliyor', yazilabilir ? 'evet' : 'hayır', yazilabilir);
+  var ayar = null; try { ayar = JSON.parse(localStorage.getItem('vira.settings.v1') || 'null'); } catch (e) {}
+  ekle('Onay kaydı', ayar && ayar.consent ? 'VAR · ' + new Date(ayar.consent.acceptedAt).toLocaleString('tr-TR') + ' (sürüm ' + ayar.consent.version + ')' : 'YOK', !!(ayar && ayar.consent));
+  var onceki = null; try { onceki = localStorage.getItem('vira.tani.onceki'); localStorage.setItem('vira.tani.onceki', new Date().toLocaleString('tr-TR')); } catch (e) {}
+  ekle('Bu sayfanın önceki açılışı', onceki || 'ilk açılış (ya da kayıt silinmiş)', onceki ? true : null);
+  ekle('Çerezler', navigator.cookieEnabled ? 'açık' : 'kapalı', navigator.cookieEnabled);
+  try { ekle('Kalıcı depolama', navigator.storage && navigator.storage.persisted ? ((await navigator.storage.persisted()) ? 'evet' : 'hayır') : 'desteklenmiyor'); } catch (e) {}
+  try { if (navigator.storage && navigator.storage.estimate) { var t = await navigator.storage.estimate(); ekle('Depolama kotası', Math.round((t.quota || 0) / 1e6) + ' MB' + ((t.quota || 0) < 150e6 ? ' (düşük: gizli sekme olabilir)' : ''), (t.quota || 0) >= 150e6); } } catch (e) {}
+  ekle('Ana ekran uygulaması', (navigator.standalone || matchMedia('(display-mode: standalone)').matches) ? 'evet' : 'hayır');
+  ekle('Service worker', navigator.serviceWorker && navigator.serviceWorker.controller ? 'aktif' : 'yok');
+  ekle('Adres', location.href);
+  ekle('Tarayıcı', '<code>' + navigator.userAgent + '</code>');
+  document.getElementById('c').innerHTML = satir.join('');
+})();
+</script></body></html>
