@@ -335,6 +335,9 @@ footer .links{margin:0 0 18px; display:flex; flex-wrap:wrap; gap:8px 20px}
   .grid, .partner-grid{grid-template-columns:repeat(2,1fr)}
   .offers{grid-template-columns:1fr}
   .region-grid{grid-template-columns:repeat(2,1fr)}
+  /* Tek sayıda kart: sonuncusu satırı tek başına doldurur. */
+  .region:last-child:nth-child(odd){grid-column:1 / -1}
+  .region:last-child:nth-child(odd){aspect-ratio:2 / 1}
   .steps{grid-template-columns:1fr}
   .split{grid-template-columns:1fr; gap:38px}
   .split .phone{width:270px; margin:0 auto}
