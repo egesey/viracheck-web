@@ -16,11 +16,13 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://viracheck.com.tr/tanitim/index-en.html">
 <meta property="og:image" content="https://viracheck.com.tr/tanitim/icon.png">
-<link rel="stylesheet" href="site.css?v=9">
+<link rel="stylesheet" href="site.css?v=16">
 <style>
 html.cercevede .btn-ghost[href="/"]{display:none}
 /* Uygulamanın içinde logo ve ad zaten yan menüde; sayfa başındaki küçük marka tekrar olurdu. */
 html.cercevede .nav .brand{display:none}
+/* Çerçevede dil bağlantısı da yok; boş kalan üst çubuk video şeridinin üstünde boşluk bırakmasın. */
+html.cercevede .nav{display:none}
 </style>
 <script>if (window.top !== window.self) document.documentElement.classList.add('cercevede');</script>
 </head>
@@ -31,6 +33,18 @@ html.cercevede .nav .brand{display:none}
     <nav class="nav">
       <span class="brand"><img src="icon.png" alt=""> ViraCheck</span>
     </nav>
+  </div>
+
+  <!-- Üst şerit: denizde süzülen yatlar. Sessiz, döngülü; iOS'ta otomatik
+       oynaması için muted + playsinline şart. Hareket azaltma tercihinde
+       yalnızca kapak görseli kalır. -->
+  <div class="hero-video" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" poster="img/yat-poster.jpg">
+      <source src="img/yat.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="wrap">
 
     <div class="hero-inner">
       <img class="mark" src="icon.png" alt="ViraCheck app icon" width="82" height="82">
@@ -436,7 +450,8 @@ html.cercevede .nav .brand{display:none}
     <a href="https://commons.wikimedia.org/wiki/File:Valletta_Grand_Harbour_from_Upper_Barrakka_Gardens.jpg">Trajcinema</a> (CC BY 4.0) ·
     <a href="https://commons.wikimedia.org/wiki/File:Port_Hercules,_Monaco.jpg">Uhooep</a> (CC BY-SA 4.0) ·
     <a href="https://commons.wikimedia.org/wiki/File:Boat_and_scenery_in_Cala_Figuera,_Mallorca_(Spain)_(23582554881).jpg">Tommie Hansen</a> (CC BY 2.0) ·
-    <a href="https://commons.wikimedia.org/wiki/File:Dubai_marina_from_yacht.jpg">Abubakr87</a> (CC BY-SA 4.0)
+    <a href="https://commons.wikimedia.org/wiki/File:Dubai_marina_from_yacht.jpg">Abubakr87</a> (CC BY-SA 4.0) ·
+    Video: <a href="https://commons.wikimedia.org/wiki/File:Italy_by_Drone_2017_-_Sardinia,_Largest_Yacht_in_the_World,_Military_Forts_and_Beaches!.webm">Electric Life</a> (CC BY 3.0)
   </p>
   <p class="fine">
     ViraCheck is an aid, not a replacement for official maritime warnings,
@@ -446,5 +461,11 @@ html.cercevede .nav .brand{display:none}
 </footer>
 
 </div>
+<script>
+  // Hareket azaltma açıksa video durur, kapak görseli kalır.
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.hero-video video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+  }
+</script>
 </body>
 </html>
