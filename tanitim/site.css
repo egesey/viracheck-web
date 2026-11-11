@@ -56,6 +56,24 @@ a:hover{text-decoration:underline}
   position:relative; width:100%; height:min(40vh, 56vw, 520px); min-height:200px;
   overflow:hidden; background:#0b1a2a;
 }
+/* Videonun üstünde marka: solda, teknenin karşı tarafında. Okunsun diye
+ * yalnızca sol yana hafif bir koyuluk; alt kenarda geçiş yok. */
+.hero-video::before{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(90deg, rgba(4,14,26,.55) 0%, rgba(4,14,26,.18) 38%, transparent 62%);
+}
+.hero-yazi{
+  position:absolute; z-index:2; left:clamp(20px, 6vw, 84px); top:50%; transform:translateY(-50%);
+  color:#fff; text-shadow:0 2px 18px rgba(0,0,0,.35);
+}
+.hero-yazi strong{
+  display:block; font-size:clamp(1.9rem, 4.6vw, 3.6rem); line-height:1.05;
+  font-weight:700; letter-spacing:-.02em;
+}
+.hero-yazi span{
+  display:block; margin-top:10px; font-size:clamp(.66rem, 1.15vw, .92rem);
+  font-weight:600; letter-spacing:.16em; text-transform:uppercase; opacity:.92;
+}
 /* Tekne görüntünün alt yarısında: kırpma üstten (gökyüzü/açık deniz) yapılır. */
 .hero-video video{width:100%; height:100%; object-fit:cover; object-position:50% 78%; display:block}
 
@@ -404,3 +422,29 @@ footer .links{margin:0 0 18px; display:flex; flex-wrap:wrap; gap:8px 20px}
   .hero .mark{width:52px; height:52px; border-radius:13px; margin-bottom:12px}
   .hero h1{font-size:1.8rem; margin-bottom:12px}
 }
+
+/* ----------------------------------------------------------- koyu tema
+ * Uygulamanın gece paleti (src/theme.ts → darkColors). <html data-tema="koyu">
+ * sayfa başındaki betikle konur, yalnızca kullanıcı uygulamada gece modunu
+ * seçtiyse. Varsayılan her zaman beyaz. */
+html[data-tema="koyu"]{
+  color-scheme:dark;
+  --bg:#0A1420; --fg:#E9F2F9; --muted:#8FA8BC; --faint:#7C94A8; --line:#22384C;
+  --accent:#2ED3C6; --accent-soft:rgba(46,211,198,.14); --card:#111F2D;
+  --on-accent:#04202B; --danger:#FF5C63;
+  --golge:0 1px 2px rgba(0,0,0,.30), 0 10px 28px -16px rgba(0,0,0,.60);
+  --golge-guclu:0 2px 6px rgba(0,0,0,.35), 0 28px 60px -28px rgba(0,0,0,.75);
+}
+html[data-tema="koyu"] .hero{background:linear-gradient(180deg,#0E2233 0%,#0C1B29 38%,var(--bg) 78%)}
+html[data-tema="koyu"] .hero::before{
+  background:
+    radial-gradient(760px 440px at 50% -4%, rgba(46,211,198,.10), transparent 64%),
+    radial-gradient(420px 300px at 12% 30%, rgba(46,211,198,.05), transparent 70%);
+}
+html[data-tema="koyu"] .pill{background:rgba(17,31,45,.76)}
+html[data-tema="koyu"] .pill .dot{box-shadow:0 0 0 4px rgba(46,211,198,.16)}
+html[data-tema="koyu"] .store-btn{box-shadow:0 16px 34px -18px rgba(46,211,198,.55)}
+html[data-tema="koyu"] .stage::after{background:linear-gradient(180deg, rgba(10,20,32,0) 0%, var(--bg) 84%)}
+html[data-tema="koyu"] .offer-tag{background:rgba(10,20,32,.86)}
+html[data-tema="koyu"] .offer-media, html[data-tema="koyu"] .region{background:#18293A}
+html[data-tema="koyu"] .panel.alert .icon{background:rgba(255,92,99,.14)}

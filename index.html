@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
-    <title>ViraCheck — tekne kontrol, rüzgâr ve koylar</title>
-    <meta name="description" content="ViraCheck'in tarayıcı sürümü: denize açılmadan önce kontrol listeleri, rüzgâr ve deniz durumu, yakındaki koylar, seyir defteri ve tekne kiralama. Hesap yok; verileriniz yalnızca bu tarayıcıda kalır." />
+    <title>ViraCheck — Tekne Kiralama, Tekne Turu, Rüzgâr ve Koylar</title>
+    <link rel="canonical" href="https://viracheck.com.tr/" />
+    <meta name="description" content="Tekne kiralama ve tekne turu: Türkiye, Yunanistan, Hırvatistan, İtalya ve 12 ülkede 93 bölge. Rüzgâr ve deniz durumu, 9.310 koy, rota planlama, kontrol listeleri ve seyir defteri. Ücretsiz, hesap gerekmez." />
     <meta name="theme-color" content="#F4F6F8" />
     <meta name="color-scheme" content="light dark" />
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -15,9 +16,16 @@
     <meta name="apple-mobile-web-app-title" content="ViraCheck" />
     <!-- Safari'de App Store akıllı bannerı: iOS'ta yerel uygulamayı önerir. -->
     <meta name="apple-itunes-app" content="app-id=6806044930" />
-    <meta property="og:title" content="ViraCheck" />
+    <meta property="og:title" content="ViraCheck — Tekne Kiralama, Tekne Turu ve Seyir Asistanı" />
+    <meta property="og:url" content="https://viracheck.com.tr/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ViraCheck" />
+    <meta property="og:locale" content="tr_TR" />
     <meta property="og:description" content="Tekne kontrol listeleri, rüzgâr ve deniz durumu, koylar ve tekne kiralama — tarayıcıda." />
-    <meta property="og:image" content="https://viracheck.com.tr/ikon/ikon-512.png" />
+    <meta property="og:image" content="https://viracheck.com.tr/tanitim/img/paylasim.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <!--
       Inter web'de buradan yükleniyor: Türkçe dahil Latin alt kümesi, WOFF2
       (ağırlık başına ~54 KB; paketteki TTF 343 KB). Aile adları uygulamanın
@@ -41,15 +49,26 @@
       .acilis { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
         font: 700 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #0E1C28; letter-spacing: -0.01em; }
       .acilis img { border-radius: 20px; box-shadow: 0 12px 28px -14px rgba(14, 28, 40, 0.5); }
-      @media (prefers-color-scheme: dark) {
-        body { background-color: #0A1420; }
-        .acilis { color: #E9F2F9; }
-      }
+      /* Varsayılan beyaz; cihaz koyu modda olsa da. Koyu yalnızca kullanıcı
+         uygulamada gece modunu seçtiyse (aşağıdaki betik). */
+      html.koyu body { background-color: #0A1420; }
+      html.koyu .acilis { color: #E9F2F9; }
     </style>
+    <script>
+      try {
+        var ayar = JSON.parse(localStorage.getItem('vira.settings.v1') || '{}');
+        if (ayar && ayar.theme === 'dark') document.documentElement.classList.add('koyu');
+      } catch (e) {}
+    </script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://viracheck.com.tr/#site", "url": "https://viracheck.com.tr/", "name": "ViraCheck", "inLanguage": "tr"}, {"@type": "Organization", "@id": "https://viracheck.com.tr/#org", "name": "ViraCheck", "url": "https://viracheck.com.tr/", "logo": "https://viracheck.com.tr/ikon/ikon-512.png", "email": "seymen@viracheck.com.tr", "sameAs": ["https://apps.apple.com/tr/app/viracheck/id6806044930"]}, {"@type": "MobileApplication", "name": "ViraCheck", "operatingSystem": "iOS 16.4+", "applicationCategory": "TravelApplication", "url": "https://apps.apple.com/tr/app/viracheck/id6806044930", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "publisher": {"@id": "https://viracheck.com.tr/#org"}}, {"@type": "WebApplication", "name": "ViraCheck (web)", "url": "https://viracheck.com.tr/", "applicationCategory": "TravelApplication", "browserRequirements": "JavaScript gerekir", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}}]}</script>
   <link rel="icon" href="/favicon.ico"/><link rel="preload" href="/_expo/static/css/leaflet-df687fead8c4838a4e6b8bcb2f176a0e.css" as="style">
 <link rel="stylesheet" href="/_expo/static/css/leaflet-df687fead8c4838a4e6b8bcb2f176a0e.css"></head>
   <body>
-    <noscript>ViraCheck JavaScript ile çalışır; lütfen tarayıcınızda etkinleştirin.</noscript>
+    <noscript>
+      <h1>ViraCheck — tekne kiralama, tekne turu ve seyir asistanı</h1>
+      <p>Türkiye, Yunanistan, Hırvatistan, İtalya, İspanya, Fransa ve 12 ülkede 93 bölgede tekne kiralama ve tekne turu; rüzgâr ve deniz durumu, 9.310 koy, rota planlama, kontrol listeleri ve seyir defteri.</p>
+      <p>ViraCheck JavaScript ile çalışır; lütfen tarayıcınızda etkinleştirin. <a href="/tanitim/">Tanıtım sayfası</a> · <a href="https://apps.apple.com/tr/app/viracheck/id6806044930">App Store</a></p>
+    </noscript>
     <!--
       Açılış ekranı: JavaScript inene kadar görünür, React ilk çizimde yerine
       geçer (mobildeki splash'in karşılığı). Yazı tipi beklemesin diye sistem
@@ -62,6 +81,6 @@
         window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
       }
     </script>
-  <script src="/_expo/static/js/web/__expo-metro-runtime-1f8f5d3ca6b7f58204d51e14506d73fb.js" defer></script><script src="/_expo/static/js/web/__common-a18666e3dbe3e2234d827b3c3d36c66c.js" defer></script><script src="/_expo/static/js/web/entry-02f8a35bd129093311a7517c3cc51f90.js" defer></script>
+  <script src="/_expo/static/js/web/__expo-metro-runtime-1f8f5d3ca6b7f58204d51e14506d73fb.js" defer></script><script src="/_expo/static/js/web/__common-1beb05edbd2eb5909028cf65d865f9e1.js" defer></script><script src="/_expo/static/js/web/entry-30dc1eeb8221cb5072c753b96e193eb8.js" defer></script>
 </body>
 </html>

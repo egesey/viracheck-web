@@ -6,6 +6,9 @@
 <title>ViraCheck — Tekne Kiralama, Tekne Turu ve Seyir Asistanı</title>
 <meta name="description" content="12 ülkede, 93 bölgede tekne kiralama ve günübirlik tekne turu — bölgeler bulunduğunuz yere uzaklığıyla sıralanır. Üstüne rüzgâr ve deniz durumu, 9.310 koy, rota planlama ve kontrol listeleri. Hesap yok.">
 <link rel="canonical" href="https://viracheck.com.tr/tanitim/">
+<link rel="alternate" hreflang="tr" href="https://viracheck.com.tr/tanitim/">
+<link rel="alternate" hreflang="en" href="https://viracheck.com.tr/tanitim/index-en.html">
+<link rel="alternate" hreflang="x-default" href="https://viracheck.com.tr/tanitim/">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="icon.png">
 <meta name="theme-color" content="#F4F6F8">
@@ -15,8 +18,23 @@
 <meta property="og:description" content="Tekne kiralayın ya da günübirlik tura çıkın; rotayı, havayı ve koyları aynı uygulamada planlayın.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://viracheck.com.tr/tanitim/">
-<meta property="og:image" content="https://viracheck.com.tr/tanitim/icon.png">
-<link rel="stylesheet" href="site.css?v=16">
+<meta property="og:image" content="https://viracheck.com.tr/tanitim/img/paylasim.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>
+  // Koyu tema yalnızca kullanıcının uygulamadaki seçimiyle (?tema= ya da
+  // kayıtlı ayar). <head>'de: sayfa yanlış renkte parlamadan uygulanır.
+  (function () {
+    var p = new URLSearchParams(location.search).get('tema');
+    try { if (p) sessionStorage.setItem('tema', p); else p = sessionStorage.getItem('tema'); } catch (e) {}
+    // Cihazın koyu modu izlenmez: varsayılan beyaz. Koyu yalnızca kullanıcı
+    // uygulamada gece modunu seçtiyse (aynı sitedeki ayar okunur).
+    var koyu = p ? p === 'koyu' : (function () { try { return JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').theme === 'dark'; } catch (e) { return false; } })();
+    if (koyu) document.documentElement.setAttribute('data-tema', 'koyu');
+  })();
+</script>
+<link rel="stylesheet" href="site.css?v=19">
 <style>
 html.cercevede .btn-ghost[href="/"]{display:none}
 /* Uygulamanın içinde logo ve ad zaten yan menüde; sayfa başındaki küçük marka tekrar olurdu. */
@@ -42,6 +60,7 @@ html.cercevede .nav{display:none}
     <video autoplay muted loop playsinline preload="auto" poster="img/yat-poster.jpg">
       <source src="img/yat.mp4" type="video/mp4">
     </video>
+    <div class="hero-yazi"><strong>ViraCheck</strong><span>Tekne kiralama · tekne turu · seyir asistanı</span></div>
   </div>
 
   <div class="wrap">
@@ -438,7 +457,7 @@ html.cercevede .nav{display:none}
     Koy ve plaj verileri © <a href="https://www.openstreetmap.org">OpenStreetMap</a> katkıda bulunanları ·
     Mavi Bayrak verileri: <a href="https://www.blueflag.global">FEE</a>, 2026 sezonu
   </p>
-  <p class="fine">
+  <p class="fine" id="kaynaklar">
     Fotoğraflar <a href="https://commons.wikimedia.org">Wikimedia Commons</a>'tan:
     <a href="https://commons.wikimedia.org/wiki/File:Voilier_%C3%A0_Kornati.jpg">julien</a> (CC BY 2.0) ·
     <a href="https://commons.wikimedia.org/wiki/File:Bodrum_02.jpg">Chris Mitchell</a> (CC BY-SA 4.0) ·
@@ -451,6 +470,9 @@ html.cercevede .nav{display:none}
     <a href="https://commons.wikimedia.org/wiki/File:Port_Hercules,_Monaco.jpg">Uhooep</a> (CC BY-SA 4.0) ·
     <a href="https://commons.wikimedia.org/wiki/File:Boat_and_scenery_in_Cala_Figuera,_Mallorca_(Spain)_(23582554881).jpg">Tommie Hansen</a> (CC BY 2.0) ·
     <a href="https://commons.wikimedia.org/wiki/File:Dubai_marina_from_yacht.jpg">Abubakr87</a> (CC BY-SA 4.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:Sea-caves_and_boat_on_the_algarve,_Portugal_-_panoramio.jpg">MarkDunnell</a> (CC BY 3.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:Bay_of_Kotor_3.jpg">kallerna</a> (CC BY-SA 4.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:Southbeachskylinesouth.jpg">Marc Averette</a> (kamu malı) ·
     Video: <a href="https://commons.wikimedia.org/wiki/File:Italy_by_Drone_2017_-_Sardinia,_Largest_Yacht_in_the_World,_Military_Forts_and_Beaches!.webm">Electric Life</a> (CC BY 3.0)
   </p>
   <p class="fine">
