@@ -7,7 +7,7 @@
 <meta name="description" content="Reach people who have already decided to go out on the water: partnerships for boat charter and tour platforms on ViraCheck.">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="icon.png">
-<meta name="theme-color" content="#F4F6F8">
+<meta name="theme-color" content="#F7F3EC">
 <!-- Impact iş ortağı ağı site doğrulaması. -->
 <meta name='impact-site-verification' value='7d20c3fe-10fc-4278-ba26-3518eeddc6a9'>
 <script>
@@ -22,7 +22,10 @@
     if (koyu) document.documentElement.setAttribute('data-tema', 'koyu');
   })();
 </script>
-<link rel="stylesheet" href="site.css?v=21">
+<style>html{background:#F7F3EC} html[data-tema="koyu"]{background:#0B1B2B}</style>
+<script>try { if (JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').theme === 'dark') document.documentElement.setAttribute('data-tema', 'koyu'); } catch (e) {}</script>
+<link rel="stylesheet" href="vip.css?v=3">
+<link rel="stylesheet" href="belge.css?v=1">
 <style>
 html.cercevede .btn-ghost[href="/"]{display:none}
 /* Uygulamanın içinde logo, menü ve dil seçimi zaten yan menüde/ayarlarda; sayfanın
@@ -34,18 +37,19 @@ html.cercevede a[href="https://viracheck.com.tr/"]{display:none}
 <script>if (window.top !== window.self) document.documentElement.classList.add('cercevede');</script>
 </head>
 <body>
-<header class="topbar">
-  <div class="wrap">
-    <a class="brand" href="index-en.html"><img src="icon.png" alt="" width="30" height="30"> ViraCheck</a>
-    <nav class="menu" aria-label="Sections"><a class="menu-a" href="/kiralama" target="_top" data-app="/kiralama">Charter & Tours</a><a class="menu-a" href="/hava" target="_top" data-app="/hava">Weather</a><a class="menu-a" href="/koylar" target="_top" data-app="/koylar">Coves</a><a href="index-en.html#pricing">Pricing</a><a href="index-en.html#faq">FAQ</a></nav>
-    <a class="dil" href="index.html" hreflang="tr" title="Türkçe">TR</a>
-    <a class="btn-kucuk btn-web-kucuk" href="/kiralama" target="_top" data-app="/kiralama">Open web app</a>
-    <a class="btn-kucuk" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener">Get the app</a>
-    <details class="mmenu"><summary aria-label="Menu"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="/kiralama" target="_top" data-app="/kiralama">Charter & Tours</a><a class="mm-a" href="/hava" target="_top" data-app="/hava">Weather</a><a class="mm-a" href="/koylar" target="_top" data-app="/koylar">Coves</a><a class="mm-a" href="index-en.html#pricing">Pricing</a><a class="mm-a" href="index-en.html#faq">FAQ</a><a class="mm-btn" href="/kiralama" target="_top" data-app="/kiralama">Open web app</a></div></details>
+
+<header class="ust kayik sabit">
+  <div class="ic">
+    <a class="marka" href="index-en.html"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</a>
+    <nav class="menu" aria-label="Menu"><a href="/kiralama" target="_top" data-app="/kiralama">Charter &amp; Tours</a><a href="/hava" target="_top" data-app="/hava">Weather</a><a href="/koylar" target="_top" data-app="/koylar">Coves</a><a href="index-en.html#fiyat">Pricing</a><a href="index-en.html#sss">FAQ</a></nav>
+    <a class="dil" href="is-ortakligi.html">TR</a>
+    <a class="dug dug-cizgi" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener">Get the app</a>
+    <details class="mmenu"><summary aria-label="Menu"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="/kiralama" target="_top" data-app="/kiralama">Charter &amp; Tours</a><a class="mm-a" href="/hava" target="_top" data-app="/hava">Weather</a><a class="mm-a" href="/koylar" target="_top" data-app="/koylar">Coves</a><a class="mm-a" href="index-en.html#fiyat">Pricing</a><a class="mm-a" href="index-en.html#sss">FAQ</a><a class="mm-btn" href="/kiralama" target="_top" data-app="/kiralama">Use in your browser</a><a class="mm-btn mm-ikincil" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener">Download on the App Store</a></div></details>
   </div>
 </header>
-<div class="wrap">
-<section id="partners" style="border-top:0;padding-top:24px">
+
+<main class="belge belge-ortak">
+<section id="partners">
   <p class="eyebrow">Partnerships</p>
   <h1 class="sayfa-h1">Reach people who have already<br>decided to go out on the water</h1>
   <p class="sub">
@@ -89,38 +93,22 @@ html.cercevede a[href="https://viracheck.com.tr/"]{display:none}
     </div>
   </div>
 </section>
+</main>
 
-<footer class="altlik">
-  <div class="altlik-ust">
-    <div class="altlik-marka">
-      <p class="brand"><img src="icon.png" alt="" width="30" height="30"> ViraCheck</p>
-      <p>Boat charter, boat tours and a sailing assistant. 93 destinations in 12 countries; wind, coves and routes in one app.</p>
-      <a class="rozet" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7m-3-3 3 3 3-3"/><path d="M10 18h4"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+<footer class="alt-bilgi">
+  <div class="ic">
+    <div class="izgara">
+      <div>
+        <div class="marka"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</div>
+        <p style="max-width:300px;margin:0">Boat charter, boat tours and a sailing assistant. Twelve countries, one app.</p>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="/kiralama" target="_top" data-app="/kiralama">Charter &amp; Tours</a></li><li><a href="/hava" target="_top" data-app="/hava">Weather</a></li><li><a href="/koylar" target="_top" data-app="/koylar">Coves</a></li><li><a href="index-en.html#fiyat">Pricing</a></li><li><a href="index-en.html#sss">FAQ</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="partners-en.html">Partnerships</a></li><li><a href="mailto:seymen@viracheck.com.tr">Contact</a></li><li><a href="credits-en.html">Photo credits</a></li><li><a href="index.html">Türkçe</a></li></ul></div><div><h4>Legal</h4><ul><li><a href="privacy-en.html">Privacy Policy</a></li><li><a href="kvkk-tr.html">KVKK (Türkçe)</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a></li></ul></div>
     </div>
-    <div><h4>App</h4><ul><li><a href="index-en.html#charter">Charter and tours</a></li><li><a href="index-en.html#features">Features</a></li><li><a href="index-en.html#pricing">Pricing</a></li><li><a href="index-en.html#faq">FAQ</a></li><li><a href="https://viracheck.com.tr/">Use in your browser</a></li></ul></div>
-    <div><h4>ViraCheck</h4><ul><li><a href="partners-en.html">Partnerships</a></li><li><a href="mailto:seymen@viracheck.com.tr">Contact</a></li><li><a href="credits-en.html">Photo credits</a></li><li><a href="index.html">Türkçe</a></li></ul></div>
-    <div><h4>Legal</h4><ul><li><a href="privacy-en.html">Privacy Policy</a></li><li><a href="kvkk-tr.html">KVKK (Türkçe)</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a></li></ul></div>
-  </div>
-  <div class="altlik-alt">
-    <p class="fine">Weather and marine data by <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Cove and beach data © <a href="https://www.openstreetmap.org">OpenStreetMap</a> contributors · Blue Flag data: <a href="https://www.blueflag.global">FEE</a>, 2026 season</p>
-    <p class="fine">ViraCheck is an aid, not a replacement for official maritime warnings, nautical charts, or the skipper’s own judgement.</p>
-    <div class="telif"><span>© 2026 ViraCheck</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>
+    <p class="veri">Weather and marine data by <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Cove and beach data © <a href="https://www.openstreetmap.org">OpenStreetMap</a> contributors · Blue Flag: <a href="https://www.blueflag.global">FEE</a>, 2026 season</p>
+    <div class="dip"><span>© 2026 ViraCheck · Not a replacement for official maritime warnings or the skipper’s judgement.</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>
   </div>
 </footer>
-</div>
-<script>
-  // Uygulamaya giden bağlantılar (data-app): sayfa ViraCheck web uygulamasının
-  // içinde (Ana sayfa sekmesi, çerçeve) açıksa uygulama kendi sekmesine geçsin;
-  // yoksa çerçevenin içinde ikinci bir uygulama açılırdı.
-  (function () {
-    var cercevede = window.top !== window.self;
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest && e.target.closest('a[data-app]');
-      if (!a) return;
-      if (cercevede) { e.preventDefault(); window.parent.postMessage({ tip: 'viracheck-git', yol: a.getAttribute('data-app') }, location.origin); }
-      var m = a.closest('details'); if (m) m.removeAttribute('open');
-    });
-  })();
-</script>
+
+<script>document.querySelectorAll(".mmenu a").forEach(function (l) { l.addEventListener("click", function () { l.closest("details").removeAttribute("open"); }); });</script>
 </body>
 </html>

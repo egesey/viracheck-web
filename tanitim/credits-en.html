@@ -7,12 +7,26 @@
 <title>Photo and video credits | ViraCheck</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="site.css?v=19">
+<style>html{background:#F7F3EC} html[data-tema="koyu"]{background:#0B1B2B}</style>
+<script>try { if (JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').theme === 'dark') document.documentElement.setAttribute('data-tema', 'koyu'); } catch (e) {}</script>
+<link rel="stylesheet" href="vip.css?v=3">
+<link rel="stylesheet" href="belge.css?v=1">
 </head>
 <body>
-<div class="wrap" style="padding-top:28px;padding-bottom:48px">
-  <p><a href="index-en.html">← Home</a></p>
-  <h1 style="font-size:1.6rem;margin:18px 0 20px">Photo and video credits</h1>
+
+<header class="ust kayik sabit">
+  <div class="ic">
+    <a class="marka" href="index-en.html"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</a>
+    <nav class="menu" aria-label="Menu"><a href="https://viracheck.com.tr/kiralama" data-app="/kiralama">Charter &amp; Tours</a><a href="https://viracheck.com.tr/hava" data-app="/hava">Weather</a><a href="https://viracheck.com.tr/koylar" data-app="/koylar">Coves</a><a href="index-en.html#fiyat">Pricing</a><a href="index-en.html#sss">FAQ</a></nav>
+    <a class="dil" href="kaynaklar.html">TR</a>
+    <a class="dug dug-cizgi" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener">Get the app</a>
+    <details class="mmenu"><summary aria-label="Menu"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="https://viracheck.com.tr/kiralama" data-app="/kiralama">Charter &amp; Tours</a><a class="mm-a" href="https://viracheck.com.tr/hava" data-app="/hava">Weather</a><a class="mm-a" href="https://viracheck.com.tr/koylar" data-app="/koylar">Coves</a><a class="mm-a" href="index-en.html#fiyat">Pricing</a><a class="mm-a" href="index-en.html#sss">FAQ</a><a class="mm-btn" href="https://viracheck.com.tr/kiralama" data-app="/kiralama">Use in your browser</a><a class="mm-btn mm-ikincil" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener">Download on the App Store</a></div></details>
+  </div>
+</header>
+
+<main class="belge belge-kaynak">
+<p><a href="index-en.html">← Home</a></p>
+  <h1>Photo and video credits</h1>
   <div class="kaynak-sayfa">
   <p class="fine">
     Photos from <a href="https://commons.wikimedia.org">Wikimedia Commons</a>:
@@ -122,6 +136,22 @@
     <a href="https://commons.wikimedia.org/wiki/File%3AView_of_the_Old_Walled_City_of_Valletta_and_its_harbor._Malta%2C_Mediterranean_Sea.jpg">Mstyslav Chernov</a> (CC BY-SA 3.0)
   </p>
   </div>
-</div>
+</main>
+
+<footer class="alt-bilgi">
+  <div class="ic">
+    <div class="izgara">
+      <div>
+        <div class="marka"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</div>
+        <p style="max-width:300px;margin:0">Boat charter, boat tours and a sailing assistant. Twelve countries, one app.</p>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="https://viracheck.com.tr/kiralama" data-app="/kiralama">Charter &amp; Tours</a></li><li><a href="https://viracheck.com.tr/hava" data-app="/hava">Weather</a></li><li><a href="https://viracheck.com.tr/koylar" data-app="/koylar">Coves</a></li><li><a href="index-en.html#fiyat">Pricing</a></li><li><a href="index-en.html#sss">FAQ</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="partners-en.html">Partnerships</a></li><li><a href="mailto:seymen@viracheck.com.tr">Contact</a></li><li><a href="credits-en.html">Photo credits</a></li><li><a href="index.html">Türkçe</a></li></ul></div><div><h4>Legal</h4><ul><li><a href="privacy-en.html">Privacy Policy</a></li><li><a href="kvkk-tr.html">KVKK (Türkçe)</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a></li></ul></div>
+    </div>
+    <p class="veri">Weather and marine data by <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Cove and beach data © <a href="https://www.openstreetmap.org">OpenStreetMap</a> contributors · Blue Flag: <a href="https://www.blueflag.global">FEE</a>, 2026 season</p>
+    <div class="dip"><span>© 2026 ViraCheck · Not a replacement for official maritime warnings or the skipper’s judgement.</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>
+  </div>
+</footer>
+
+<script>document.querySelectorAll(".mmenu a").forEach(function (l) { l.addEventListener("click", function () { l.closest("details").removeAttribute("open"); }); });</script>
 </body>
 </html>

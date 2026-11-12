@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ViraCheck — Tekne Kiralama, Tekne Turu ve Seyir Asistanı</title>
 <meta name="description" content="12 ülkede, 93 bölgede tekne kiralama ve günübirlik tekne turu — bölgeler bulunduğunuz yere uzaklığıyla sıralanır. Üstüne rüzgâr ve deniz durumu, 9.310 koy, rota planlama ve kontrol listeleri. Hesap yok.">
 <link rel="canonical" href="https://viracheck.com.tr/tanitim/">
@@ -11,7 +11,12 @@
 <link rel="alternate" hreflang="x-default" href="https://viracheck.com.tr/tanitim/">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="icon.png">
-<meta name="theme-color" content="#F4F6F8">
+<meta name="theme-color" content="#0B1B2B">
+<style>html{background:#F7F3EC} html[data-tema="koyu"]{background:#0B1B2B}</style>
+<script>
+  // Gece modu: uygulamada seçildiyse sayfa ilk çizimden lacivert açılsın (beyaz parlama olmasın).
+  try { if (JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').theme === 'dark') document.documentElement.setAttribute('data-tema', 'koyu'); } catch (e) {}
+</script>
 <!-- Impact iş ortağı ağı site doğrulaması. -->
 <meta name='impact-site-verification' value='7d20c3fe-10fc-4278-ba26-3518eeddc6a9'>
 <meta property="og:title" content="ViraCheck — Tekne Kiralama, Tekne Turu ve Seyir Asistanı">
@@ -22,19 +27,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<script>
-  // Koyu tema yalnızca kullanıcının uygulamadaki seçimiyle (?tema= ya da
-  // kayıtlı ayar). <head>'de: sayfa yanlış renkte parlamadan uygulanır.
-  (function () {
-    var p = new URLSearchParams(location.search).get('tema');
-    try { if (p) sessionStorage.setItem('tema', p); else p = sessionStorage.getItem('tema'); } catch (e) {}
-    // Cihazın koyu modu izlenmez: varsayılan beyaz. Koyu yalnızca kullanıcı
-    // uygulamada gece modunu seçtiyse (aynı sitedeki ayar okunur).
-    var koyu = p ? p === 'koyu' : (function () { try { return JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').theme === 'dark'; } catch (e) { return false; } })();
-    if (koyu) document.documentElement.setAttribute('data-tema', 'koyu');
-  })();
-</script>
-<link rel="stylesheet" href="site.css?v=21">
+<link rel="preload" href="yazi/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="vip.css?v=3">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ViraCheck ücretli mi?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır, uygulama ücretsiz. Kiralama ve tur bölgeleri, rüzgâr ve deniz durumu, seyre uygunluk tavsiyesi ve imdat ekranı ücretsiz sürümde açık. Pro abonelik sınırları kaldırır: 7 günlük tahmin, tüm koylar, sınırsız seyir defteri ve PDF dışa aktarma."}}, {"@type": "Question", "name": "Tekne kiralamayı ViraCheck mi yapıyor?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır. ViraCheck bölgeleri listeler; dokunduğunuzda iş ortağımızın (SamBoat, SkipperCity, Viravira, GetYourGuide) rezervasyon sayfası açılır. Fiyat, ödeme, sözleşme ve iptal iş ortağıyla yürür. Bu bağlantılardan komisyon alabiliriz; ödediğiniz fiyat değişmez."}}, {"@type": "Question", "name": "Hesap açmam gerekiyor mu?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır. ViraCheck hesap, e-posta ya da ad istemez. Kontrol listeleriniz, seyir defteriniz ve tekne bilgileriniz yalnızca kendi cihazınızda saklanır."}}, {"@type": "Question", "name": "Android ya da bilgisayarda kullanabilir miyim?", "acceptedAnswer": {"@type": "Answer", "text": "Uygulama iPhone ve iPad için App Store’da. Android ve bilgisayarda viracheck.com.tr adresinden tarayıcı sürümünü kullanabilirsiniz; aynı özellikler orada da var."}}, {"@type": "Question", "name": "Hava ve deniz verisi nereden geliyor?", "acceptedAnswer": {"@type": "Answer", "text": "Rüzgâr, dalga ve deniz durumu Open-Meteo’dan, koy ve plajlar OpenStreetMap’ten, Mavi Bayrak bilgisi FEE’den gelir. ViraCheck yardımcı bir araçtır; resmî denizcilik uyarılarının ve kaptanın kararının yerine geçmez."}}, {"@type": "Question", "name": "Hangi ülkelerde kiralama var?", "acceptedAnswer": {"@type": "Answer", "text": "Türkiye, Yunanistan, Hırvatistan, İtalya, İspanya, Fransa, Portekiz, Karadağ, Malta, Monako, ABD ve Dubai — toplam 12 ülkede 93 bölge. Bölgeler bulunduğunuz yere uzaklığına göre sıralanır."}}]}</script>
 <style>
 html.cercevede .btn-ghost[href="/"]{display:none}
@@ -48,453 +42,151 @@ html.cercevede a[href="https://viracheck.com.tr/"]{display:none}
 </head>
 <body>
 
-<header class="topbar">
-  <div class="wrap">
-    <a class="brand" href="#"><img src="icon.png" alt="" width="30" height="30"> ViraCheck</a>
-    <nav class="menu" aria-label="Bölümler"><a class="menu-a" href="/kiralama" target="_top" data-app="/kiralama">Kirala & Tur</a><a class="menu-a" href="/hava" target="_top" data-app="/hava">Hava</a><a class="menu-a" href="/koylar" target="_top" data-app="/koylar">Koylar</a><a href="#fiyat">Fiyat</a><a href="#sss">SSS</a></nav>
-    <a class="dil" href="index-en.html" hreflang="en" title="English">EN</a>
-    <a class="btn-kucuk btn-web-kucuk" href="/kiralama" target="_top" data-app="/kiralama">Hemen kullan</a>
-    <a class="btn-kucuk" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">İndir</a>
-    <details class="mmenu"><summary aria-label="Menü"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="/kiralama" target="_top" data-app="/kiralama">Kirala & Tur</a><a class="mm-a" href="/hava" target="_top" data-app="/hava">Hava</a><a class="mm-a" href="/koylar" target="_top" data-app="/koylar">Koylar</a><a class="mm-a" href="#fiyat">Fiyat</a><a class="mm-a" href="#sss">SSS</a><a class="mm-btn" href="/kiralama" target="_top" data-app="/kiralama">Hemen kullan</a></div></details>
+<header class="ust" id="ust">
+  <div class="ic">
+    <a class="marka" href="#"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</a>
+    <nav class="menu" aria-label="Menü"><a href="/kiralama" target="_top" data-app="/kiralama">Kirala &amp; Tur</a><a href="/hava" target="_top" data-app="/hava">Hava</a><a href="/koylar" target="_top" data-app="/koylar">Koylar</a><a href="#fiyat">Fiyat</a><a href="#sss">SSS</a></nav>
+    <a class="dil" href="index-en.html" hreflang="en">EN</a>
+    <a class="dug dug-cizgi" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">Uygulamayı indir</a>
+    <details class="mmenu"><summary aria-label="Menü"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="/kiralama" target="_top" data-app="/kiralama">Kirala &amp; Tur</a><a class="mm-a" href="/hava" target="_top" data-app="/hava">Hava</a><a class="mm-a" href="/koylar" target="_top" data-app="/koylar">Koylar</a><a class="mm-a" href="#fiyat">Fiyat</a><a class="mm-a" href="#sss">SSS</a><a class="mm-btn" href="/kiralama" target="_top" data-app="/kiralama">Tarayıcıda kullan</a><a class="mm-btn mm-ikincil" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">App Store'dan indir</a></div></details>
   </div>
 </header>
 
-<div class="hero">
-
-  <!-- Üst şerit: denizde süzülen yatlar. Sessiz, döngülü; iOS'ta otomatik
-       oynaması için muted + playsinline şart. Hareket azaltma tercihinde
-       yalnızca kapak görseli kalır. -->
-  <div class="hero-video" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto" poster="img/yat-poster.webp">
-      <source src="img/yat-mobil.mp4" type="video/mp4" media="(max-width: 900px)">
-      <source src="img/yat.mp4" type="video/mp4">
-    </video>
-    <div class="hero-yazi"><strong>ViraCheck</strong><span>Tekne kiralama · tekne turu · seyir asistanı</span></div>
+<section class="kahraman">
+  <video autoplay muted loop playsinline preload="auto" poster="img/yat-poster.webp">
+    <source src="img/yat-mobil.mp4" type="video/mp4" media="(max-width: 900px)">
+    <source src="img/yat.mp4" type="video/mp4">
+  </video>
+  <div class="ic">
+    <span class="etiket">Tekne kiralama · Tekne turu · Seyir</span>
+    <h1>Denize çıkmanın<br><em>en zarif</em> yolu.</h1>
+    <p class="alt">Tekneyi bulun, rüzgârı okuyun, rotanızı çizin. On iki ülkede, tek uygulamada — hesap açmadan.</p>
+    <div class="dugmeler">
+      <a class="dug dug-pirinc" href="/kiralama" target="_top" data-app="/kiralama">Tekneni bul <span>→</span></a>
+      <a class="dug dug-cizgi" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">App Store'dan indir</a>
+    </div>
   </div>
+  <div class="serit"><div class="ic"><div><b>12</b><span>Ülke</span></div><div><b>93</b><span>Kiralama ve<br>tur bölgesi</span></div><div><b>9.310</b><span>Koy ve plaj</span></div><div><b>0</b><span>Hesap<br>gerekmez</span></div></div></div>
+</section>
 
-  <div class="wrap">
+<section class="soz">
+  <div class="ic bel">
+    <span class="etiket orta">ViraCheck</span>
+    <p>Rezervasyon bir günlük iş, seyir bir haftalık. <em>Tekneyi bulduğunuz yerde</em> rüzgârı, koyları ve kalkış öncesi her kontrolü de bulun.</p>
+    <div class="imza">Bodrum'dan Santorini'ye, Hvar'dan Saint-Tropez'e</div>
+  </div>
+</section>
 
-    <div class="hero-inner">
-      <img class="mark" src="icon.png" alt="ViraCheck uygulama simgesi" width="82" height="82">
-      <h1>Tekne kiralama ve tekne turu —<br>rotasıyla, havasıyla, koylarıyla</h1>
-      <!--
-        Tam kanonik adres (ülke + ad + kimlik) kullanılıyor. Kısa "/app/id…"
-        biçimi macOS'ta App Store uygulamasına devredilince çözülemeyip hata
-        veriyordu; ViraCheck iPhone ve iPad uygulaması, Mac'te listelenmiyor.
-      -->
-      <p class="cta-ikili"><a class="rozet" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7m-3-3 3 3 3-3"/><path d="M10 18h4"/></svg><span><small>App Store'dan</small><b>İndirin</b></span></a>
-        <a class="btn-web" href="/kiralama" target="_top" data-app="/kiralama">Tarayıcıda hemen kullan →</a></p>
-      <p class="store-not">Ücretsiz · iPhone ve iPad uygulaması · her cihazda tarayıcıdan</p>
-      <p class="lead">
-        Türkiye'den Yunanistan'a, Hırvatistan'dan İspanya'ya 12 ülkede 93 bölge:
-        bölgeler bulunduğunuz yere uzaklığıyla sıralanır, dokunduğunuzda iş
-        ortağının rezervasyon sayfası açılır. Üstüne rüzgâr ve deniz durumu,
-        9.310 koy ve rota planlama — kiraladığınız tekneyle nereye gideceğinizi
-        de aynı uygulamada kurarsınız. Hesap açmadan.
-      </p>
+<section class="bolgeler" id="bolgeler">
+  <div class="ic">
+    <div class="bas bel">
+      <div><span class="etiket">Öne çıkan bölgeler</span><h2>Akdeniz'in en güzel<br><em>limanları</em></h2></div>
+      <p>Bölgeler bulunduğunuz yere uzaklığıyla sıralanır. Birine dokunun; iş ortağımızın o bölgedeki tekneleri ve turları açılsın.</p>
+    </div>
+    <div class="vitrin bel"><a class="vit v1" href="/kiralama?ara=T%C3%BCrkiye" target="_top" data-app="/kiralama?ara=T%C3%BCrkiye"><img src="img/bolge-istanbul.jpg" alt="İstanbul Boğazı" loading="lazy"><div class="yazi"><h3>Türkiye</h3><small>17 kiralama<br>15 tur</small></div></a><a class="vit v2" href="/kiralama?ara=Yunanistan" target="_top" data-app="/kiralama?ara=Yunanistan"><img src="img/bolge-yunanistan.jpg" alt="Hydra limanı" loading="lazy"><div class="yazi"><h3>Yunanistan</h3><small>11 kiralama · 13 tur</small></div></a><a class="vit v3" href="/kiralama?ara=%C4%B0talya" target="_top" data-app="/kiralama?ara=%C4%B0talya"><img src="img/bolge-italya.jpg" alt="Amalfi kıyısı" loading="lazy"><div class="yazi"><h3>İtalya</h3><small>11 kiralama · 11 tur</small></div></a><a class="vit v4" href="/kiralama?ara=H%C4%B1rvatistan" target="_top" data-app="/kiralama?ara=H%C4%B1rvatistan"><img src="img/bolge-hirvatistan.jpg" alt="Hvar" loading="lazy"><div class="yazi"><h3>Hırvatistan</h3><small>9 kiralama · 9 tur</small></div></a><a class="vit v5" href="/kiralama?ara=Fransa" target="_top" data-app="/kiralama?ara=Fransa"><img src="img/bolge-fransa.jpg" alt="Saint-Tropez" loading="lazy"><div class="yazi"><h3>Fransa</h3><small>8 kiralama · 8 tur</small></div></a><a class="vit v6" href="/kiralama?ara=Monako" target="_top" data-app="/kiralama?ara=Monako"><img src="img/bolge-monako.jpg" alt="Monako limanı" loading="lazy"><div class="yazi"><h3>Monako</h3><small>Kiralama · Tur</small></div></a></div>
+    <div class="vitrin-alt bel"><span>Ayrıca İspanya, Malta, Portekiz, Karadağ, ABD ve Dubai.</span><a class="ok-link" href="/kiralama" target="_top" data-app="/kiralama">Tüm bölgeler <span>→</span></a></div>
+  </div>
+</section>
 
-      <!--
-        Ortadaki telefon sayfanın vaadini taşıyor. Kiralama asıl gelir kaynağı
-        olduğu için merkeze o alındı; hava ve koylar yanlarda, uygulamanın
-        kiralamadan sonrasını da çözdüğünü gösteriyor.
-      -->
-      <div class="stage">
-        <div class="phone side left">
-          <img src="screens/tr/hava.png?v=3" alt="Hava ekranı: rüzgâr gülü, Beaufort kuvveti ve deniz durumu" width="720" height="1565">
-        </div>
-        <div class="phone center">
-          <img src="screens/tr/kiralama.png?v=3" alt="Kirala ve Tur ekranı: fotoğraflı bölgeler, arama kutusu ve yakındaki kiralama bölgelerinin uzaklığı" width="720" height="1565">
-        </div>
-        <div class="phone side right">
-          <img src="screens/tr/koylar.png?v=3" alt="Koylar ekranı: yakındaki koy, plaj ve mavi bayraklı marinalar, mesafeleriyle" width="720" height="1565">
-        </div>
+<section class="hizmet" id="kiralama">
+  <div class="foto"><img src="img/kiralama-yelken.jpg" alt="Yelken açmış bir yat" loading="lazy"></div>
+  <div class="metin bel">
+    <span class="etiket">Tekne kiralama</span>
+    <h2>Teknenin tamamı<br><em>sizin.</em></h2>
+    <div class="sayi"><b>88</b><span>Kiralama<br>bölgesi</span></div>
+    <p>Dümen sizde ya da kaptanlı: yelkenli, katamaran ve motoryat. Fiyat, müsaitlik ve ödeme iş ortağımızın sayfasında; ödediğiniz fiyat değişmez.</p>
+    <a class="ok-link" href="/kiralama?tur=charter" target="_top" data-app="/kiralama?tur=charter">Kiralama bölgelerini keşfedin <span>→</span></a>
+    <div class="ortaklar">SamBoat · SkipperCity · Viravira</div>
+  </div>
+</section>
+<section class="hizmet ters">
+  <div class="foto"><img src="img/kiralama-gulet.jpg" alt="Bir guletin güvertesi" loading="lazy"></div>
+  <div class="metin bel">
+    <span class="etiket">Tekne turu</span>
+    <h2>Bir günlüğüne<br><em>denizde.</em></h2>
+    <div class="sayi"><b>84</b><span>Tur<br>bölgesi</span></div>
+    <p>Koy turları, yüzme molaları, gün batımı. Sabah binip akşam inersiniz; tekne sizin olmasa da deniz sizin.</p>
+    <a class="ok-link" href="/kiralama?tur=tour" target="_top" data-app="/kiralama?tur=tour">Turları keşfedin <span>→</span></a>
+    <div class="ortaklar">GetYourGuide</div>
+  </div>
+</section>
+
+<section class="gece" id="ozellikler">
+  <div class="ic">
+    <div class="ust-yazi bel">
+      <div><span class="etiket">Uygulama</span><h2>Denizde,<br><em>cebinizde.</em></h2></div>
+      <p>Tekneyi tuttuktan sonra asıl iş başlar. Hava ne olacak, nereye demirlenir, kalkıştan önce ne kontrol edilir — hepsi aynı yerde.</p>
+    </div>
+    <div class="sahne bel">
+      <div class="tel y sol"><img src="screens/tr/hava.png?v=4" alt="" loading="lazy"></div>
+      <div class="tel orta"><img src="screens/tr/kiralama.png?v=4" alt="" loading="lazy"></div>
+      <div class="tel y sag"><img src="screens/tr/koylar.png?v=4" alt="" loading="lazy"></div>
+    </div>
+    <div class="ozellikler bel"><div class="oz"><i>i.</i><h3>Kalkış öncesi</h3><p>Hazır kontrol listeleri; işaretledikçe hazırlık yüzdeniz artar.</p><a class="ok-link" href="/?kontrol" target="_top" data-app="/?kontrol">Aç <span>→</span></a></div><div class="oz"><i>ii.</i><h3>Rüzgâr ve deniz</h3><p>Rüzgâr, hamle, dalga ve deniz suyu sıcaklığı; saatlik ve günlük.</p><a class="ok-link" href="/hava" target="_top" data-app="/hava">Aç <span>→</span></a></div><div class="oz"><i>iii.</i><h3>Seyre uygun mu?</h3><p>Ham sayı yerine net bir karar: gidilir, dikkatli ol ya da bugün olmaz.</p><a class="ok-link" href="/hava" target="_top" data-app="/hava">Aç <span>→</span></a></div><div class="oz"><i>iv.</i><h3>Koylar ve rota</h3><p>9.310 koy ve Mavi Bayraklı plaj; seçin, rota çizilsin, paylaşın.</p><a class="ok-link" href="/koylar" target="_top" data-app="/koylar">Aç <span>→</span></a></div><div class="oz"><i>v.</i><h3>Seyir defteri</h3><p>Her sefer: liman, saat, mesafe, motor ve yakıt. PDF olarak paylaşın.</p><a class="ok-link" href="/defter" target="_top" data-app="/defter">Aç <span>→</span></a></div><div class="oz"><i>vi.</i><h3>En kötü anda hazır</h3><p>Bulunduğunuz ülkenin acil hatları ve tekne bilgilerinizle hazır MAYDAY metni.</p><a class="ok-link" href="/imdat" target="_top" data-app="/imdat">Aç <span>→</span></a></div></div>
+  </div>
+</section>
+
+<section class="fiyat" id="fiyat">
+  <div class="ic">
+    <div class="bas bel">
+      <div><span class="etiket">Fiyatlandırma</span><h2>Ücretsiz başlayın,<br><em>dilerseniz</em> büyütün.</h2></div>
+      <p>Güvenlikle ilgili hiçbir şey ücretli değil: imdat ekranı, MAYDAY metni ve seyre uygunluk her zaman açık.</p>
+    </div>
+    <div class="planlar bel"><div class="plan"><span class="ad">Ücretsiz</span><div class="tutar"><b>0 ₺</b><span>her zaman</span></div><p class="not">Denize çıkmak için gereken her şey.</p><ul><li>Kiralama ve tur bölgeleri</li><li>Anlık rüzgâr, dalga ve deniz durumu</li><li>Seyre uygunluk tavsiyesi</li><li>2 hazır kontrol listesi</li><li>Yakındaki 3 koy ve rota</li><li>İmdat ekranı — sınırsız</li></ul></div><div class="plan pro"><span class="ad">ViraCheck Pro</span><div class="tutar"><b>299,99 ₺</b><span>/ ay</span></div><p class="not">ya da yıllık 1.099 ₺ — ayda yaklaşık 92 ₺</p><ul><li>6 hazır listenin tamamı ve kendi listeleriniz</li><li>24 saatlik rüzgâr şeridi, 7 günlük tahmin</li><li>Yakındaki tüm koylar ve Mavi Bayraklı yerler</li><li>Sınırsız seyir defteri</li><li>Defteri PDF olarak dışa aktarma</li></ul></div></div>
+    <p class="dipnot">Türkiye App Store fiyatlarıdır; abonelik App Store hesabınızdan yönetilir ve istediğiniz zaman iptal edilir.</p>
+  </div>
+</section>
+
+<section class="sss" id="sss">
+  <div class="ic izgara">
+    <div class="bel"><span class="etiket">Sık sorulanlar</span><h2 style="margin-top:18px">Aklınıza<br><em>takılanlar</em></h2></div>
+    <div class="bel"><details><summary>ViraCheck ücretli mi?</summary><p>Hayır, uygulama ücretsiz. Kiralama ve tur bölgeleri, rüzgâr ve deniz durumu, seyre uygunluk tavsiyesi ve imdat ekranı ücretsiz sürümde açık. Pro abonelik sınırları kaldırır: 7 günlük tahmin, tüm koylar, sınırsız seyir defteri ve PDF dışa aktarma.</p></details><details><summary>Tekne kiralamayı ViraCheck mi yapıyor?</summary><p>Hayır. ViraCheck bölgeleri listeler; dokunduğunuzda iş ortağımızın (SamBoat, SkipperCity, Viravira, GetYourGuide) rezervasyon sayfası açılır. Fiyat, ödeme, sözleşme ve iptal iş ortağıyla yürür. Bu bağlantılardan komisyon alabiliriz; ödediğiniz fiyat değişmez.</p></details><details><summary>Hesap açmam gerekiyor mu?</summary><p>Hayır. ViraCheck hesap, e-posta ya da ad istemez. Kontrol listeleriniz, seyir defteriniz ve tekne bilgileriniz yalnızca kendi cihazınızda saklanır.</p></details><details><summary>Android ya da bilgisayarda kullanabilir miyim?</summary><p>Uygulama iPhone ve iPad için App Store’da. Android ve bilgisayarda viracheck.com.tr adresinden tarayıcı sürümünü kullanabilirsiniz; aynı özellikler orada da var.</p></details><details><summary>Hava ve deniz verisi nereden geliyor?</summary><p>Rüzgâr, dalga ve deniz durumu Open-Meteo’dan, koy ve plajlar OpenStreetMap’ten, Mavi Bayrak bilgisi FEE’den gelir. ViraCheck yardımcı bir araçtır; resmî denizcilik uyarılarının ve kaptanın kararının yerine geçmez.</p></details><details><summary>Hangi ülkelerde kiralama var?</summary><p>Türkiye, Yunanistan, Hırvatistan, İtalya, İspanya, Fransa, Portekiz, Karadağ, Malta, Monako, ABD ve Dubai — toplam 12 ülkede 93 bölge. Bölgeler bulunduğunuz yere uzaklığına göre sıralanır.</p></details></div>
+  </div>
+</section>
+
+<section class="kapanis">
+  <img src="img/bolge-fransa.jpg" alt="" loading="lazy">
+  <div class="ic bel">
+    <span class="etiket">Hazır mısınız</span>
+    <h2>Denize <em>güvenle</em><br>açılın.</h2>
+    <p>Tekneyi bulun, rüzgârı okuyun, rotanızı çizin. Ücretsiz, hesap açmadan.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px">
+      <a class="dug dug-pirinc" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">App Store'dan indir</a>
+      <a class="dug dug-cizgi" href="/kiralama" target="_top" data-app="/kiralama">Tarayıcıda kullan</a>
+    </div>
+  </div>
+</section>
+
+<footer class="alt-bilgi">
+  <div class="ic">
+    <div class="izgara">
+      <div>
+        <div class="marka"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</div>
+        <p style="max-width:300px;margin:0">Tekne kiralama, tekne turu ve seyir asistanı. On iki ülkede, tek uygulamada.</p>
       </div>
-      <div class="rakamlar"><div><b>12</b><span>ülke</span></div><div><b>93</b><span>kiralama ve tur bölgesi</span></div><div><b>9.310</b><span>koy ve plaj</span></div><div><b>0</b><span>hesap gerekmez</span></div></div>
-      </div>
+      <div><h4>Keşfet</h4><ul><li><a href="/kiralama" target="_top" data-app="/kiralama">Kirala &amp; Tur</a></li><li><a href="/hava" target="_top" data-app="/hava">Hava</a></li><li><a href="/koylar" target="_top" data-app="/koylar">Koylar</a></li><li><a href="#fiyat">Fiyat</a></li><li><a href="#sss">Sık sorulanlar</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="is-ortakligi.html">İş ortaklığı</a></li><li><a href="mailto:seymen@viracheck.com.tr">İletişim</a></li><li><a href="kaynaklar.html">Fotoğraf kaynakları</a></li><li><a href="index-en.html">English</a></li></ul></div><div><h4>Yasal</h4><ul><li><a href="privacy-tr.html">Gizlilik Politikası</a></li><li><a href="kvkk-tr.html">KVKK Aydınlatma Metni</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Kullanım Koşulları</a></li></ul></div>
     </div>
-  </div>
-</div>
-
-<div class="wrap">
-
-<section id="kiralama">
-  <p class="eyebrow">Kiralama ve turlar</p>
-  <h2>Tekneyi de, günübirlik turu da<br>uygulamanın içinden bulun</h2>
-  <p class="sub">
-    İki ayrı sekme: teknenin tamamını kiralamak ya da günübirlik tekne turuna
-    katılmak. Bölgeler bulunduğunuz yere uzaklığıyla sıralanır; dokunduğunuzda
-    iş ortağının kendi rezervasyon sayfası uygulama içi tarayıcıda açılır.
-  </p>
-
-  <div class="offers">
-    <article class="offer">
-      <div class="offer-media">
-        <img src="img/kiralama-yelken.webp" alt="Kornati takımadalarında yelken açmış bir yat" width="1400" height="929" loading="lazy">
-        <span class="offer-tag">Tekne kiralama</span>
-        <p class="offer-count"><b>88</b><span>kiralama bölgesi</span></p>
-      </div>
-      <div class="offer-body">
-        <h3>Teknenin tamamı sizin</h3>
-        <p>Dümen sizde ya da kaptanlı: yelkenli, katamaran ve motoryat. Ege'den Atlantik'e, rotayı siz çizersiniz.</p>
-        <ul class="checks">
-          <li><strong>Türkiye (17):</strong> Bodrum, Marmaris, Göcek, Fethiye, Kaş, Kalkan, Kemer, Antalya, Datça, Didim, Kuşadası, Çeşme, Alaçatı, Ayvalık, İstanbul, Mersin, Sinop</li>
-          <li><strong>Avrupa:</strong> Yunanistan (11), İtalya (11), İspanya (10), Hırvatistan (9), Fransa (8), Portekiz (7), Karadağ (5), Malta (4), Monako</li>
-          <li><strong>Diğer:</strong> ABD (Miami, New York, Los Angeles, San Diego), Dubai</li>
-        </ul>
-        <a class="kart-link" href="/kiralama?tur=charter" target="_top" data-app="/kiralama?tur=charter">Kiralama bölgelerini aç →</a>
-        <div class="offer-partners"><span>İlanlar:</span><span class="chip">SamBoat</span><span class="chip">SkipperCity</span><span class="chip">Viravira</span></div>
-      </div>
-    </article>
-
-    <article class="offer">
-      <div class="offer-media">
-        <img src="img/kiralama-gulet.webp" alt="Bodrum'da bir guletin güvertesi, Türk bayrakları ve gölgelik" width="1200" height="900" loading="lazy">
-        <span class="offer-tag">Tekne turu</span>
-        <p class="offer-count"><b>84</b><span>tur bölgesi</span></p>
-      </div>
-      <div class="offer-body">
-        <h3>Günübirlik tura katılın</h3>
-        <p>Tekne sizin olmasa da deniz sizin: koy turları, yüzme molaları ve gün batımı turları — sabah binip akşam inersiniz.</p>
-        <ul class="checks">
-          <li><strong>Türkiye (15):</strong> Bodrum, Marmaris, Göcek, Fethiye, Dalyan, Kaş, Kalkan, Kemer, Antalya, Side, Alanya, Didim, Kuşadası, Çeşme, İstanbul Boğazı</li>
-          <li><strong>Avrupa:</strong> Yunanistan (13), İtalya (11), İspanya (10), Hırvatistan (9), Fransa (8), Portekiz (7), Karadağ (4), Malta, Monako</li>
-          <li><strong>Diğer:</strong> ABD (Miami, New York, Los Angeles, San Diego), Dubai</li>
-        </ul>
-        <a class="kart-link" href="/kiralama?tur=tour" target="_top" data-app="/kiralama?tur=tour">Tur bölgelerini aç →</a>
-        <div class="offer-partners"><span>Turlar:</span><span class="chip">GetYourGuide</span></div>
-      </div>
-    </article>
-  </div>
-
-  <div class="regions-head">
-    <h3>Öne çıkan bölgeler</h3>
-    <p>Ayrıca Portekiz, Karadağ ve ABD’de de kiralama ve tur bölgeleri var</p>
-  </div>
-  <div class="region-grid">
-    <a class="region" href="/kiralama?ara=T%C3%BCrkiye" target="_top" data-app="/kiralama?ara=T%C3%BCrkiye">
-      <img src="img/bolge-istanbul.webp" alt="İstanbul Boğazı, Kız Kulesi ve köprü" width="1000" height="699" loading="lazy">
-      <span class="figcap"><b>Türkiye</b><span>17 kiralama · 15 tur</span></span>
-    </a>
-    <a class="region" href="/kiralama?ara=Yunanistan" target="_top" data-app="/kiralama?ara=Yunanistan">
-      <img src="img/bolge-yunanistan.webp" alt="Yunanistan, Hydra adasının limanı" width="1000" height="666" loading="lazy">
-      <span class="figcap"><b>Yunanistan</b><span>11 kiralama · 13 tur</span></span>
-    </a>
-    <a class="region" href="/kiralama?ara=H%C4%B1rvatistan" target="_top" data-app="/kiralama?ara=H%C4%B1rvatistan">
-      <img src="img/bolge-hirvatistan.webp" alt="Hırvatistan, limandan Hvar kasabası" width="1000" height="750" loading="lazy">
-      <span class="figcap"><b>Hırvatistan</b><span>9 kiralama · 9 tur</span></span>
-    </a>
-    <a class="region" href="/kiralama?ara=%C4%B0talya" target="_top" data-app="/kiralama?ara=%C4%B0talya">
-      <img src="img/bolge-italya.webp" alt="Amalfi kıyısında Atrani kasabası ve tekneler" width="1000" height="750" loading="lazy">
-      <span class="figcap"><b>İtalya</b><span>11 kiralama · 11 tur</span></span>
-    </a>
-    <a class="region" href="/kiralama?ara=Fransa" target="_top" data-app="/kiralama?ara=Fransa">
-      <img src="img/bolge-fransa.webp" alt="Saint-Tropez eski limanına havadan bakış" width="1000" height="750" loading="lazy">
-      <span class="figcap"><b>Fransa</b><span>8 kiralama · 8 tur</span></span>
-    </a>
-    <a class="region" href="/kiralama?ara=Malta" target="_top" data-app="/kiralama?ara=Malta">
-      <img src="img/bolge-malta.webp" alt="Valletta'dan Grand Harbour manzarası" width="1000" height="750" loading="lazy">
-      <span class="figcap"><b>Malta</b><span>4 kiralama · 1 tur</span></span>
-    </a>
-    <a class="region" href="/kiralama?ara=Monako" target="_top" data-app="/kiralama?ara=Monako">
-      <img src="img/bolge-monako.webp" alt="Monako, Port Hercule'deki yatlar" width="1000" height="750" loading="lazy">
-      <span class="figcap"><b>Monako</b><span>Kiralama · Tur</span></span>
-    </a>
-    <a class="region" href="/kiralama?ara=%C4%B0spanya" target="_top" data-app="/kiralama?ara=%C4%B0spanya">
-      <img src="img/bolge-ispanya.webp" alt="Mallorca, Cala Figuera koyunda bir tekne" width="1000" height="750" loading="lazy">
-      <span class="figcap"><b>İspanya</b><span>10 kiralama · 10 tur</span></span>
-    </a>
-    <a class="region" href="/kiralama?ara=Dubai" target="_top" data-app="/kiralama?ara=Dubai">
-      <img src="img/bolge-dubai.webp" alt="Denizden Dubai Marina silueti" width="1000" height="750" loading="lazy">
-      <span class="figcap"><b>BAE (Dubai)</b><span>Kiralama · Tur</span></span>
-    </a>
-  </div>
-
-  <div class="steps">
-    <div class="step">
-      <div class="step-no">1</div>
-      <h4>En yakından başlar</h4>
-      <p>Bodrum'daysanız önce Bodrum, sonra İstanköy 20 km, Didim ve Datça 41 km, Marmaris 78 km. Mesafe kilometre ya da deniz mili, ayarlardan.</p>
-    </div>
-    <div class="step">
-      <div class="step-no">2</div>
-      <h4>Kiralama ya da tur</h4>
-      <p>Sekmeyi seçip bölgeye dokunun; iş ortağının o bölgedeki ilanları uygulama içi tarayıcıda açılır.</p>
-    </div>
-    <div class="step">
-      <div class="step-no">3</div>
-      <h4>Rezervasyon ortağın sayfasında</h4>
-      <p>Fiyat, müsaitlik ve ödeme iş ortağındadır; ortağın sayfasında yazan fiyat neyse odur. ViraCheck'te hesap, form ya da ödeme yok.</p>
-    </div>
-  </div>
-
-  <div class="partner-strip">
-    <span>İlanları listelediğimiz platformlar</span>
-    <ul class="brands">
-      <li><b>SamBoat</b></li>
-      <li><b>SkipperCity</b></li>
-      <li><b>Viravira</b></li>
-      <li><b>GetYourGuide</b></li>
-    </ul>
-    <p class="fine">
-      Bağlantılar iş ortaklarımıza aittir ve bu bağlantılardan yapılan kiralamalarda
-      komisyon alabiliriz; bu, ödeyeceğiniz fiyatı değiştirmez. Rezervasyon, ödeme ve
-      kiralama sözleşmesi doğrudan iş ortağıyla kurulur; ViraCheck taraf değildir.
-    </p>
-  </div>
-</section>
-
-<section id="ozellikler">
-  <p class="eyebrow">Kiraladıktan sonra</p>
-  <h2>Tekneyi tuttunuz.<br>Asıl iş şimdi başlıyor.</h2>
-  <p class="sub">
-    Rezervasyon bir günlük iş, seyir bir haftalık. Hava ne olacak, nereye
-    demirlenir, kalkıştan önce ne kontrol edilir — tekneyi bulduğunuz yerde
-    bunların hepsi de var.
-  </p>
-
-  <div class="grid">
-    <a class="feature" href="/?kontrol" target="_top" data-app="/?kontrol">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
-      <h3>Kalkış öncesi kontroller</h3>
-      <p>
-        Hazır listelerle yola çıkın: kalkış kontrolleri, güvenlik ekipmanı,
-        motor ve yakıt. İşaretledikçe hazırlık yüzdeniz artar, eksik madde
-        gözden kaçmaz.
-      </p><span class="ok" aria-hidden="true">→</span></a>
-
-    <a class="feature" href="/hava" target="_top" data-app="/hava">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M9.6 4.6A2 2 0 1 1 11 8H2m8.6 11.4A2 2 0 1 0 12 16H2m10.6-11.4A2 2 0 1 1 14 8h8"/></svg></div>
-      <h3>Rüzgâr, dalga ve deniz</h3>
-      <p>
-        Mevkinize göre rüzgâr yönü ve hızı, hamle, Beaufort kuvveti, dalga
-        yüksekliği ve periyodu, deniz suyu sıcaklığı, basınç. Saatlik şerit ve
-        günlük özet ile.
-      </p><span class="ok" aria-hidden="true">→</span></a>
-
-    <a class="feature" href="/hava" target="_top" data-app="/hava">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M22 11.1A10 10 0 1 1 12.9 2"/><path d="m9 11 3 3L22 4"/></svg></div>
-      <h3>Seyre uygun mu?</h3>
-      <p>
-        Ham sayı yerine yorum: rüzgâr ve hamle birlikte değerlendirilip
-        "gidilir", "dikkatli ol" ya da "bugün olmaz" şeklinde net bir tavsiyeye
-        çevrilir.
-      </p><span class="ok" aria-hidden="true">→</span></a>
-
-    <a class="feature" href="/defter" target="_top" data-app="/defter">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg></div>
-      <h3>Seyir defteri</h3>
-      <p>
-        Her seferi kaydedin: kalkış ve varış limanı, saatler, mesafe, motor
-        saati, yakıt, mürettebat ve notlar. Defteri PDF olarak dışa aktarıp
-        paylaşın.
-      </p><span class="ok" aria-hidden="true">→</span></a>
-
-    <a class="feature" href="/tekne" target="_top" data-app="/tekne">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 18s2-1 4.5-1 4 2 6.5 2 4.5-1 4.5-1"/><path d="M5 14V6a1 1 0 0 1 1-1h8l4 5v4"/><path d="M9 5V3h4v2"/></svg></div>
-      <h3>Tekne ve belgeler</h3>
-      <p>
-        Tekne adı, tipi, boyu, bağlama limanı, çağrı işareti ve MMSI tek yerde.
-        Sigorta ve ruhsat bitiş tarihlerini girin, süresi dolmadan uyarı alın.
-      </p><span class="ok" aria-hidden="true">→</span></a>
-
-    <a class="feature" href="/tekne" target="_top" data-app="/tekne">
-      <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19 5a10 10 0 0 1 0 14M5 19A10 10 0 0 1 5 5"/></svg></div>
-      <h3>Uygun gün bildirimi</h3>
-      <p>
-        Seçtiğiniz saatte, ertesi günün rüzgârına göre bildirim alın. Bildirimler
-        cihazınızda planlanır; hiçbir sunucuya veri gitmez.
-      </p><span class="ok" aria-hidden="true">→</span></a>
-  </div>
-</section>
-
-<section id="koylar">
-  <div class="split">
-    <div>
-      <p class="eyebrow">Koylar ve rota</p>
-      <h2>Nereye gideceğinizi<br>uygulamadan çıkmadan planlayın</h2>
-      <p class="sub" style="margin-bottom:0">
-        Çevrenizdeki koy ve plajlar, mevkinize uzaklıklarıyla
-        listelenir. Birkaçını seçin — uygulama en yakından başlayarak
-        sıralar, bacakları çizer ve toplam mesafeyi verir.
-      </p>
-      <ul class="checks">
-        <li><strong>Mavi Bayrak:</strong> ödüllü plaj ve marinalar bayrakla işaretlenir, tek dokunuşla filtrelenir; çevrede yoksa en yakınları listelenir</li>
-        <li><strong>Gerçek veri:</strong> koy ve plajlar OpenStreetMap'ten gelir</li>
-        <li><strong>Kilometre ya da deniz mili:</strong> mesafe birimi ayarlardan seçilir</li>
-        <li><strong>Uygulama içi harita:</strong> başka uygulamaya atmaz</li>
-        <li><strong>Dürüst uyarı:</strong> bacaklar düz hattır; kara ve sığlık kontrolü kaptanındır</li>
-      </ul>
-      <p class="bolum-cta"><a class="btn-web" href="/koylar" target="_top" data-app="/koylar">Koyları aç →</a></p>
-    </div>
-    <div class="phone">
-      <img src="screens/tr/rota.png?v=3" alt="Rota ekranı: seçilen koylar arasında çizilmiş rota ve toplam mesafe" width="720" height="1565" loading="lazy">
-    </div>
-  </div>
-</section>
-
-
-
-<section id="imdat">
-  <p class="eyebrow">Acil durum</p>
-  <h2>En kötü anda hazır</h2>
-  <p class="sub">
-    Panik anında doğru cümleyi kurmak zordur. İmdat ekranı, tekne
-    bilgilerinizle önceden doldurulmuş bir MAYDAY metni hazırlar.
-  </p>
-  <div class="panel alert">
-    <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
-    <ul class="checks" style="margin-top:0">
-      <li>Tekne adınız, MMSI'niz ve mevkiiniz yerleştirilmiş <strong>MAYDAY metni</strong> — okumanız yeterli</li>
-      <li><strong>Sahil Güvenlik (158)</strong> ve <strong>acil çağrı (112)</strong> için tek dokunuşla arama</li>
-      <li><strong>VHF kanal 16</strong> hatırlatması ve PAN-PAN'ın ne zaman kullanılacağı</li>
-      <li><strong>Denize adam düştüğünde</strong> izlenecek adımlar, sırayla</li>
-    </ul>
-  </div>
-  <p class="bolum-cta"><a class="btn-web btn-web-ikincil" href="/imdat" target="_top" data-app="/imdat">İmdat ekranını aç →</a></p>
-</section>
-
-<section id="gizlilik">
-  <p class="eyebrow">Gizlilik</p>
-  <h2>Hesap yok. İçeriğiniz sizde kalır.</h2>
-  <p class="sub">
-    ViraCheck'te kayıt olmazsınız, çünkü kaydolacak bir yer yok.
-  </p>
-  <div class="panel">
-    <ul class="checks" style="margin-top:0">
-      <li>Kontrol listeleriniz, seyir defteriniz ve tekne bilgileriniz <strong>yalnızca telefonunuzda</strong> saklanır</li>
-      <li><strong>Reklam ağı yok</strong>, kullanıcı takibi yok; verilerinizi satmıyoruz</li>
-      <li>Yalnızca <strong>anonim kullanım sayıları</strong> gönderilir — adınız, konumunuz ve defter içeriğiniz asla dahil değildir. Ayarlardan <strong>tek dokunuşla kapatabilirsiniz</strong>.</li>
-      <li>Konumunuz yalnızca <strong>tahmin ve koy sorgusu</strong> yapılırken kullanılır</li>
-    </ul>
-    <p style="margin:14px 0 0;font-size:.92rem;color:var(--muted)">
-      Ayrıntılar: <a href="privacy-tr.html">Gizlilik Politikası</a>
-    </p>
-  </div>
-</section>
-
-<section id="fiyat">
-  <p class="eyebrow">Fiyatlandırma</p>
-  <h2>Ücretsiz kullanın, isterseniz büyütün</h2>
-  <p class="sub">
-    Güvenlikle ilgili hiçbir şey ücretli değil: imdat ekranı, MAYDAY metni ve
-    seyre uygunluk tavsiyesi her zaman açık. Pro, sınırları kaldırır ve
-    planlamayı derinleştirir.
-  </p>
-  <div class="plans">
-    <div class="plan">
-      <h3>Ücretsiz</h3>
-      <p class="fiyat"><b>0 ₺</b><span>her zaman</span></p>
-      <ul>
-        <li>2 hazır kontrol listesi — 28 madde</li>
-        <li>Anlık rüzgâr, dalga ve deniz durumu</li>
-        <li>Seyre uygunluk tavsiyesi</li>
-        <li>6 saatlik rüzgâr, 2 günlük özet</li>
-        <li>Yakındaki 3 koy veya mavi bayraklı yer ve rota planlama</li>
-        <li>5 sefer kaydı</li>
-        <li>İmdat ekranı, tekne bilgileri ve bildirimler — sınırsız</li>
-      </ul>
-    </div>
-    <div class="plan pro">
-      <span class="tag">Pro</span>
-      <h3>Sınırlar kalksın</h3>
-      <p class="fiyat"><b>299,99 ₺</b><span>/ ay</span></p>
-      <p class="fiyat-not">ya da yıllık 1.099 ₺ — ayda yaklaşık 92 ₺</p>
-      <ul>
-        <li>6 hazır kontrol listesinin tamamı — 68 madde</li>
-        <li>Kendi listelerinizi ve maddelerinizi ekleyin</li>
-        <li>24 saatlik rüzgâr şeridi, 7 günlük tahmin</li>
-        <li>Yakındaki koyların ve mavi bayraklı yerlerin tamamı</li>
-        <li>Sınırsız sefer kaydı</li>
-        <li>Seyir defterini PDF olarak dışa aktarın</li>
-      </ul>
-    </div>
-  </div>
-  <p class="plans-not">Fiyatlar Türkiye App Store fiyatlarıdır; abonelik App Store hesabınızdan yönetilir ve istediğiniz zaman iptal edilir.</p>
-</section>
-
-<section id="sss">
-  <p class="eyebrow">Sık sorulanlar</p>
-  <h2>Aklınıza takılanlar</h2>
-  <div class="sss">
-    <details><summary>ViraCheck ücretli mi?</summary><p>Hayır, uygulama ücretsiz. Kiralama ve tur bölgeleri, rüzgâr ve deniz durumu, seyre uygunluk tavsiyesi ve imdat ekranı ücretsiz sürümde açık. Pro abonelik sınırları kaldırır: 7 günlük tahmin, tüm koylar, sınırsız seyir defteri ve PDF dışa aktarma.</p></details>
-    <details><summary>Tekne kiralamayı ViraCheck mi yapıyor?</summary><p>Hayır. ViraCheck bölgeleri listeler; dokunduğunuzda iş ortağımızın (SamBoat, SkipperCity, Viravira, GetYourGuide) rezervasyon sayfası açılır. Fiyat, ödeme, sözleşme ve iptal iş ortağıyla yürür. Bu bağlantılardan komisyon alabiliriz; ödediğiniz fiyat değişmez.</p></details>
-    <details><summary>Hesap açmam gerekiyor mu?</summary><p>Hayır. ViraCheck hesap, e-posta ya da ad istemez. Kontrol listeleriniz, seyir defteriniz ve tekne bilgileriniz yalnızca kendi cihazınızda saklanır.</p></details>
-    <details><summary>Android ya da bilgisayarda kullanabilir miyim?</summary><p>Uygulama iPhone ve iPad için App Store’da. Android ve bilgisayarda viracheck.com.tr adresinden tarayıcı sürümünü kullanabilirsiniz; aynı özellikler orada da var.</p></details>
-    <details><summary>Hava ve deniz verisi nereden geliyor?</summary><p>Rüzgâr, dalga ve deniz durumu Open-Meteo’dan, koy ve plajlar OpenStreetMap’ten, Mavi Bayrak bilgisi FEE’den gelir. ViraCheck yardımcı bir araçtır; resmî denizcilik uyarılarının ve kaptanın kararının yerine geçmez.</p></details>
-    <details><summary>Hangi ülkelerde kiralama var?</summary><p>Türkiye, Yunanistan, Hırvatistan, İtalya, İspanya, Fransa, Portekiz, Karadağ, Malta, Monako, ABD ve Dubai — toplam 12 ülkede 93 bölge. Bölgeler bulunduğunuz yere uzaklığına göre sıralanır.</p></details>
-  </div>
-</section>
-
-<aside class="kapanis">
-  <img src="icon.png" alt="" width="84" height="84">
-  <div><h2>Denize çıkmadan önce yanınızda olsun</h2><p>Tekneyi bulun, rüzgârı okuyun, rotayı çizin — hepsi tek uygulamada, hesap açmadan.</p></div>
-  <div class="kapanis-btn"><a class="rozet" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7m-3-3 3 3 3-3"/><path d="M10 18h4"/></svg><span><small>App Store'dan</small><b>İndirin</b></span></a><a class="btn-web btn-web-acik" href="/kiralama" target="_top" data-app="/kiralama">Tarayıcıda kullan</a></div>
-</aside>
-
-<footer class="altlik">
-  <div class="altlik-ust">
-    <div class="altlik-marka">
-      <p class="brand"><img src="icon.png" alt="" width="30" height="30"> ViraCheck</p>
-      <p>Tekne kiralama, tekne turu ve seyir asistanı. 12 ülkede 93 bölge; rüzgâr, koylar ve rota tek uygulamada.</p>
-      <a class="rozet" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7m-3-3 3 3 3-3"/><path d="M10 18h4"/></svg><span><small>App Store'dan</small><b>İndirin</b></span></a>
-    </div>
-    <div><h4>Uygulama</h4><ul><li><a href="#kiralama">Kiralama ve turlar</a></li><li><a href="#ozellikler">Özellikler</a></li><li><a href="#fiyat">Fiyatlandırma</a></li><li><a href="#sss">Sık sorulanlar</a></li><li><a href="https://viracheck.com.tr/">Tarayıcıda kullan</a></li></ul></div>
-    <div><h4>ViraCheck</h4><ul><li><a href="is-ortakligi.html">İş ortaklığı</a></li><li><a href="mailto:seymen@viracheck.com.tr">İletişim</a></li><li><a href="kaynaklar.html">Fotoğraf kaynakları</a></li><li><a href="index-en.html">English</a></li></ul></div>
-    <div><h4>Yasal</h4><ul><li><a href="privacy-tr.html">Gizlilik Politikası</a></li><li><a href="kvkk-tr.html">KVKK Aydınlatma Metni</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Kullanım Koşulları</a></li></ul></div>
-  </div>
-  <div class="altlik-alt">
-    <p class="fine">Hava ve deniz verileri: <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Koy ve plaj verileri © <a href="https://www.openstreetmap.org">OpenStreetMap</a> katkıda bulunanları · Mavi Bayrak verileri: <a href="https://www.blueflag.global">FEE</a>, 2026 sezonu</p>
-    <p class="fine">ViraCheck bir yardımcı araçtır; resmî denizcilik uyarılarının, seyir haritalarının ve kaptanın kararının yerine geçmez.</p>
-    <div class="telif"><span>© 2026 ViraCheck</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>
+    <p class="veri">Hava ve deniz verileri: <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Koy ve plaj verileri © <a href="https://www.openstreetmap.org">OpenStreetMap</a> katkıda bulunanları · Mavi Bayrak: <a href="https://www.blueflag.global">FEE</a>, 2026 sezonu</p>
+    <div class="dip"><span>© 2026 ViraCheck · Resmî denizcilik uyarılarının ve kaptanın kararının yerine geçmez.</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>
   </div>
 </footer>
 
-</div>
-<div class="mobil-cta" aria-hidden="true">
-  <img src="icon.png" alt="" width="40" height="40">
-  <div><b>ViraCheck</b><span>Ücretsiz · iPhone ve iPad</span></div>
-  <a href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener" tabindex="-1">İndir</a>
-</div>
 <script>
-  // Hareket azaltma açıksa video durur, kapak görseli kalır.
+  // Menü: video üzerinde saydam, kaydırınca fildişi zemin.
+  var ust = document.getElementById('ust');
+  function menu() { ust.classList.toggle('kayik', window.scrollY > 40); }
+  addEventListener('scroll', menu, { passive: true }); menu();
+  // Bölümler ekrana girerken yumuşakça belirir.
+  if ('IntersectionObserver' in window) {
+    var g = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('gor'); g.unobserve(e.target); } }); }, { threshold: 0.12 });
+    document.querySelectorAll('.bel').forEach(function (el) { g.observe(el); });
+  } else document.querySelectorAll('.bel').forEach(function (el) { el.classList.add('gor'); });
+  // Hareket azaltma açıksa video durur.
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.hero-video video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+    document.querySelectorAll('.kahraman video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
   }
-  // Telefonda indirme çubuğu: giriş bölümündeki düğme görünmez olunca belirir,
-  // sayfa sonundaki çağrıya gelince çekilir (iki düğme üst üste binmesin).
-  (function () {
-    var cubuk = document.querySelector('.mobil-cta');
-    var ust = document.querySelector('.cta-ikili'), alt = document.querySelector('.kapanis');
-    if (!cubuk || !ust || !('IntersectionObserver' in window)) return;
-    var ustGorunur = true, altGorunur = false;
-    function guncelle() { cubuk.classList.toggle('gorunur', !ustGorunur && !altGorunur); }
-    new IntersectionObserver(function (e) { ustGorunur = e[0].isIntersecting; guncelle(); }).observe(ust);
-    if (alt) new IntersectionObserver(function (e) { altGorunur = e[0].isIntersecting; guncelle(); }).observe(alt);
-  })();
-</script>
-<script>
-  // Uygulamaya giden bağlantılar (data-app): sayfa ViraCheck web uygulamasının
-  // içinde (Ana sayfa sekmesi, çerçeve) açıksa uygulama kendi sekmesine geçsin;
-  // yoksa çerçevenin içinde ikinci bir uygulama açılırdı.
-  (function () {
-    var cercevede = window.top !== window.self;
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest && e.target.closest('a[data-app]');
-      if (!a) return;
-      if (cercevede) { e.preventDefault(); window.parent.postMessage({ tip: 'viracheck-git', yol: a.getAttribute('data-app') }, location.origin); }
-      var m = a.closest('details'); if (m) m.removeAttribute('open');
-    });
-  })();
-</script>
-<script>
-  // App Store yalnızca iPhone/iPad'de işe yarar: Android ve bilgisayarda alttaki
-  // çubuk siteyi tarayıcıda kullanmaya götürür.
-  (function () {
-    var ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    var a = document.querySelector('.mobil-cta a'); if (ios || !a) return;
-    a.href = '/kiralama'; a.setAttribute('data-app', '/kiralama'); a.removeAttribute('target'); a.textContent = 'Kullan';
-    var s = document.querySelector('.mobil-cta span'); if (s) s.textContent = 'Ücretsiz · tarayıcıda hemen';
-  })();
+  // Telefon menüsü: bir bağlantıya basınca kapansın.
+  document.querySelectorAll('.mmenu a').forEach(function (l) { l.addEventListener('click', function () { l.closest('details').removeAttribute('open'); }); });
 </script>
 </body>
 </html>

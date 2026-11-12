@@ -19,7 +19,7 @@
     <title>ViraCheck — Tekne Kiralama, Tekne Turu, Rüzgâr ve Koylar</title>
     <link rel="canonical" href="https://viracheck.com.tr/" />
     <meta name="description" content="Tekne kiralama ve tekne turu: Türkiye, Yunanistan, Hırvatistan, İtalya ve 12 ülkede 93 bölge. Rüzgâr ve deniz durumu, 9.310 koy, rota planlama, kontrol listeleri ve seyir defteri. Ücretsiz, hesap gerekmez." />
-    <meta name="theme-color" content="#F4F6F8" />
+    <meta name="theme-color" content="#F7F3EC" />
     <meta name="color-scheme" content="light dark" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/ikon/ikon-180.png" />
@@ -49,12 +49,18 @@
       @font-face { font-family: 'Inter_600SemiBold'; src: url('/yazi/Inter_600SemiBold.woff2') format('woff2'); font-display: swap; }
       @font-face { font-family: 'Inter_700Bold'; src: url('/yazi/Inter_700Bold.woff2') format('woff2'); font-display: swap; }
       @font-face { font-family: 'Inter_800ExtraBold'; src: url('/yazi/Inter_800ExtraBold.woff2') format('woff2'); font-display: swap; }
+      /* Serif başlıklar (Cormorant Garamond): Latin + Türkçe harfler için Latin Ext. */
+      @font-face { font-family: 'CormorantGaramond_600SemiBold'; src: url('/yazi/Cormorant_600_latin.woff2') format('woff2'); font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+      @font-face { font-family: 'CormorantGaramond_600SemiBold'; src: url('/yazi/Cormorant_600_latinext.woff2') format('woff2'); font-display: swap; unicode-range: U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+      @font-face { font-family: 'CormorantGaramond_500Medium_Italic'; src: url('/yazi/Cormorant_500i_latin.woff2') format('woff2'); font-display: swap; unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+      @font-face { font-family: 'CormorantGaramond_500Medium_Italic'; src: url('/yazi/Cormorant_500i_latinext.woff2') format('woff2'); font-display: swap; unicode-range: U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
     </style>
     <!-- react-native-web'in önerdiği kök stil sıfırlaması -->
     <style id="expo-reset">
       html, body { height: 100%; }
       /* Yazı tipi belirtilmeyen metin (SVG içindekiler dahil) Times'a düşmesin. */
-      body { overflow: hidden; background-color: #F4F6F8; font-family: Inter_500Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      html { background-color: #F7F3EC; }
+      body { overflow: hidden; background-color: #F7F3EC; font-family: Inter_500Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
       #root { display: flex; height: 100%; flex: 1; }
       /* iOS Safari: alt adres çubuğu içeriğin üstüne binmesin; görünür alan kadar yükseklik. */
       @supports (height: 100dvh) { html, body, #root { height: 100dvh; } }
@@ -63,8 +69,8 @@
       .acilis img { border-radius: 20px; box-shadow: 0 12px 28px -14px rgba(14, 28, 40, 0.5); }
       /* Varsayılan beyaz; cihaz koyu modda olsa da. Koyu yalnızca kullanıcı
          uygulamada gece modunu seçtiyse (aşağıdaki betik). */
-      html.koyu body { background-color: #0A1420; }
-      html.koyu .acilis { color: #E9F2F9; }
+      html.koyu, html.koyu body { background-color: #0B1B2B; }
+      html.koyu .acilis { color: #F3EEE4; }
     </style>
     <script>
       try {
@@ -93,6 +99,6 @@
         window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
       }
     </script>
-  <script src="/_expo/static/js/web/__expo-metro-runtime-1f8f5d3ca6b7f58204d51e14506d73fb.js" defer></script><script src="/_expo/static/js/web/__common-d99353a01cf976bb9fa82470976aa466.js" defer></script><script src="/_expo/static/js/web/entry-0e0b1355c4008415558a8dc54c6c2b69.js" defer></script>
+  <script src="/_expo/static/js/web/__expo-metro-runtime-1f8f5d3ca6b7f58204d51e14506d73fb.js" defer></script><script src="/_expo/static/js/web/__common-d7ed19d2ba58f8ad0aa907d14c64bca9.js" defer></script><script src="/_expo/static/js/web/entry-93bad9a4c1f2a789e8b900aeb42a1c0e.js" defer></script>
 </body>
 </html>

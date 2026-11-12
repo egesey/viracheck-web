@@ -1,0 +1,66 @@
+/* Alt sayfalar (gizlilik, KVKK, kaynaklar, iş ortaklığı) — VIP dil.
+ * vip.css'in üzerine: sabit fildişi üst menü, okunaklı uzun metin. */
+
+.ust.sabit{position:sticky; top:0}
+body{background:var(--fildisi)}
+
+.belge{max-width:860px; margin:0 auto; padding:84px 32px 120px}
+.belge h1{font-family:var(--serif); font-weight:500; font-size:clamp(2.4rem, 5vw, 3.6rem); line-height:1.05; margin:0 0 14px; font-variant-numeric:lining-nums}
+.belge header{border-bottom:1px solid var(--cizgi); padding-bottom:28px; margin-bottom:38px}
+.belge .date{font:600 .72rem/1 var(--sans); letter-spacing:.22em; text-transform:uppercase; color:var(--pirinc); margin:0}
+.belge .lang{margin-top:18px; font-size:.9rem; color:var(--soluk)}
+.belge h2{font-family:var(--serif); font-weight:500; font-size:1.85rem; line-height:1.2; margin:48px 0 14px; font-variant-numeric:lining-nums}
+.belge h3{font-family:var(--serif); font-weight:500; font-size:1.4rem; margin:28px 0 10px}
+.belge p, .belge li{color:var(--metin); opacity:.9}
+.belge p{margin:0 0 16px}
+.belge ul{margin:0 0 16px; padding-left:22px}
+.belge li{margin-bottom:8px}
+.belge li::marker{color:var(--pirinc)}
+.belge a{color:var(--pirinc-koyu); text-decoration:underline; text-decoration-color:rgba(169,130,75,.35); text-underline-offset:3px; overflow-wrap:anywhere}
+.belge a:hover{text-decoration-color:currentColor}
+.belge code{font-size:.9em; background:var(--kum); padding:1px 6px}
+.belge .card{background:var(--kart); border:1px solid var(--cizgi); border-left:2px solid var(--pirinc); padding:24px 28px; margin:0 0 12px}
+.belge .card p:last-child, .belge .card ul:last-child{margin-bottom:0}
+.belge table{width:100%; border-collapse:collapse; margin:0 0 20px; font-size:.95rem; background:var(--kart)}
+.belge th, .belge td{text-align:left; vertical-align:top; padding:14px 16px; border-bottom:1px solid var(--cizgi)}
+.belge th{font-weight:600; width:32%}
+@media (max-width:620px){
+  .belge{padding:56px 22px 90px}
+  .belge table, .belge tbody, .belge tr, .belge td, .belge th{display:block; width:auto}
+  .belge th{border-bottom:none; padding-bottom:0}
+  .belge td{padding-top:6px}
+}
+
+/* Kaynaklar */
+.belge-kaynak .fine, .belge-kaynak p{font-size:.92rem; line-height:1.9; color:var(--soluk)}
+
+/* İş ortaklığı */
+.belge-ortak{max-width:var(--gen)}
+.belge-ortak .eyebrow{font:600 .72rem/1 var(--sans); letter-spacing:.28em; text-transform:uppercase; color:var(--pirinc); display:inline-flex; align-items:center; gap:14px; margin:0 0 20px}
+.belge-ortak .eyebrow::before{content:""; width:36px; height:1px; background:currentColor; opacity:.7}
+.belge-ortak .sayfa-h1{font-family:var(--serif); font-weight:500; font-size:clamp(2.6rem, 5.4vw, 4.4rem); line-height:1.02; margin:0 0 22px}
+.belge-ortak .sub{color:var(--soluk); max-width:640px; font-size:1.05rem; margin:0 0 50px}
+.belge-ortak .partner-grid{display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--cizgi); margin-bottom:36px}
+.belge-ortak .stat{padding:30px 30px 32px; background:var(--kart)}
+.belge-ortak .stat + .stat{border-left:1px solid var(--cizgi)}
+.belge-ortak .stat b{display:block; font:500 2rem/1.1 var(--serif); margin-bottom:10px; font-variant-numeric:lining-nums}
+.belge-ortak .stat span{color:var(--soluk); font-size:.92rem}
+.belge-ortak .panel{background:var(--gece); color:#F3EEE4; padding:48px 52px}
+.belge-ortak .panel p, .belge-ortak .panel li{color:rgba(243,238,228,.86); opacity:1}
+.belge-ortak .checks{list-style:none; padding:0; margin:0}
+.belge-ortak .checks li{padding:16px 0 16px 34px; border-bottom:1px solid rgba(243,238,228,.12); position:relative; margin:0}
+.belge-ortak .checks li::before{content:"—"; position:absolute; left:0; color:var(--pirinc-acik)}
+.belge-ortak .checks strong{color:#fff}
+.belge-ortak .brands{display:flex; flex-wrap:wrap; gap:10px; list-style:none; padding:0; margin:18px 0 0}
+.belge-ortak .brands li{border:1px solid rgba(243,238,228,.3); padding:9px 18px; font:600 .72rem/1 var(--sans); letter-spacing:.18em; text-transform:uppercase}
+.belge-ortak .brands li b{font-weight:600}
+.belge-ortak .partner-cta{margin-top:34px; display:flex; flex-wrap:wrap; gap:14px 22px; align-items:center}
+.belge-ortak .btn-ghost{display:inline-flex; align-items:center; height:50px; padding:0 26px; background:var(--pirinc); color:#fff; font:600 .76rem/1 var(--sans); letter-spacing:.16em; text-transform:uppercase; text-decoration:none}
+.belge-ortak .partner-cta span{color:rgba(243,238,228,.7) !important}
+@media (max-width:820px){
+  .belge-ortak .partner-grid{grid-template-columns:1fr}
+  .belge-ortak .stat + .stat{border-left:0; border-top:1px solid var(--cizgi)}
+  .belge-ortak .panel{padding:34px 24px}
+}
+html[data-tema="koyu"] .belge-ortak .panel{background:#07121D}
+html[data-tema="koyu"] .belge a{color:var(--pirinc)}

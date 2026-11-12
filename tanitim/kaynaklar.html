@@ -7,12 +7,25 @@
 <title>Fotoğraf ve video kaynakları | ViraCheck</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="site.css?v=19">
+<style>html{background:#F7F3EC} html[data-tema="koyu"]{background:#0B1B2B}</style>
+<script>try { if (JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').theme === 'dark') document.documentElement.setAttribute('data-tema', 'koyu'); } catch (e) {}</script>
+<link rel="stylesheet" href="vip.css?v=3">
+<link rel="stylesheet" href="belge.css?v=1">
 </head>
 <body>
-<div class="wrap" style="padding-top:28px;padding-bottom:48px">
-  <p><a href="./">← Ana sayfa</a></p>
-  <h1 style="font-size:1.6rem;margin:18px 0 20px">Fotoğraf ve video kaynakları</h1>
+
+<header class="ust kayik sabit">
+  <div class="ic">
+    <a class="marka" href="index.html"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</a>
+    <nav class="menu" aria-label="Menü"><a href="https://viracheck.com.tr/kiralama" data-app="/kiralama">Kirala &amp; Tur</a><a href="https://viracheck.com.tr/hava" data-app="/hava">Hava</a><a href="https://viracheck.com.tr/koylar" data-app="/koylar">Koylar</a><a href="index.html#fiyat">Fiyat</a><a href="index.html#sss">SSS</a></nav>
+    <a class="dil" href="credits-en.html">EN</a>
+    <a class="dug dug-cizgi" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">Uygulamayı indir</a>
+    <details class="mmenu"><summary aria-label="Menü"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="https://viracheck.com.tr/kiralama" data-app="/kiralama">Kirala &amp; Tur</a><a class="mm-a" href="https://viracheck.com.tr/hava" data-app="/hava">Hava</a><a class="mm-a" href="https://viracheck.com.tr/koylar" data-app="/koylar">Koylar</a><a class="mm-a" href="index.html#fiyat">Fiyat</a><a class="mm-a" href="index.html#sss">SSS</a><a class="mm-btn" href="https://viracheck.com.tr/kiralama" data-app="/kiralama">Tarayıcıda kullan</a><a class="mm-btn mm-ikincil" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">App Store'dan indir</a></div></details>
+  </div>
+</header>
+
+<main class="belge belge-kaynak">
+<h1>Fotoğraf ve video kaynakları</h1>
   <div class="kaynak-sayfa">
   <p class="fine">
     Fotoğraflar <a href="https://commons.wikimedia.org">Wikimedia Commons</a>'tan:
@@ -122,6 +135,22 @@
     <a href="https://commons.wikimedia.org/wiki/File%3AView_of_the_Old_Walled_City_of_Valletta_and_its_harbor._Malta%2C_Mediterranean_Sea.jpg">Mstyslav Chernov</a> (CC BY-SA 3.0)
   </p>
   </div>
-</div>
+</main>
+
+<footer class="alt-bilgi">
+  <div class="ic">
+    <div class="izgara">
+      <div>
+        <div class="marka"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</div>
+        <p style="max-width:300px;margin:0">Tekne kiralama, tekne turu ve seyir asistanı. On iki ülkede, tek uygulamada.</p>
+      </div>
+      <div><h4>Keşfet</h4><ul><li><a href="https://viracheck.com.tr/kiralama" data-app="/kiralama">Kirala &amp; Tur</a></li><li><a href="https://viracheck.com.tr/hava" data-app="/hava">Hava</a></li><li><a href="https://viracheck.com.tr/koylar" data-app="/koylar">Koylar</a></li><li><a href="index.html#fiyat">Fiyat</a></li><li><a href="index.html#sss">Sık sorulanlar</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="is-ortakligi.html">İş ortaklığı</a></li><li><a href="mailto:seymen@viracheck.com.tr">İletişim</a></li><li><a href="kaynaklar.html">Fotoğraf kaynakları</a></li><li><a href="index-en.html">English</a></li></ul></div><div><h4>Yasal</h4><ul><li><a href="privacy-tr.html">Gizlilik Politikası</a></li><li><a href="kvkk-tr.html">KVKK Aydınlatma Metni</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Kullanım Koşulları</a></li></ul></div>
+    </div>
+    <p class="veri">Hava ve deniz verileri: <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Koy ve plaj verileri © <a href="https://www.openstreetmap.org">OpenStreetMap</a> katkıda bulunanları · Mavi Bayrak: <a href="https://www.blueflag.global">FEE</a>, 2026 sezonu</p>
+    <div class="dip"><span>© 2026 ViraCheck · Resmî denizcilik uyarılarının ve kaptanın kararının yerine geçmez.</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>
+  </div>
+</footer>
+
+<script>document.querySelectorAll(".mmenu a").forEach(function (l) { l.addEventListener("click", function () { l.closest("details").removeAttribute("open"); }); });</script>
 </body>
 </html>
