@@ -152,5 +152,29 @@
 </footer>
 
 <script>document.querySelectorAll(".mmenu a").forEach(function (l) { l.addEventListener("click", function () { l.closest("details").removeAttribute("open"); }); });</script>
+<script>
+  // Dil: sitede seçilen ya da okunan dil uygulamaya da geçsin. Uygulama ekranları
+  // (Kirala & Tur, Hava…) kendi dil ayarını kullanıyor; yazılmazsa siteden
+  // uygulamaya geçince ve ana sayfaya dönünce eski dile dönülüyordu.
+  (function () {
+    function dilYaz(l) {
+      if (l !== 'tr' && l !== 'en') return;
+      try {
+        var a = JSON.parse(localStorage.getItem('vira.settings.v1') || '{}');
+        if (a.language !== l) { a.language = l; localStorage.setItem('vira.settings.v1', JSON.stringify(a)); }
+      } catch (e) {}
+    }
+    var sayfaDili = document.documentElement.lang === 'en' ? 'en' : 'tr';
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a');
+      if (!a) return;
+      var h = a.getAttribute('href') || '';
+      if (/(^|\/)(index-en|privacy-en|credits-en|partners-en)\.html/.test(h)) dilYaz('en');
+      else if (/(^|\/)(index|privacy-tr|kvkk-tr|kaynaklar|is-ortakligi)\.html/.test(h) && a.classList.contains('dil')) dilYaz('tr');
+      else if (/(^|\/)index\.html$/.test(h) && /T[üu]rk/.test(a.textContent)) dilYaz('tr');
+      else if (a.hasAttribute('data-app')) dilYaz(sayfaDili);
+    }, true);
+  })();
+</script>
 </body>
 </html>
