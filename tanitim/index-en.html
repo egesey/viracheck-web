@@ -53,10 +53,14 @@ html.cercevede a[href="https://viracheck.com.tr/"]{display:none}
 </header>
 
 <section class="kahraman">
+  <!-- Dikey ekranda (telefon) teknenin olduğu bölümün tam çözünürlüklü dikey
+       kırpımı; yatay ekranda tam HD. Tek dosya her ikisini taşısaydı telefonda
+       görüntü ~5 kat büyütülüp pikselleniyordu. -->
   <video autoplay muted loop playsinline preload="auto" poster="img/yat-poster.webp">
-    <source src="img/yat-mobil.mp4" type="video/mp4" media="(max-width: 900px)">
+    <source src="img/yat-dikey.mp4" type="video/mp4" media="(orientation: portrait)">
     <source src="img/yat.mp4" type="video/mp4">
   </video>
+  <script>if (matchMedia('(orientation: portrait)').matches) document.currentScript.previousElementSibling.poster = 'img/yat-poster-dikey.webp';</script>
   <div class="ic">
     <span class="etiket">Boat charter · Boat tours · Passage planning</span>
     <h1>The most elegant<br>way <em>to sea.</em></h1>
