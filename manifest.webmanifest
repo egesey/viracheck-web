@@ -3,7 +3,7 @@
   "short_name": "ViraCheck",
   "description": "Tekne kontrol listeleri, rüzgâr ve deniz durumu, koylar, seyir defteri ve tekne kiralama.",
   "lang": "tr",
-  "start_url": "/",
+  "start_url": "/?kontrol",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",

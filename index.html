@@ -2,6 +2,18 @@
 <html lang="tr">
   <head>
     <meta charset="utf-8" />
+    <script>
+      // Sitenin ana sayfası tanıtım sayfası (üst menülü). Kök adrese gelen oraya
+      // gider; uygulama ekranları /kiralama, /hava … ve "/?kontrol" (Kontrol).
+      // Ana ekrana eklenmiş uygulama "/?kontrol" ile açılır (manifest).
+      (function () {
+        if (location.pathname !== '/' || location.search.indexOf('kontrol') !== -1) return;
+        var dil;
+        try { dil = JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').language; } catch (e) {}
+        if (!dil) dil = /^tr/i.test(navigator.language || '') ? 'tr' : 'en';
+        location.replace(dil === 'en' ? '/tanitim/index-en.html' : '/tanitim/');
+      })();
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
     <title>ViraCheck — Tekne Kiralama, Tekne Turu, Rüzgâr ve Koylar</title>
@@ -81,6 +93,6 @@
         window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
       }
     </script>
-  <script src="/_expo/static/js/web/__expo-metro-runtime-1f8f5d3ca6b7f58204d51e14506d73fb.js" defer></script><script src="/_expo/static/js/web/__common-6913003b2fa80e3020a1e6018b4ece38.js" defer></script><script src="/_expo/static/js/web/entry-e532215dc58025b2c6d65dab8cfeb4c6.js" defer></script>
+  <script src="/_expo/static/js/web/__expo-metro-runtime-1f8f5d3ca6b7f58204d51e14506d73fb.js" defer></script><script src="/_expo/static/js/web/__common-d99353a01cf976bb9fa82470976aa466.js" defer></script><script src="/_expo/static/js/web/entry-0e0b1355c4008415558a8dc54c6c2b69.js" defer></script>
 </body>
 </html>

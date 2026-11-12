@@ -34,30 +34,39 @@
     if (koyu) document.documentElement.setAttribute('data-tema', 'koyu');
   })();
 </script>
-<link rel="stylesheet" href="site.css?v=19">
+<link rel="stylesheet" href="site.css?v=21">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is ViraCheck free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Charter and tour destinations, wind and sea state, the go/no-go call and the distress screen are all in the free version. Pro lifts the limits: a 7-day forecast, every nearby cove, an unlimited logbook and PDF export."}}, {"@type": "Question", "name": "Does ViraCheck charter the boat?", "acceptedAnswer": {"@type": "Answer", "text": "No. ViraCheck lists destinations; tapping one opens our partner’s booking page (SamBoat, SkipperCity, Viravira, GetYourGuide). Price, payment, contract and cancellation are with the partner. We may earn a commission on those links; your price does not change."}}, {"@type": "Question", "name": "Do I need an account?", "acceptedAnswer": {"@type": "Answer", "text": "No. ViraCheck never asks for an account, an email or a name. Your checklists, logbook and boat details stay on your own device."}}, {"@type": "Question", "name": "Can I use it on Android or a computer?", "acceptedAnswer": {"@type": "Answer", "text": "The app is on the App Store for iPhone and iPad. On Android or a computer, use the browser version at viracheck.com.tr — the same features are there."}}, {"@type": "Question", "name": "Where does the weather data come from?", "acceptedAnswer": {"@type": "Answer", "text": "Wind, waves and sea state come from Open-Meteo, coves and beaches from OpenStreetMap, Blue Flag data from FEE. ViraCheck is an aid; it does not replace official maritime warnings or the skipper’s judgement."}}, {"@type": "Question", "name": "Which countries have charters?", "acceptedAnswer": {"@type": "Answer", "text": "Türkiye, Greece, Croatia, Italy, Spain, France, Portugal, Montenegro, Malta, Monaco, the USA and Dubai — 93 destinations in 12 countries, ranked by how far they are from you."}}]}</script>
 <style>
 html.cercevede .btn-ghost[href="/"]{display:none}
-/* Uygulamanın içinde logo ve ad zaten yan menüde; sayfa başındaki küçük marka tekrar olurdu. */
-html.cercevede .nav .brand{display:none}
-/* Çerçevede dil bağlantısı da yok; boş kalan üst çubuk video şeridinin üstünde boşluk bırakmasın. */
-html.cercevede .nav{display:none}
+/* Uygulamanın içinde logo, menü ve dil seçimi zaten yan menüde/ayarlarda; sayfanın
+ * kendi üst menüsü, telefon indirme çubuğu ve dil bağlantıları tekrar olurdu. */
+html.cercevede .topbar, html.cercevede .mobil-cta{display:none}
+html.cercevede a[href="index.html"], html.cercevede a[href="index-en.html"]{display:none}
+html.cercevede a[href="https://viracheck.com.tr/"]{display:none}
 </style>
 <script>if (window.top !== window.self) document.documentElement.classList.add('cercevede');</script>
 </head>
 <body>
 
-<div class="hero">
+<header class="topbar">
   <div class="wrap">
-    <nav class="nav">
-      <span class="brand"><img src="icon.png" alt=""> ViraCheck</span>
-    </nav>
+    <a class="brand" href="#"><img src="icon.png" alt="" width="30" height="30"> ViraCheck</a>
+    <nav class="menu" aria-label="Sections"><a class="menu-a" href="/kiralama" target="_top" data-app="/kiralama">Charter & Tours</a><a class="menu-a" href="/hava" target="_top" data-app="/hava">Weather</a><a class="menu-a" href="/koylar" target="_top" data-app="/koylar">Coves</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+    <a class="dil" href="index.html" hreflang="tr" title="Türkçe">TR</a>
+    <a class="btn-kucuk btn-web-kucuk" href="/kiralama" target="_top" data-app="/kiralama">Open web app</a>
+    <a class="btn-kucuk" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener">Get the app</a>
+    <details class="mmenu"><summary aria-label="Menu"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="/kiralama" target="_top" data-app="/kiralama">Charter & Tours</a><a class="mm-a" href="/hava" target="_top" data-app="/hava">Weather</a><a class="mm-a" href="/koylar" target="_top" data-app="/koylar">Coves</a><a class="mm-a" href="#pricing">Pricing</a><a class="mm-a" href="#faq">FAQ</a><a class="mm-btn" href="/kiralama" target="_top" data-app="/kiralama">Open web app</a></div></details>
   </div>
+</header>
+
+<div class="hero">
 
   <!-- Üst şerit: denizde süzülen yatlar. Sessiz, döngülü; iOS'ta otomatik
        oynaması için muted + playsinline şart. Hareket azaltma tercihinde
        yalnızca kapak görseli kalır. -->
   <div class="hero-video" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto" poster="img/yat-poster.jpg">
+    <video autoplay muted loop playsinline preload="auto" poster="img/yat-poster.webp">
+      <source src="img/yat-mobil.mp4" type="video/mp4" media="(max-width: 900px)">
       <source src="img/yat.mp4" type="video/mp4">
     </video>
     <div class="hero-yazi"><strong>ViraCheck</strong><span>Boat charter · boat tours · sailing assistant</span></div>
@@ -68,15 +77,14 @@ html.cercevede .nav{display:none}
     <div class="hero-inner">
       <img class="mark" src="icon.png" alt="ViraCheck app icon" width="82" height="82">
       <h1>Boat charter and boat tours —<br>with the passage planned too</h1>
-      <p class="pill"><span class="dot"></span><b>Now on the App Store</b> · iPhone and iPad</p>
       <!--
         Full canonical URL (storefront + slug + id). The short "/app/id…" form
         failed to resolve when macOS handed it to the App Store app; ViraCheck
         is an iPhone and iPad app and is not listed on the Mac store.
       -->
-      <p class="cta-ikili"><a class="store-btn" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener">Download on the App Store</a>
-        <a class="btn-ghost" href="/" target="_top">Use in your browser</a></p>
-      <p class="store-not">For iPhone and iPad · iOS 16.4 or later</p>
+      <p class="cta-ikili"><a class="rozet" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7m-3-3 3 3 3-3"/><path d="M10 18h4"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+        <a class="btn-web" href="/kiralama" target="_top" data-app="/kiralama">Use it in your browser →</a></p>
+      <p class="store-not">Free · iPhone and iPad app · in any browser</p>
       <p class="lead">
         93 destinations in 12 countries, from Türkiye and Greece to Croatia
         and Spain: destinations are ranked by how far they are from
@@ -101,6 +109,8 @@ html.cercevede .nav{display:none}
           <img src="screens/en/koylar.png?v=3" alt="Coves screen listing nearby coves, beaches and Blue Flag marinas with distances" width="720" height="1565">
         </div>
       </div>
+      <div class="rakamlar"><div><b>12</b><span>countries</span></div><div><b>93</b><span>charter and tour destinations</span></div><div><b>9,310</b><span>coves and beaches</span></div><div><b>0</b><span>accounts needed</span></div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -119,7 +129,7 @@ html.cercevede .nav{display:none}
   <div class="offers">
     <article class="offer">
       <div class="offer-media">
-        <img src="img/kiralama-yelken.jpg" alt="A sailing yacht under sail in the Kornati islands" width="1400" height="929" loading="lazy">
+        <img src="img/kiralama-yelken.webp" alt="A sailing yacht under sail in the Kornati islands" width="1400" height="929" loading="lazy">
         <span class="offer-tag">Boat charter</span>
         <p class="offer-count"><b>88</b><span>charter destinations</span></p>
       </div>
@@ -131,13 +141,14 @@ html.cercevede .nav{display:none}
           <li><strong>Europe:</strong> Greece (11), Italy (11), Spain (10), Croatia (9), France (8), Portugal (7), Montenegro (5), Malta (4), Monaco</li>
           <li><strong>Elsewhere:</strong> USA (Miami, New York, Los Angeles, San Diego), Dubai</li>
         </ul>
+        <a class="kart-link" href="/kiralama?tur=charter" target="_top" data-app="/kiralama?tur=charter">Open charter destinations →</a>
         <div class="offer-partners"><span>Listings:</span><span class="chip">SamBoat</span><span class="chip">SkipperCity</span><span class="chip">Viravira</span></div>
       </div>
     </article>
 
     <article class="offer">
       <div class="offer-media">
-        <img src="img/kiralama-gulet.jpg" alt="The deck of a gulet in Bodrum, with Turkish flags and a sunshade" width="1200" height="900" loading="lazy">
+        <img src="img/kiralama-gulet.webp" alt="The deck of a gulet in Bodrum, with Turkish flags and a sunshade" width="1200" height="900" loading="lazy">
         <span class="offer-tag">Boat tour</span>
         <p class="offer-count"><b>84</b><span>tour destinations</span></p>
       </div>
@@ -149,6 +160,7 @@ html.cercevede .nav{display:none}
           <li><strong>Europe:</strong> Greece (13), Italy (11), Spain (10), Croatia (9), France (8), Portugal (7), Montenegro (4), Malta, Monaco</li>
           <li><strong>Elsewhere:</strong> USA (Miami, New York, Los Angeles, San Diego), Dubai</li>
         </ul>
+        <a class="kart-link" href="/kiralama?tur=tour" target="_top" data-app="/kiralama?tur=tour">Open tour destinations →</a>
         <div class="offer-partners"><span>Tours:</span><span class="chip">GetYourGuide</span></div>
       </div>
     </article>
@@ -159,42 +171,42 @@ html.cercevede .nav{display:none}
     <p>Also charters and tours in Portugal, Montenegro and the USA</p>
   </div>
   <div class="region-grid">
-    <figure class="region">
-      <img src="img/bolge-istanbul.jpg" alt="The Bosphorus in Istanbul with the Maiden's Tower and the bridge" width="1000" height="699" loading="lazy">
-      <figcaption><b>Türkiye</b><span>17 charter · 15 tour</span></figcaption>
-    </figure>
-    <figure class="region">
-      <img src="img/bolge-yunanistan.jpg" alt="The harbour of Hydra island, Greece" width="1000" height="666" loading="lazy">
-      <figcaption><b>Greece</b><span>11 charter · 13 tour</span></figcaption>
-    </figure>
-    <figure class="region">
-      <img src="img/bolge-hirvatistan.jpg" alt="Hvar town seen from the harbour, Croatia" width="1000" height="750" loading="lazy">
-      <figcaption><b>Croatia</b><span>9 charter · 9 tour</span></figcaption>
-    </figure>
-    <figure class="region">
-      <img src="img/bolge-italya.jpg" alt="Atrani and its boats on the Amalfi Coast" width="1000" height="750" loading="lazy">
-      <figcaption><b>Italy</b><span>11 charter · 11 tour</span></figcaption>
-    </figure>
-    <figure class="region">
-      <img src="img/bolge-fransa.jpg" alt="Aerial view of the old port of Saint-Tropez" width="1000" height="750" loading="lazy">
-      <figcaption><b>France</b><span>8 charter · 8 tour</span></figcaption>
-    </figure>
-    <figure class="region">
-      <img src="img/bolge-malta.jpg" alt="The Grand Harbour seen from Valletta" width="1000" height="750" loading="lazy">
-      <figcaption><b>Malta</b><span>4 charter · 1 tour</span></figcaption>
-    </figure>
-    <figure class="region">
-      <img src="img/bolge-monako.jpg" alt="Yachts in Port Hercule, Monaco" width="1000" height="750" loading="lazy">
-      <figcaption><b>Monaco</b><span>Charter · Tour</span></figcaption>
-    </figure>
-    <figure class="region">
-      <img src="img/bolge-ispanya.jpg" alt="A boat in the cove of Cala Figuera, Mallorca" width="1000" height="750" loading="lazy">
-      <figcaption><b>Spain</b><span>10 charter · 10 tour</span></figcaption>
-    </figure>
-    <figure class="region">
-      <img src="img/bolge-dubai.jpg" alt="Dubai Marina skyline from the water" width="1000" height="750" loading="lazy">
-      <figcaption><b>UAE (Dubai)</b><span>Charter · Tour</span></figcaption>
-    </figure>
+    <a class="region" href="/kiralama?ara=T%C3%BCrkiye" target="_top" data-app="/kiralama?ara=T%C3%BCrkiye">
+      <img src="img/bolge-istanbul.webp" alt="The Bosphorus in Istanbul with the Maiden's Tower and the bridge" width="1000" height="699" loading="lazy">
+      <span class="figcap"><b>Türkiye</b><span>17 charter · 15 tour</span></span>
+    </a>
+    <a class="region" href="/kiralama?ara=Greece" target="_top" data-app="/kiralama?ara=Greece">
+      <img src="img/bolge-yunanistan.webp" alt="The harbour of Hydra island, Greece" width="1000" height="666" loading="lazy">
+      <span class="figcap"><b>Greece</b><span>11 charter · 13 tour</span></span>
+    </a>
+    <a class="region" href="/kiralama?ara=Croatia" target="_top" data-app="/kiralama?ara=Croatia">
+      <img src="img/bolge-hirvatistan.webp" alt="Hvar town seen from the harbour, Croatia" width="1000" height="750" loading="lazy">
+      <span class="figcap"><b>Croatia</b><span>9 charter · 9 tour</span></span>
+    </a>
+    <a class="region" href="/kiralama?ara=Italy" target="_top" data-app="/kiralama?ara=Italy">
+      <img src="img/bolge-italya.webp" alt="Atrani and its boats on the Amalfi Coast" width="1000" height="750" loading="lazy">
+      <span class="figcap"><b>Italy</b><span>11 charter · 11 tour</span></span>
+    </a>
+    <a class="region" href="/kiralama?ara=France" target="_top" data-app="/kiralama?ara=France">
+      <img src="img/bolge-fransa.webp" alt="Aerial view of the old port of Saint-Tropez" width="1000" height="750" loading="lazy">
+      <span class="figcap"><b>France</b><span>8 charter · 8 tour</span></span>
+    </a>
+    <a class="region" href="/kiralama?ara=Malta" target="_top" data-app="/kiralama?ara=Malta">
+      <img src="img/bolge-malta.webp" alt="The Grand Harbour seen from Valletta" width="1000" height="750" loading="lazy">
+      <span class="figcap"><b>Malta</b><span>4 charter · 1 tour</span></span>
+    </a>
+    <a class="region" href="/kiralama?ara=Monaco" target="_top" data-app="/kiralama?ara=Monaco">
+      <img src="img/bolge-monako.webp" alt="Yachts in Port Hercule, Monaco" width="1000" height="750" loading="lazy">
+      <span class="figcap"><b>Monaco</b><span>Charter · Tour</span></span>
+    </a>
+    <a class="region" href="/kiralama?ara=Spain" target="_top" data-app="/kiralama?ara=Spain">
+      <img src="img/bolge-ispanya.webp" alt="A boat in the cove of Cala Figuera, Mallorca" width="1000" height="750" loading="lazy">
+      <span class="figcap"><b>Spain</b><span>10 charter · 10 tour</span></span>
+    </a>
+    <a class="region" href="/kiralama?ara=Dubai" target="_top" data-app="/kiralama?ara=Dubai">
+      <img src="img/bolge-dubai.webp" alt="Dubai Marina skyline from the water" width="1000" height="750" loading="lazy">
+      <span class="figcap"><b>UAE (Dubai)</b><span>Charter · Tour</span></span>
+    </a>
   </div>
 
   <div class="steps">
@@ -241,63 +253,57 @@ html.cercevede .nav{display:none}
   </p>
 
   <div class="grid">
-    <div class="feature">
+    <a class="feature" href="/?kontrol" target="_top" data-app="/?kontrol">
       <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
       <h3>Pre-departure checks</h3>
       <p>
         Start with ready-made lists: cast-off checks, safety equipment, engine
         and fuel. Readiness rises as you tick items off, so nothing is quietly
         skipped.
-      </p>
-    </div>
+      </p><span class="ok" aria-hidden="true">→</span></a>
 
-    <div class="feature">
+    <a class="feature" href="/hava" target="_top" data-app="/hava">
       <div class="icon"><svg viewBox="0 0 24 24"><path d="M9.6 4.6A2 2 0 1 1 11 8H2m8.6 11.4A2 2 0 1 0 12 16H2m10.6-11.4A2 2 0 1 1 14 8h8"/></svg></div>
       <h3>Wind, waves and sea</h3>
       <p>
         Wind direction and speed for your position, gusts, Beaufort force, wave
         height and period, sea temperature and pressure — with an hourly strip
         and a daily summary.
-      </p>
-    </div>
+      </p><span class="ok" aria-hidden="true">→</span></a>
 
-    <div class="feature">
+    <a class="feature" href="/hava" target="_top" data-app="/hava">
       <div class="icon"><svg viewBox="0 0 24 24"><path d="M22 11.1A10 10 0 1 1 12.9 2"/><path d="m9 11 3 3L22 4"/></svg></div>
       <h3>Good to go, or not?</h3>
       <p>
         A judgement instead of a raw number: wind and gusts are read together
         and turned into a clear call — good to go, take care, or not today.
-      </p>
-    </div>
+      </p><span class="ok" aria-hidden="true">→</span></a>
 
-    <div class="feature">
+    <a class="feature" href="/defter" target="_top" data-app="/defter">
       <div class="icon"><svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg></div>
       <h3>Logbook</h3>
       <p>
         Record every passage: departure and arrival ports, times, distance,
         engine hours, fuel, crew and notes. Export the logbook as a PDF and
         share it.
-      </p>
-    </div>
+      </p><span class="ok" aria-hidden="true">→</span></a>
 
-    <div class="feature">
+    <a class="feature" href="/tekne" target="_top" data-app="/tekne">
       <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 18s2-1 4.5-1 4 2 6.5 2 4.5-1 4.5-1"/><path d="M5 14V6a1 1 0 0 1 1-1h8l4 5v4"/><path d="M9 5V3h4v2"/></svg></div>
       <h3>Boat and documents</h3>
       <p>
         Boat name, type, length, home port, call sign and MMSI in one place. Add
         expiry dates for insurance and registration and get a reminder before
         they run out.
-      </p>
-    </div>
+      </p><span class="ok" aria-hidden="true">→</span></a>
 
-    <div class="feature">
+    <a class="feature" href="/tekne" target="_top" data-app="/tekne">
       <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19 5a10 10 0 0 1 0 14M5 19A10 10 0 0 1 5 5"/></svg></div>
       <h3>Good-day alerts</h3>
       <p>
         Get a notification at the hour you choose, based on tomorrow's wind.
         Notifications are scheduled on your device; no data goes to any server.
-      </p>
-    </div>
+      </p><span class="ok" aria-hidden="true">→</span></a>
   </div>
 </section>
 
@@ -318,6 +324,7 @@ html.cercevede .nav{display:none}
         <li><strong>In-app map:</strong> it never throws you into another app</li>
         <li><strong>An honest warning:</strong> legs are straight lines; land and shallows are the skipper's call</li>
       </ul>
+      <p class="bolum-cta"><a class="btn-web" href="/koylar" target="_top" data-app="/koylar">Open coves →</a></p>
     </div>
     <div class="phone">
       <img src="screens/en/rota.png?v=3" alt="Route screen showing the drawn route between selected coves and the total distance" width="720" height="1565" loading="lazy">
@@ -326,51 +333,6 @@ html.cercevede .nav{display:none}
 </section>
 
 
-<section id="partners">
-  <p class="eyebrow">For partners</p>
-  <h2>Reach people who have already<br>decided to go out on the water</h2>
-  <p class="sub">
-    Someone opening ViraCheck is not daydreaming about a holiday. They are
-    checking the wind, ticking off a pre-departure list, drawing a route. The
-    charter link gets tapped at that moment — the intent is already there.
-  </p>
-
-  <div class="partner-grid">
-    <div class="stat">
-      <b>12 countries, 93 destinations</b>
-      <span>Türkiye, Greece, the Adriatic, the western Mediterranean and the Atlantic coast; the USA and Dubai</span>
-    </div>
-    <div class="stat">
-      <b>9,310 coves and beaches</b>
-      <span>Bundled into the app; users browse them while building a route</span>
-    </div>
-    <div class="stat">
-      <b>Live on the App Store</b>
-      <span>iPhone and iPad · Turkish and English</span>
-    </div>
-  </div>
-
-  <div class="panel" style="margin-top:28px">
-    <ul class="checks" style="margin-top:0">
-      <li><strong>Simple integration:</strong> give us your tracking link and the user lands on your page in an in-app browser. Booking, payment and the contract stay entirely with you.</li>
-      <li><strong>No incentivised traffic:</strong> no coupons, no cashback, no paid search on your brand terms. A click is the user's own decision.</li>
-      <li><strong>We collect nothing:</strong> we ask users for no name, email or payment details — we hand them to your page and step aside.</li>
-      <li><strong>Disclosed openly:</strong> the commission is stated both inside the app and on this page.</li>
-    </ul>
-    <p style="margin:16px 0 0">Partnerships already signed and live in the app:</p>
-    <ul class="brands">
-      <li><b>SamBoat</b></li>
-      <li><b>SkipperCity</b></li>
-      <li><b>Viravira</b></li>
-      <li><b>GetYourGuide</b></li>
-    </ul>
-    <p style="margin:16px 0 0;font-size:.94rem;color:var(--muted)">Approved, coming soon: Sailo. Under review: Viator.</p>
-    <div class="partner-cta">
-      <a class="btn-ghost" href="mailto:seymen@viracheck.com.tr?subject=ViraCheck%20--%20partnership">Get in touch about a partnership</a>
-      <span style="color:var(--muted);font-size:.94rem">seymen@viracheck.com.tr</span>
-    </div>
-  </div>
-</section>
 
 <section id="emergency">
   <p class="eyebrow">Emergency</p>
@@ -388,6 +350,7 @@ html.cercevede .nav{display:none}
       <li><strong>Man-overboard</strong> steps, in order</li>
     </ul>
   </div>
+  <p class="bolum-cta"><a class="btn-web btn-web-ikincil" href="/imdat" target="_top" data-app="/imdat">Open the distress screen →</a></p>
 </section>
 
 <section id="privacy">
@@ -400,7 +363,7 @@ html.cercevede .nav{display:none}
     <ul class="checks" style="margin-top:0">
       <li>Your checklists, logbook and boat details are stored <strong>only on your phone</strong></li>
       <li><strong>No ad networks</strong>, no user tracking; we never sell your data</li>
-      <li>Anonymous usage counts are sent <strong>only if you allow it</strong> — never your name, your location or your logbook content. One tap turns it off.</li>
+      <li>Only <strong>anonymous usage counts</strong> are sent — never your name, your location or your logbook content. <strong>One tap in Settings turns it off.</strong></li>
       <li>Your location is used only while a <strong>forecast or cove lookup</strong> is being made</li>
     </ul>
     <p style="margin:14px 0 0;font-size:.92rem;color:var(--muted)">
@@ -420,6 +383,7 @@ html.cercevede .nav{display:none}
   <div class="plans">
     <div class="plan">
       <h3>Free</h3>
+      <p class="fiyat"><b>$0</b><span>forever</span></p>
       <ul>
         <li>2 ready-made checklists — 28 items</li>
         <li>Current wind, waves and sea state</li>
@@ -433,6 +397,8 @@ html.cercevede .nav{display:none}
     <div class="plan pro">
       <span class="tag">Pro</span>
       <h3>Lift the limits</h3>
+      <p class="fiyat"><b>$5.99</b><span>/ month</span></p>
+      <p class="fiyat-not">or $19.99 a year — about $1.67 a month</p>
       <ul>
         <li>All 6 ready-made checklists — 68 items</li>
         <li>Add your own lists and items</li>
@@ -443,34 +409,92 @@ html.cercevede .nav{display:none}
       </ul>
     </div>
   </div>
+  <p class="plans-not">US App Store prices; prices vary by country. Subscriptions are managed in your App Store account and can be cancelled at any time.</p>
 </section>
 
-<footer>
-  <p class="links">
-    <a href="privacy-en.html">Privacy Policy</a>
-    <a href="kvkk-tr.html">KVKK (Türkçe)</a>
-    <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
-    <a href="mailto:seymen@viracheck.com.tr">Contact</a>
-  </p>
-  <p class="fine">
-    Weather and marine data by <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) ·
-    Cove and beach data © <a href="https://www.openstreetmap.org">OpenStreetMap</a> contributors ·
-    Blue Flag data: <a href="https://www.blueflag.global">FEE</a>, 2026 season
-  </p>
-  <p class="fine"><a href="credits-en.html">Photo credits</a></p>
-  <p class="fine">
-    ViraCheck is an aid, not a replacement for official maritime warnings,
-    nautical charts, or the skipper's own judgement.
-  </p>
-  <p class="fine">ViraCheck · Ege Seymen</p>
+<section id="faq">
+  <p class="eyebrow">FAQ</p>
+  <h2>Questions people ask</h2>
+  <div class="sss">
+    <details><summary>Is ViraCheck free?</summary><p>Yes. Charter and tour destinations, wind and sea state, the go/no-go call and the distress screen are all in the free version. Pro lifts the limits: a 7-day forecast, every nearby cove, an unlimited logbook and PDF export.</p></details>
+    <details><summary>Does ViraCheck charter the boat?</summary><p>No. ViraCheck lists destinations; tapping one opens our partner’s booking page (SamBoat, SkipperCity, Viravira, GetYourGuide). Price, payment, contract and cancellation are with the partner. We may earn a commission on those links; your price does not change.</p></details>
+    <details><summary>Do I need an account?</summary><p>No. ViraCheck never asks for an account, an email or a name. Your checklists, logbook and boat details stay on your own device.</p></details>
+    <details><summary>Can I use it on Android or a computer?</summary><p>The app is on the App Store for iPhone and iPad. On Android or a computer, use the browser version at viracheck.com.tr — the same features are there.</p></details>
+    <details><summary>Where does the weather data come from?</summary><p>Wind, waves and sea state come from Open-Meteo, coves and beaches from OpenStreetMap, Blue Flag data from FEE. ViraCheck is an aid; it does not replace official maritime warnings or the skipper’s judgement.</p></details>
+    <details><summary>Which countries have charters?</summary><p>Türkiye, Greece, Croatia, Italy, Spain, France, Portugal, Montenegro, Malta, Monaco, the USA and Dubai — 93 destinations in 12 countries, ranked by how far they are from you.</p></details>
+  </div>
+</section>
+
+<aside class="kapanis">
+  <img src="icon.png" alt="" width="84" height="84">
+  <div><h2>Take it with you before you cast off</h2><p>Find the boat, read the wind, plan the route — all in one app, no account needed.</p></div>
+  <div class="kapanis-btn"><a class="rozet" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7m-3-3 3 3 3-3"/><path d="M10 18h4"/></svg><span><small>Download on the</small><b>App Store</b></span></a><a class="btn-web btn-web-acik" href="/kiralama" target="_top" data-app="/kiralama">Use in your browser</a></div>
+</aside>
+
+<footer class="altlik">
+  <div class="altlik-ust">
+    <div class="altlik-marka">
+      <p class="brand"><img src="icon.png" alt="" width="30" height="30"> ViraCheck</p>
+      <p>Boat charter, boat tours and a sailing assistant. 93 destinations in 12 countries; wind, coves and routes in one app.</p>
+      <a class="rozet" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7m-3-3 3 3 3-3"/><path d="M10 18h4"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+    </div>
+    <div><h4>App</h4><ul><li><a href="#charter">Charter and tours</a></li><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li><li><a href="https://viracheck.com.tr/">Use in your browser</a></li></ul></div>
+    <div><h4>ViraCheck</h4><ul><li><a href="partners-en.html">Partnerships</a></li><li><a href="mailto:seymen@viracheck.com.tr">Contact</a></li><li><a href="credits-en.html">Photo credits</a></li><li><a href="index.html">Türkçe</a></li></ul></div>
+    <div><h4>Legal</h4><ul><li><a href="privacy-en.html">Privacy Policy</a></li><li><a href="kvkk-tr.html">KVKK (Türkçe)</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a></li></ul></div>
+  </div>
+  <div class="altlik-alt">
+    <p class="fine">Weather and marine data by <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Cove and beach data © <a href="https://www.openstreetmap.org">OpenStreetMap</a> contributors · Blue Flag data: <a href="https://www.blueflag.global">FEE</a>, 2026 season</p>
+    <p class="fine">ViraCheck is an aid, not a replacement for official maritime warnings, nautical charts, or the skipper’s own judgement.</p>
+    <div class="telif"><span>© 2026 ViraCheck</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>
+  </div>
 </footer>
 
+</div>
+<div class="mobil-cta" aria-hidden="true">
+  <img src="icon.png" alt="" width="40" height="40">
+  <div><b>ViraCheck</b><span>Free · iPhone and iPad</span></div>
+  <a href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener" tabindex="-1">Get</a>
 </div>
 <script>
   // Hareket azaltma açıksa video durur, kapak görseli kalır.
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.querySelectorAll('.hero-video video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
   }
+  // Telefonda indirme çubuğu: giriş bölümündeki düğme görünmez olunca belirir,
+  // sayfa sonundaki çağrıya gelince çekilir (iki düğme üst üste binmesin).
+  (function () {
+    var cubuk = document.querySelector('.mobil-cta');
+    var ust = document.querySelector('.cta-ikili'), alt = document.querySelector('.kapanis');
+    if (!cubuk || !ust || !('IntersectionObserver' in window)) return;
+    var ustGorunur = true, altGorunur = false;
+    function guncelle() { cubuk.classList.toggle('gorunur', !ustGorunur && !altGorunur); }
+    new IntersectionObserver(function (e) { ustGorunur = e[0].isIntersecting; guncelle(); }).observe(ust);
+    if (alt) new IntersectionObserver(function (e) { altGorunur = e[0].isIntersecting; guncelle(); }).observe(alt);
+  })();
+</script>
+<script>
+  // Uygulamaya giden bağlantılar (data-app): sayfa ViraCheck web uygulamasının
+  // içinde (Ana sayfa sekmesi, çerçeve) açıksa uygulama kendi sekmesine geçsin;
+  // yoksa çerçevenin içinde ikinci bir uygulama açılırdı.
+  (function () {
+    var cercevede = window.top !== window.self;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-app]');
+      if (!a) return;
+      if (cercevede) { e.preventDefault(); window.parent.postMessage({ tip: 'viracheck-git', yol: a.getAttribute('data-app') }, location.origin); }
+      var m = a.closest('details'); if (m) m.removeAttribute('open');
+    });
+  })();
+</script>
+<script>
+  // App Store yalnızca iPhone/iPad'de işe yarar: Android ve bilgisayarda alttaki
+  // çubuk siteyi tarayıcıda kullanmaya götürür.
+  (function () {
+    var ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    var a = document.querySelector('.mobil-cta a'); if (ios || !a) return;
+    a.href = '/kiralama'; a.setAttribute('data-app', '/kiralama'); a.removeAttribute('target'); a.textContent = 'Open';
+    var s = document.querySelector('.mobil-cta span'); if (s) s.textContent = 'Free · right in your browser';
+  })();
 </script>
 </body>
 </html>

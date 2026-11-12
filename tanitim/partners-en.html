@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Partnerships | ViraCheck</title>
+<meta name="description" content="Reach people who have already decided to go out on the water: partnerships for boat charter and tour platforms on ViraCheck.">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="theme-color" content="#F4F6F8">
+<!-- Impact iş ortağı ağı site doğrulaması. -->
+<meta name='impact-site-verification' value='7d20c3fe-10fc-4278-ba26-3518eeddc6a9'>
+<script>
+  // Koyu tema yalnızca kullanıcının uygulamadaki seçimiyle (?tema= ya da
+  // kayıtlı ayar). <head>'de: sayfa yanlış renkte parlamadan uygulanır.
+  (function () {
+    var p = new URLSearchParams(location.search).get('tema');
+    try { if (p) sessionStorage.setItem('tema', p); else p = sessionStorage.getItem('tema'); } catch (e) {}
+    // Cihazın koyu modu izlenmez: varsayılan beyaz. Koyu yalnızca kullanıcı
+    // uygulamada gece modunu seçtiyse (aynı sitedeki ayar okunur).
+    var koyu = p ? p === 'koyu' : (function () { try { return JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').theme === 'dark'; } catch (e) { return false; } })();
+    if (koyu) document.documentElement.setAttribute('data-tema', 'koyu');
+  })();
+</script>
+<link rel="stylesheet" href="site.css?v=21">
+<style>
+html.cercevede .btn-ghost[href="/"]{display:none}
+/* Uygulamanın içinde logo, menü ve dil seçimi zaten yan menüde/ayarlarda; sayfanın
+ * kendi üst menüsü, telefon indirme çubuğu ve dil bağlantıları tekrar olurdu. */
+html.cercevede .topbar, html.cercevede .mobil-cta{display:none}
+html.cercevede a[href="index.html"], html.cercevede a[href="index-en.html"]{display:none}
+html.cercevede a[href="https://viracheck.com.tr/"]{display:none}
+</style>
+<script>if (window.top !== window.self) document.documentElement.classList.add('cercevede');</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index-en.html"><img src="icon.png" alt="" width="30" height="30"> ViraCheck</a>
+    <nav class="menu" aria-label="Sections"><a class="menu-a" href="/kiralama" target="_top" data-app="/kiralama">Charter & Tours</a><a class="menu-a" href="/hava" target="_top" data-app="/hava">Weather</a><a class="menu-a" href="/koylar" target="_top" data-app="/koylar">Coves</a><a href="index-en.html#pricing">Pricing</a><a href="index-en.html#faq">FAQ</a></nav>
+    <a class="dil" href="index.html" hreflang="tr" title="Türkçe">TR</a>
+    <a class="btn-kucuk btn-web-kucuk" href="/kiralama" target="_top" data-app="/kiralama">Open web app</a>
+    <a class="btn-kucuk" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener">Get the app</a>
+    <details class="mmenu"><summary aria-label="Menu"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="/kiralama" target="_top" data-app="/kiralama">Charter & Tours</a><a class="mm-a" href="/hava" target="_top" data-app="/hava">Weather</a><a class="mm-a" href="/koylar" target="_top" data-app="/koylar">Coves</a><a class="mm-a" href="index-en.html#pricing">Pricing</a><a class="mm-a" href="index-en.html#faq">FAQ</a><a class="mm-btn" href="/kiralama" target="_top" data-app="/kiralama">Open web app</a></div></details>
+  </div>
+</header>
+<div class="wrap">
+<section id="partners" style="border-top:0;padding-top:24px">
+  <p class="eyebrow">Partnerships</p>
+  <h1 class="sayfa-h1">Reach people who have already<br>decided to go out on the water</h1>
+  <p class="sub">
+    Someone opening ViraCheck is not daydreaming about a holiday. They are
+    checking the wind, ticking off a pre-departure list, drawing a route. The
+    charter link gets tapped at that moment — the intent is already there.
+  </p>
+
+  <div class="partner-grid">
+    <div class="stat">
+      <b>12 countries, 93 destinations</b>
+      <span>Türkiye, Greece, the Adriatic, the western Mediterranean and the Atlantic coast; the USA and Dubai</span>
+    </div>
+    <div class="stat">
+      <b>9,310 coves and beaches</b>
+      <span>Bundled into the app; users browse them while building a route</span>
+    </div>
+    <div class="stat">
+      <b>Live on the App Store</b>
+      <span>iPhone and iPad · Turkish and English</span>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:28px">
+    <ul class="checks" style="margin-top:0">
+      <li><strong>Simple integration:</strong> give us your tracking link and the user lands on your page in an in-app browser. Booking, payment and the contract stay entirely with you.</li>
+      <li><strong>No incentivised traffic:</strong> no coupons, no cashback, no paid search on your brand terms. A click is the user's own decision.</li>
+      <li><strong>We collect nothing:</strong> we ask users for no name, email or payment details — we hand them to your page and step aside.</li>
+      <li><strong>Disclosed openly:</strong> the commission is stated both inside the app and on this page.</li>
+    </ul>
+    <p style="margin:16px 0 0">Partnerships already signed and live in the app:</p>
+    <ul class="brands">
+      <li><b>SamBoat</b></li>
+      <li><b>SkipperCity</b></li>
+      <li><b>Viravira</b></li>
+      <li><b>GetYourGuide</b></li>
+    </ul>
+    <div class="partner-cta">
+      <a class="btn-ghost" href="mailto:seymen@viracheck.com.tr?subject=ViraCheck%20--%20partnership">Get in touch about a partnership</a>
+      <span style="color:var(--muted);font-size:.94rem">seymen@viracheck.com.tr</span>
+    </div>
+  </div>
+</section>
+
+<footer class="altlik">
+  <div class="altlik-ust">
+    <div class="altlik-marka">
+      <p class="brand"><img src="icon.png" alt="" width="30" height="30"> ViraCheck</p>
+      <p>Boat charter, boat tours and a sailing assistant. 93 destinations in 12 countries; wind, coves and routes in one app.</p>
+      <a class="rozet" href="https://apps.apple.com/us/app/viracheck/id6806044930" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7m-3-3 3 3 3-3"/><path d="M10 18h4"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+    </div>
+    <div><h4>App</h4><ul><li><a href="index-en.html#charter">Charter and tours</a></li><li><a href="index-en.html#features">Features</a></li><li><a href="index-en.html#pricing">Pricing</a></li><li><a href="index-en.html#faq">FAQ</a></li><li><a href="https://viracheck.com.tr/">Use in your browser</a></li></ul></div>
+    <div><h4>ViraCheck</h4><ul><li><a href="partners-en.html">Partnerships</a></li><li><a href="mailto:seymen@viracheck.com.tr">Contact</a></li><li><a href="credits-en.html">Photo credits</a></li><li><a href="index.html">Türkçe</a></li></ul></div>
+    <div><h4>Legal</h4><ul><li><a href="privacy-en.html">Privacy Policy</a></li><li><a href="kvkk-tr.html">KVKK (Türkçe)</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a></li></ul></div>
+  </div>
+  <div class="altlik-alt">
+    <p class="fine">Weather and marine data by <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Cove and beach data © <a href="https://www.openstreetmap.org">OpenStreetMap</a> contributors · Blue Flag data: <a href="https://www.blueflag.global">FEE</a>, 2026 season</p>
+    <p class="fine">ViraCheck is an aid, not a replacement for official maritime warnings, nautical charts, or the skipper’s own judgement.</p>
+    <div class="telif"><span>© 2026 ViraCheck</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>
+  </div>
+</footer>
+</div>
+<script>
+  // Uygulamaya giden bağlantılar (data-app): sayfa ViraCheck web uygulamasının
+  // içinde (Ana sayfa sekmesi, çerçeve) açıksa uygulama kendi sekmesine geçsin;
+  // yoksa çerçevenin içinde ikinci bir uygulama açılırdı.
+  (function () {
+    var cercevede = window.top !== window.self;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-app]');
+      if (!a) return;
+      if (cercevede) { e.preventDefault(); window.parent.postMessage({ tip: 'viracheck-git', yol: a.getAttribute('data-app') }, location.origin); }
+      var m = a.closest('details'); if (m) m.removeAttribute('open');
+    });
+  })();
+</script>
+</body>
+</html>
