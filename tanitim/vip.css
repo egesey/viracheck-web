@@ -330,3 +330,19 @@ html[data-tema="koyu"] .ust.kayik{background:rgba(11,27,43,.88)}
 html[data-tema="koyu"] .plan.pro{background:#07121D}
 html[data-tema="koyu"] .gece{background:radial-gradient(900px 500px at 80% 10%, rgba(217,190,140,.12), transparent 60%), linear-gradient(180deg, #081522 0%, #06101A 100%)}
 html[data-tema="koyu"] .mm-ikincil{color:var(--metin); border-color:var(--metin)}
+
+/* ---------------------------------------------- Pro: deneme ve seçenekler */
+.plan.pro .pro-bas{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:26px}
+.plan .deneme{font:600 .68rem/1 var(--sans); letter-spacing:.18em; text-transform:uppercase; color:#0B1B2B; background:var(--pirinc-acik); padding:8px 12px}
+.secenek{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 20px; border:1px solid rgba(243,238,228,.16); margin-bottom:10px}
+.secenek.one{border-color:var(--pirinc-acik); background:rgba(217,190,140,.07)}
+.secenek .sol{display:flex; flex-direction:column; gap:4px}
+.secenek .s-ad{font:600 .78rem/1.2 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:#fff}
+.secenek .s-ad em{font-style:normal; color:var(--pirinc-acik); margin-left:8px; letter-spacing:.14em}
+.secenek .s-alt{font-size:.86rem; color:rgba(255,255,255,.62)}
+.secenek .s-alt b{color:var(--pirinc-acik); font-weight:600}
+.secenek .sag{text-align:right; white-space:nowrap}
+.secenek .sag b{font:500 2rem/1 var(--serif); color:#fff; font-variant-numeric:lining-nums}
+.secenek .sag span{display:block; font-size:.8rem; color:rgba(255,255,255,.6); margin-top:4px}
+.plan.pro .deneme-not{margin:18px 0 26px}
+@media (max-width:640px){ .secenek{padding:16px 14px} .secenek .sag b{font-size:1.6rem} .secenek .s-ad em{display:block; margin:6px 0 0} }
