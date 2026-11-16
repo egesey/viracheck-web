@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-mVonpRkIepdvEUBCLFIsFWKhV2C1SvYoDiLnIwky1Vo=' 'sha256-wwaqqXiEmQqOfedDMa7uGCOG7QDqrSfzFD2f74TUpnk=' 'sha256-KgnCmQU2u3ybqHF3tmCMTGpCeE3GAdxCZP0fHJjdw18=' 'sha256-MpUcpqFKWB8VB1GmPZE4pjXXEWD4cxIT0dECBHyFixU=' 'sha256-SNswq+EnutB3AKnNtfiHxe+1WWX2j3gYiugubZEAAcM='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-mVonpRkIepdvEUBCLFIsFWKhV2C1SvYoDiLnIwky1Vo=' 'sha256-wwaqqXiEmQqOfedDMa7uGCOG7QDqrSfzFD2f74TUpnk=' 'sha256-KgnCmQU2u3ybqHF3tmCMTGpCeE3GAdxCZP0fHJjdw18=' 'sha256-MpUcpqFKWB8VB1GmPZE4pjXXEWD4cxIT0dECBHyFixU=' 'sha256-SNswq+EnutB3AKnNtfiHxe+1WWX2j3gYiugubZEAAcM=' 'sha256-9gVKVAvn8a2WhKWyRO0ieHUSp+MO7qVSACF6xfZq4TY=' 'sha256-qCY4nqnlyap5UdpFDQAtXEaV83epPOl7sI9zxC2Ibks='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://viracheck.com.tr; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ViraCheck — Tekne Kiralama, Tekne Turu ve Seyir Asistanı</title>
@@ -68,9 +68,29 @@ html.cercevede a[href="https://viracheck.com.tr/"]{display:none}
     <span class="etiket">Tekne kiralama · Tekne turu · Seyir</span>
     <h1>Denize çıkmanın<br><em>en zarif</em> yolu.</h1>
     <p class="alt">Tekneyi bulun, rüzgârı okuyun, rotanızı çizin. On iki ülkede, tek uygulamada — hesap açmadan.</p>
-    <div class="dugmeler">
-      <a class="dug dug-pirinc" href="/kiralama" target="_top" data-app="/kiralama">Tekneni bul <span>→</span></a>
-      <a class="dug dug-cizgi" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">App Store'dan indir</a>
+    <form class="arama-kart" id="tekne-ara" action="https://viracheck.com.tr/kiralama" method="get" target="_top" role="search" aria-label="Tekne kirala ya da tekne turu bul">
+      <div class="ak-sekmeler" role="radiogroup" aria-label="Ne arıyorsunuz?">
+        <label><input type="radio" name="tur" value="charter" checked><span>Tekne kirala</span></label>
+        <label><input type="radio" name="tur" value="tour"><span>Tekne turu</span></label>
+      </div>
+      <div class="ak-satir">
+      <div class="ak-cubuk">
+        <label class="ak-nereye">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg>
+          <span class="ak-etiket">Nereye?</span>
+          <input name="ara" id="ak-girdi" placeholder="Bölge, ada ya da ülke" autocomplete="off" enterkeyhint="search" spellcheck="false"
+            role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ak-oneri">
+        </label>
+        <button class="ak-ara" type="submit" aria-label="Ara"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg></button>
+        <div class="ak-oneri" id="ak-oneri" role="listbox" hidden></div>
+      </div>
+      <a class="ak-bul" id="ak-tumu" href="https://viracheck.com.tr/kiralama?tur=charter" target="_top">Tüm bölgeler <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </form>
+    <p class="ak-alt">93 bölge · kiralama, kaptanlı tekne ve günübirlik tur</p>
+    <div class="ak-indir-satir">
+      <a class="ak-indir" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.4"/><path d="M10.5 18.5h3"/></svg><span>App Store'dan indir</span></a>
+      <span class="ak-indir-not">iPhone ve iPad · Ücretsiz</span>
     </div>
   </div>
   <div class="serit"><div class="ic"><div><b>12</b><span>Ülke</span></div><div><b>93</b><span>Kiralama ve<br>tur bölgesi</span></div><div><b>9.310</b><span>Koy ve plaj</span></div><div><b>0</b><span>Hesap<br>gerekmez</span></div></div></div>
@@ -218,6 +238,72 @@ html.cercevede a[href="https://viracheck.com.tr/"]{display:none}
       else if (a.hasAttribute('data-app')) dilYaz(sayfaDili);
     }, true);
   })();
+</script>
+<script>
+(function () {
+  var V = {"y": [{"a": "Marmaris", "u": "Türkiye"}, {"a": "Bodrum", "u": "Türkiye"}, {"a": "Fethiye", "u": "Türkiye"}, {"a": "Göcek", "u": "Türkiye"}, {"a": "Çeşme", "u": "Türkiye"}, {"a": "Atina", "u": "Yunanistan"}, {"a": "Mallorca", "u": "İspanya"}, {"a": "Miami", "u": "ABD"}, {"a": "Antalya", "u": "Türkiye"}, {"a": "İstanbul", "u": "Türkiye"}, {"a": "Split", "u": "Hırvatistan"}, {"a": "Trogir", "u": "Hırvatistan"}, {"a": "Zadar", "u": "Hırvatistan"}, {"a": "Dubrovnik", "u": "Hırvatistan"}, {"a": "Şibenik", "u": "Hırvatistan"}, {"a": "Kornati", "u": "Hırvatistan"}, {"a": "Kvarner", "u": "Hırvatistan"}, {"a": "İstria", "u": "Hırvatistan"}, {"a": "Kaş", "u": "Türkiye"}, {"a": "Kalkan", "u": "Türkiye"}, {"a": "Kemer", "u": "Türkiye"}, {"a": "Datça", "u": "Türkiye"}, {"a": "Ayvalık", "u": "Türkiye"}, {"a": "Kuşadası", "u": "Türkiye"}, {"a": "Didim", "u": "Türkiye"}, {"a": "Mikonos", "u": "Yunanistan"}, {"a": "Santorini", "u": "Yunanistan"}, {"a": "Lefkada", "u": "Yunanistan"}, {"a": "Korfu", "u": "Yunanistan"}, {"a": "Rodos", "u": "Yunanistan"}, {"a": "Paros", "u": "Yunanistan"}, {"a": "İstanköy (Kos)", "u": "Yunanistan"}, {"a": "Skiathos", "u": "Yunanistan"}, {"a": "Zakintos", "u": "Yunanistan"}, {"a": "Hvar", "u": "Hırvatistan"}, {"a": "Sardinya", "u": "İtalya"}, {"a": "Sicilya", "u": "İtalya"}, {"a": "Amalfi Kıyısı", "u": "İtalya"}, {"a": "Capri", "u": "İtalya"}, {"a": "Portofino", "u": "İtalya"}, {"a": "Elba", "u": "İtalya"}, {"a": "İbiza", "u": "İspanya"}, {"a": "Menorca", "u": "İspanya"}, {"a": "Formentera", "u": "İspanya"}, {"a": "Barselona", "u": "İspanya"}, {"a": "Nice", "u": "Fransa"}, {"a": "Cannes", "u": "Fransa"}, {"a": "Saint-Tropez", "u": "Fransa"}, {"a": "Korsika", "u": "Fransa"}, {"a": "Kotor", "u": "Karadağ"}, {"a": "Algarve", "u": "Portekiz"}, {"a": "Dubai", "u": "BAE"}, {"a": "Budva", "u": "Karadağ"}, {"a": "Herceg Novi", "u": "Karadağ"}, {"a": "Tivat", "u": "Karadağ"}, {"a": "Bar", "u": "Karadağ"}, {"a": "Lizbon", "u": "Portekiz"}, {"a": "Cascais", "u": "Portekiz"}, {"a": "Porto", "u": "Portekiz"}, {"a": "Portimão", "u": "Portekiz"}, {"a": "Madeira", "u": "Portekiz"}, {"a": "Azorlar", "u": "Portekiz"}, {"a": "Valletta", "u": "Malta"}, {"a": "Sliema", "u": "Malta"}, {"a": "St. Paul's Bay", "u": "Malta"}, {"a": "Valensiya", "u": "İspanya"}, {"a": "Málaga", "u": "İspanya"}, {"a": "Alicante", "u": "İspanya"}, {"a": "Tenerife", "u": "İspanya"}, {"a": "Costa Brava", "u": "İspanya"}, {"a": "Venedik", "u": "İtalya"}, {"a": "Napoli", "u": "İtalya"}, {"a": "Sorrento", "u": "İtalya"}, {"a": "Puglia", "u": "İtalya"}, {"a": "Como Gölü", "u": "İtalya"}, {"a": "Antibes", "u": "Fransa"}, {"a": "Marsilya", "u": "Fransa"}, {"a": "La Rochelle", "u": "Fransa"}, {"a": "Bonifacio", "u": "Fransa"}, {"a": "New York", "u": "ABD"}, {"a": "Los Angeles", "u": "ABD"}, {"a": "San Diego", "u": "ABD"}, {"a": "Sinop", "u": "Türkiye"}, {"a": "Mersin", "u": "Türkiye"}, {"a": "Alaçatı", "u": "Türkiye"}, {"a": "Alanya", "u": "Türkiye"}, {"a": "Side", "u": "Türkiye"}, {"a": "Dalyan", "u": "Türkiye"}, {"a": "Girit", "u": "Yunanistan"}, {"a": "Nakşa (Naxos)", "u": "Yunanistan"}, {"a": "Türkiye", "u": "", "ulke": 1}, {"a": "Yunanistan", "u": "", "ulke": 1}, {"a": "İspanya", "u": "", "ulke": 1}, {"a": "ABD", "u": "", "ulke": 1}, {"a": "Hırvatistan", "u": "", "ulke": 1}, {"a": "İtalya", "u": "", "ulke": 1}, {"a": "Fransa", "u": "", "ulke": 1}, {"a": "Karadağ", "u": "", "ulke": 1}, {"a": "Malta", "u": "", "ulke": 1}, {"a": "Portekiz", "u": "", "ulke": 1}, {"a": "BAE", "u": "", "ulke": 1}, {"a": "Monako", "u": "", "ulke": 1}], "pop": ["Bodrum", "Göcek", "Fethiye", "Santorini", "Mikonos", "Hvar", "Amalfi Kıyısı", "Saint-Tropez"], "t": {"populer": "Popüler rotalar", "ulke": "Ülke", "tumu": "Tüm bölgeler", "sonuc": "Eşleşen yer yok — yine de arayabilirsiniz"}};
+  var form = document.getElementById('tekne-ara'), girdi = document.getElementById('ak-girdi'), kutu = document.getElementById('ak-oneri');
+  if (!form || !girdi || !kutu) return;
+  var secili = -1, satirlar = [];
+  function sade(s) { return String(s).toLocaleLowerCase('tr').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ı/g, 'i'); }
+  function bul(ad) { for (var i = 0; i < V.y.length; i++) if (V.y[i].a === ad) return V.y[i]; return { a: ad, u: '' }; }
+  function kacis(s) { return String(s).replace(/[&<>"]/g, function (k) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[k]; }); }
+  function ciz() {
+    var q = sade(girdi.value.trim()), liste, baslik;
+    if (!q) { liste = V.pop.map(bul); baslik = V.t.populer; }
+    else {
+      liste = V.y.filter(function (y) { var a = sade(y.a); return a.indexOf(q) === 0 || a.indexOf(' ' + q) >= 0 || sade(y.u).indexOf(q) === 0; })
+        .sort(function (x, y) { return (sade(y.a).indexOf(q) === 0) - (sade(x.a).indexOf(q) === 0) || (x.ulke || 0) - (y.ulke || 0); }).slice(0, 7);
+      baslik = '';
+    }
+    satirlar = liste; secili = -1;
+    var html = baslik ? '<div class="ak-o-baslik">' + kacis(baslik) + '</div>' : '';
+    html += liste.map(function (y, i) {
+      return '<div class="ak-o-satir" role="option" id="ak-o-' + i + '" data-i="' + i + '" aria-selected="false">' +
+        '<span class="ak-o-ad">' + kacis(y.a) + '</span><span class="ak-o-ulke">' + kacis(y.ulke ? V.t.ulke : y.u) + '</span></div>';
+    }).join('');
+    if (q && !liste.length) html = '<div class="ak-o-bos">' + kacis(V.t.sonuc) + '</div>';
+    kutu.innerHTML = html;
+    ac(true);
+  }
+  function ac(evet) { kutu.hidden = !evet; girdi.setAttribute('aria-expanded', String(evet)); form.classList.toggle('acik', evet); }
+  function isaretle(i) {
+    secili = i;
+    kutu.querySelectorAll('.ak-o-satir').forEach(function (el, j) { var s = j === i; el.classList.toggle('secili', s); el.setAttribute('aria-selected', String(s)); });
+    if (i >= 0) girdi.setAttribute('aria-activedescendant', 'ak-o-' + i); else girdi.removeAttribute('aria-activedescendant');
+  }
+  function sec(i) { girdi.value = satirlar[i].a; ac(false); if (form.requestSubmit) form.requestSubmit(); else form.submit(); }
+  var tumu = document.getElementById('ak-tumu');
+  form.querySelectorAll('input[name=tur]').forEach(function (r) {
+    r.addEventListener('change', function () { if (tumu) tumu.href = 'https://viracheck.com.tr/kiralama?tur=' + r.value; });
+  });
+  girdi.addEventListener('focus', ciz);
+  girdi.addEventListener('input', ciz);
+  girdi.addEventListener('keydown', function (e) {
+    if (kutu.hidden) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); isaretle(Math.min(secili + 1, satirlar.length - 1)); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); isaretle(Math.max(secili - 1, -1)); }
+    else if (e.key === 'Enter' && secili >= 0) { e.preventDefault(); sec(secili); }
+    else if (e.key === 'Escape') ac(false);
+  });
+  kutu.addEventListener('mousedown', function (e) { e.preventDefault(); });
+  kutu.addEventListener('click', function (e) { var s = e.target.closest('.ak-o-satir'); if (s) sec(Number(s.dataset.i)); });
+  document.addEventListener('click', function (e) { if (!form.contains(e.target)) ac(false); });
+  girdi.addEventListener('blur', function () { setTimeout(function () { if (document.activeElement !== girdi) ac(false); }, 120); });
+})();
+</script>
+<a class="yapiskan-cta" id="yapiskan-cta" href="/kiralama" target="_top" data-app="/kiralama" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3 4.5 15H11zM13 6.5 18.5 15H13z"/><path d="M3 17.5h18l-2.2 3H5.2z"/></svg><span>Tekne kirala &amp; tur</span><small>93 bölge</small><b>→</b></a>
+<script>
+(function () {
+  var cta = document.getElementById('yapiskan-cta'), kahraman = document.querySelector('.kahraman');
+  if (!cta || !kahraman || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (g) {
+    var goster = !g[0].isIntersecting;
+    cta.classList.toggle('acik', goster);
+    cta.setAttribute('aria-hidden', String(!goster));
+    cta.tabIndex = goster ? 0 : -1;
+  }, { threshold: 0.15 }).observe(kahraman);
+})();
 </script>
 </body>
 </html>
