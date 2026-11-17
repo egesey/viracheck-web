@@ -439,3 +439,32 @@ html[data-tema="koyu"] .yapiskan-cta{color:#0B1B2B}
 @media (prefers-reduced-motion: reduce){
   .kahraman .dug-pirinc::after, .yapiskan-cta::after{animation:none; display:none}
 }
+
+/* Kısa ekranlarda (Safari çubukları açık iPhone, küçük telefonlar) kahraman
+   ekran yüksekliğine sabit kalınca yazı yukarı taşıp üst menünün altına
+   giriyordu. Artık en az ekran boyunda, gerekirse içeriğe göre uzar. */
+.kahraman{height:auto; min-height:max(620px, 100svh)}
+.kahraman > .ic{height:auto; min-height:max(620px, 100svh); padding-top:112px}
+@media (max-width:640px){
+  .kahraman, .kahraman > .ic{min-height:max(560px, 100svh)}
+  .kahraman > .ic{padding-top:100px}
+}
+
+/* Tekneni bul: daha parlak altın ışık, yavaşça "nefes alan" bir ışıltı ve
+   daha sık geçen parıltı. */
+.kahraman .dug-pirinc{
+  background:linear-gradient(180deg, #C29C62 0%, #A9824B 55%, #97743F 100%);
+  box-shadow:0 0 0 1px rgba(255,238,205,.75), 0 10px 30px rgba(217,190,140,.35), 0 0 26px 2px rgba(232,206,150,.45);
+  animation:altinNefes 3.2s ease-in-out infinite;
+}
+@keyframes altinNefes{
+  0%,100%{box-shadow:0 0 0 1px rgba(255,238,205,.7), 0 10px 30px rgba(217,190,140,.32), 0 0 22px 1px rgba(232,206,150,.38)}
+  50%    {box-shadow:0 0 0 1px rgba(255,242,215,.95), 0 12px 36px rgba(217,190,140,.5), 0 0 38px 6px rgba(240,214,160,.62)}
+}
+.kahraman .dug-pirinc::after{
+  width:45%;
+  background:linear-gradient(100deg, transparent 0%, rgba(255,248,232,.12) 30%, rgba(255,252,242,.62) 50%, rgba(255,248,232,.12) 70%, transparent 100%);
+  animation:altinParilti 3.6s cubic-bezier(.4,0,.2,1) .8s infinite;
+}
+.kahraman .dug-pirinc:hover{animation-play-state:paused}
+@media (prefers-reduced-motion: reduce){ .kahraman .dug-pirinc{animation:none} }
