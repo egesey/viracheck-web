@@ -347,75 +347,6 @@ html[data-tema="koyu"] .mm-ikincil{color:var(--metin); border-color:var(--metin)
 .plan.pro .deneme-not{margin:18px 0 26px}
 @media (max-width:640px){ .secenek{padding:16px 14px} .secenek .sag b{font-size:1.6rem} .secenek .s-ad em{display:block; margin:6px 0 0} }
 
-/* ------------------------------------------------ kahraman: tekne arama çubuğu
- * Yat ve otel sitelerinin dili: ince, tek parça bir çubuk (yer + pirinç düğme),
- * üstünde yazı olarak tür seçimi, altında özel öneri listesi. Dar tutulur ki
- * videodaki tekne açıkta kalsın. Gönderim /kiralama?tur=…&ara=… */
-.arama-kart{width:100%; max-width:520px; margin-top:6px; position:relative}
-.ak-sekmeler{display:flex; gap:26px; margin:0 0 14px 2px}
-.ak-sekmeler label{position:relative; cursor:pointer}
-.ak-sekmeler input{position:absolute; opacity:0; pointer-events:none}
-.ak-sekmeler span{
-  display:inline-block; padding:0 0 8px; font:600 .72rem/1 var(--sans); letter-spacing:.2em; text-transform:uppercase;
-  color:rgba(255,255,255,.62); border-bottom:1px solid transparent; transition:color .2s, border-color .2s;
-}
-.ak-sekmeler label:hover span{color:#fff}
-.ak-sekmeler input:checked + span{color:#fff; border-bottom-color:var(--pirinc-acik)}
-.ak-sekmeler input:focus-visible + span{outline:1px solid var(--pirinc-acik); outline-offset:4px}
-
-.ak-cubuk{
-  position:relative; display:flex; align-items:stretch; height:62px;
-  background:rgba(247,243,236,.97); border-radius:2px;
-  box-shadow:0 18px 50px rgba(3,10,18,.45), 0 0 0 1px rgba(217,190,140,.55);
-  transition:box-shadow .25s;
-}
-.arama-kart:focus-within .ak-cubuk{box-shadow:0 18px 50px rgba(3,10,18,.45), 0 0 0 1px var(--pirinc-acik), 0 0 0 5px rgba(217,190,140,.22)}
-.ak-nereye{flex:1; min-width:0; display:grid; grid-template-columns:auto 1fr; grid-template-rows:auto auto; column-gap:12px; align-content:center; padding:0 18px; cursor:text}
-.ak-nereye svg{grid-row:1 / span 2; align-self:center; width:20px; height:20px; fill:none; stroke:var(--pirinc); stroke-width:1.6}
-.ak-etiket{font:600 .58rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color:var(--pirinc); margin-bottom:5px}
-.ak-nereye input{border:0; outline:0; background:none; padding:0; width:100%; font:400 1.22rem/1.15 var(--serif); color:#13202C; letter-spacing:.005em}
-.ak-nereye input::placeholder{color:#9a9ea2; font-style:italic}
-.ak-bul{
-  flex:none; display:inline-flex; align-items:center; gap:12px; padding:0 26px; border:0; cursor:pointer;
-  background:linear-gradient(180deg, #B8925A 0%, #9A7843 100%); color:#fff; border-radius:0 2px 2px 0;
-  font:600 .76rem/1 var(--sans); letter-spacing:.2em; text-transform:uppercase;
-  transition:filter .25s;
-}
-.ak-bul svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; transition:transform .25s}
-.ak-bul:hover{filter:brightness(1.08)}
-.ak-bul:hover svg{transform:translateX(4px)}
-.ak-bul:focus-visible{outline:2px solid #fff; outline-offset:-4px}
-
-/* Öneri listesi */
-.ak-oneri{
-  position:absolute; left:0; right:0; top:calc(100% + 8px); z-index:30; padding:8px 0;
-  background:rgba(247,243,236,.99); border-radius:2px;
-  box-shadow:0 30px 70px rgba(3,10,18,.5), 0 0 0 1px rgba(217,190,140,.5);
-  max-height:340px; overflow:auto; -webkit-overflow-scrolling:touch;
-}
-.ak-o-baslik{padding:10px 20px 8px; font:600 .58rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color:var(--pirinc)}
-.ak-o-satir{display:flex; align-items:baseline; gap:12px; padding:11px 20px; cursor:pointer; border-left:2px solid transparent}
-.ak-o-ad{font:500 1.18rem/1.2 var(--serif); color:#13202C}
-.ak-o-ulke{margin-left:auto; font:600 .6rem/1 var(--sans); letter-spacing:.18em; text-transform:uppercase; color:#8a8f94; white-space:nowrap}
-.ak-o-satir:hover, .ak-o-satir.secili{background:rgba(169,130,75,.1); border-left-color:var(--pirinc)}
-.ak-o-satir:hover .ak-o-ad, .ak-o-satir.secili .ak-o-ad{color:#0B1B2B}
-.ak-o-bos{padding:14px 20px; font:italic 400 1.05rem/1.3 var(--serif); color:#6b7177}
-
-.ak-alt{margin:16px 0 0 2px; font:500 .66rem/1.6 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.66)}
-
-@media (max-width:640px){
-  .arama-kart{max-width:none}
-  .ak-sekmeler{gap:22px; margin-bottom:12px}
-  .ak-cubuk{height:58px}
-  .ak-nereye{padding:0 14px; column-gap:10px}
-  .ak-nereye input{font-size:1.12rem}
-  .ak-bul{padding:0 18px}
-  .ak-bul-yazi{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
-  .ak-bul svg{width:22px; height:22px}
-  .ak-oneri{max-height:300px}
-  .ak-alt{font-size:.58rem; letter-spacing:.16em}
-}
-
 /* Telefonda: kahraman ekrandan çıkınca altta sabit kiralama düğmesi. */
 .yapiskan-cta{display:none}
 @media (max-width:640px){
@@ -433,74 +364,6 @@ html[data-tema="koyu"] .mm-ikincil{color:var(--metin); border-color:var(--metin)
 }
 html[data-tema="koyu"] .yapiskan-cta{color:#0B1B2B}
 @media (prefers-reduced-motion: reduce){ .yapiskan-cta{transition:none} }
-
-/* Öneri listesi rakam şeridinin üstünde kalsın; masaüstünde yukarı açılır
-   (çubuk kahramanın altına yakın, aşağıda yer yok). */
-.kahraman > .ic:focus-within{z-index:6}
-.arama-kart{max-width:480px}
-@media (min-width:641px){
-  .ak-oneri{top:auto; bottom:calc(100% + 10px); max-height:min(360px, 52vh)}
-}
-/* Telefon: yazı üstte, çubuk teknenin üstünde; tekne ve rakam şeridi açıkta. */
-@media (max-width:640px){
-  .kahraman > .ic{justify-content:flex-start; padding-top:clamp(104px, 15vh, 140px); padding-bottom:0}
-  .kahraman p.alt{display:none}
-  .kahraman h1{margin:18px 0 26px}
-  .ak-oneri{max-height:min(300px, 40vh)}
-}
-
-/* Arama çubuğunun altında: App Store düğmesi. Çubukla yarışmasın diye ince
-   kontur ve küçük harf aralığı; gözü önce "Tekneni bul"a götürür. */
-.ak-indir-satir{display:flex; align-items:center; gap:18px; margin-top:22px}
-.ak-indir{
-  display:inline-flex; align-items:center; gap:12px; height:46px; padding:0 22px 0 18px;
-  border:1px solid rgba(217,190,140,.55); border-radius:2px; color:#fff;
-  background:rgba(8,20,31,.28); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
-  font:600 .7rem/1 var(--sans); letter-spacing:.2em; text-transform:uppercase;
-  transition:background .25s, border-color .25s, color .25s;
-}
-.ak-indir svg{width:18px; height:18px; fill:none; stroke:var(--pirinc-acik); stroke-width:1.5; transition:stroke .25s}
-.ak-indir:hover{background:var(--pirinc-acik); border-color:var(--pirinc-acik); color:#0B1B2B}
-.ak-indir:hover svg{stroke:#0B1B2B}
-.ak-indir:focus-visible{outline:2px solid var(--pirinc-acik); outline-offset:3px}
-.ak-indir-not{font:italic 400 1.02rem/1.2 var(--serif); color:rgba(255,255,255,.7)}
-@media (max-width:640px){
-  .ak-indir-satir{margin-top:16px; gap:14px}
-  .ak-indir{height:44px; padding:0 16px 0 14px; font-size:.64rem; letter-spacing:.16em}
-  .ak-indir-not{font-size:.95rem}
-}
-.ak-indir{white-space:nowrap; flex:none}
-.ak-alt{max-width:480px}
-@media (max-width:640px){ .ak-alt{max-width:none} .ak-indir-not{font-size:.9rem; line-height:1.25} }
-@media (max-width:370px){ .ak-indir-not{display:none} }
-
-/* Arama çubuğu ve "Tüm bölgeler" ayrı: çubuk kendi arama simgesiyle aranır,
-   yanındaki pirinç düğme doğrudan bütün bölgeleri açar. */
-.arama-kart{max-width:540px}
-.ak-satir{display:flex; gap:12px; align-items:stretch}
-.ak-satir .ak-cubuk{flex:1; min-width:0}
-.ak-ara{
-  flex:none; width:58px; display:grid; place-items:center; border:0; cursor:pointer;
-  background:none; border-left:1px solid rgba(169,130,75,.28); color:var(--pirinc);
-  transition:background .2s, color .2s;
-}
-.ak-ara svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8}
-.ak-ara:hover{background:rgba(169,130,75,.12); color:#7a5a2c}
-.ak-ara:focus-visible{outline:2px solid var(--pirinc); outline-offset:-4px}
-a.ak-bul{
-  height:62px; border-radius:2px; padding:0 24px; text-decoration:none;
-  box-shadow:0 18px 44px rgba(3,10,18,.4), 0 0 0 1px rgba(217,190,140,.55);
-}
-@media (max-width:640px){
-  .ak-satir{flex-direction:column; gap:10px}
-  .ak-ara{width:54px}
-  a.ak-bul{height:54px; justify-content:center}
-  .ak-bul-yazi{position:static; width:auto; height:auto; overflow:visible; clip:auto}
-}
-@media (max-width:640px){
-  .ak-satir .ak-cubuk{flex:none; height:58px}
-  .ak-alt{letter-spacing:.1em}
-}
 
 /* Bilgisayarda: kahraman geçilince sağ altta yüzen, zarif kiralama düğmesi. */
 @media (min-width:641px){
@@ -526,3 +389,53 @@ a.ak-bul{
 }
 html[data-tema="koyu"] .yapiskan-cta{color:#0B1B2B}
 @media (prefers-reduced-motion: reduce){ .yapiskan-cta{transition:none} }
+
+/* Parlayan çevre: "Tekneni bul" ve aşağıda çıkan kiralama düğmesi göz ucuyla
+   fark edilsin. Pirinç bir hale yavaşça dışa açılıp söner; sürekli ama sakin. */
+@keyframes pirincHale{
+  0%  {box-shadow:0 0 0 0 rgba(217,190,140,.55), 0 0 18px 2px rgba(217,190,140,.35)}
+  70% {box-shadow:0 0 0 12px rgba(217,190,140,0), 0 0 26px 6px rgba(217,190,140,.18)}
+  100%{box-shadow:0 0 0 0 rgba(217,190,140,0), 0 0 18px 2px rgba(217,190,140,.35)}
+}
+.kahraman .dug-pirinc{animation:pirincHale 2.6s ease-out infinite}
+.kahraman .dug-pirinc:hover{animation-play-state:paused; box-shadow:0 0 22px 4px rgba(217,190,140,.5)}
+.yapiskan-cta.acik{animation:pirincHaleCta 2.6s ease-out infinite}
+@keyframes pirincHaleCta{
+  0%  {box-shadow:0 18px 44px rgba(3,10,18,.35), 0 0 0 1px rgba(217,190,140,.7), 0 0 0 0 rgba(217,190,140,.55), 0 0 18px 2px rgba(217,190,140,.35)}
+  70% {box-shadow:0 18px 44px rgba(3,10,18,.35), 0 0 0 1px rgba(217,190,140,.7), 0 0 0 12px rgba(217,190,140,0), 0 0 26px 6px rgba(217,190,140,.18)}
+  100%{box-shadow:0 18px 44px rgba(3,10,18,.35), 0 0 0 1px rgba(217,190,140,.7), 0 0 0 0 rgba(217,190,140,0), 0 0 18px 2px rgba(217,190,140,.35)}
+}
+.yapiskan-cta.acik:hover{animation-play-state:paused}
+@media (prefers-reduced-motion: reduce){
+  .kahraman .dug-pirinc, .yapiskan-cta.acik{animation:none; box-shadow:0 0 20px 3px rgba(217,190,140,.4)}
+}
+
+/* VIP parlama: yanıp sönen hale yerine sabit, ince bir altın ışık ve birkaç
+   saniyede bir yüzeyden çapraz geçen yumuşak bir parıltı (mücevher vitrini). */
+.kahraman .dug-pirinc{position:relative; overflow:hidden; isolation:isolate}
+/* Kiralama düğmesi ekrana sabit kalmalı (position:fixed); yalnızca parıltı için kırpma. */
+.yapiskan-cta{overflow:hidden; isolation:isolate}
+.kahraman .dug-pirinc{
+  animation:none;
+  box-shadow:0 0 0 1px rgba(255,236,200,.45), 0 10px 30px rgba(217,190,140,.28), 0 0 24px rgba(217,190,140,.22);
+}
+.kahraman .dug-pirinc:hover{box-shadow:0 0 0 1px rgba(255,236,200,.7), 0 12px 34px rgba(217,190,140,.38), 0 0 30px rgba(217,190,140,.32)}
+.yapiskan-cta.acik{
+  animation:none;
+  box-shadow:0 18px 44px rgba(3,10,18,.35), 0 0 0 1px rgba(255,236,200,.55), 0 0 26px rgba(217,190,140,.3);
+}
+.kahraman .dug-pirinc::after, .yapiskan-cta::after{
+  content:""; position:absolute; top:-20%; bottom:-20%; left:0; width:38%; z-index:-1; pointer-events:none;
+  background:linear-gradient(100deg, transparent 0%, rgba(255,247,230,.08) 30%, rgba(255,250,238,.42) 50%, rgba(255,247,230,.08) 70%, transparent 100%);
+  transform:translateX(-160%) skewX(-18deg);
+  animation:altinParilti 5.5s cubic-bezier(.4,0,.2,1) 1.2s infinite;
+}
+.kahraman .dug-pirinc > *, .yapiskan-cta > *{position:relative}
+@keyframes altinParilti{
+  0%  {transform:translateX(-160%) skewX(-18deg)}
+  28% {transform:translateX(330%) skewX(-18deg)}
+  100%{transform:translateX(330%) skewX(-18deg)}
+}
+@media (prefers-reduced-motion: reduce){
+  .kahraman .dug-pirinc::after, .yapiskan-cta::after{animation:none; display:none}
+}
