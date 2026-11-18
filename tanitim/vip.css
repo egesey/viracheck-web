@@ -505,3 +505,185 @@ html[data-tema="koyu"] .yapiskan-cta{color:#0B1B2B}
   html[data-tema="koyu"] .ust.kayik{background:rgba(11,27,43,.88)}
 }
 .kahraman .dug-pirinc::after, .yapiskan-cta::after{will-change:transform}
+
+
+/* ================================================================ ana sayfa: lüks katman
+ * Yalnızca index.html / index-en.html (body.anasayfa). İçerik aynı; pirinç çerçeveler,
+ * kâğıt dokusu, bölüm numaraları ve ince süsler. Kaydırmada çizim yükü yok: dokular
+ * durağan, hareketler yalnızca transform/opacity ve yalnızca fareli ekranlarda. */
+.anasayfa{background-image:url(img/doku.png)}
+.anasayfa .hizmet, .anasayfa .keyif{background-image:url(img/doku.png)}
+
+/* Menü: üzerine gelince altından kayan pirinç çizgi; kaydırınca pirinç alt çizgi. */
+.anasayfa .menu a{position:relative; padding:8px 0}
+.anasayfa .menu a::after{content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--pirinc-acik); transform:scaleX(0); transform-origin:left; transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.anasayfa .menu a:hover::after, .anasayfa .menu a:focus-visible::after{transform:scaleX(1)}
+.anasayfa .ust.kayik .menu a::after{background:var(--pirinc)}
+.anasayfa .ust.kayik{box-shadow:0 1px 0 rgba(169,130,75,.3)}
+
+/* Açılış: köşelerde pirinç çerçeve izleri, derin başlık, kaydırma işareti, pirinç rakamlar. */
+.anasayfa .kahraman::before{
+  content:""; position:absolute; z-index:1; pointer-events:none; inset:108px 32px 104px;
+  --k:rgba(217,190,140,.55);
+  background:
+    linear-gradient(var(--k),var(--k)) top left/56px 1px no-repeat, linear-gradient(var(--k),var(--k)) top left/1px 56px no-repeat,
+    linear-gradient(var(--k),var(--k)) top right/56px 1px no-repeat, linear-gradient(var(--k),var(--k)) top right/1px 56px no-repeat,
+    linear-gradient(var(--k),var(--k)) bottom left/56px 1px no-repeat, linear-gradient(var(--k),var(--k)) bottom left/1px 56px no-repeat,
+    linear-gradient(var(--k),var(--k)) bottom right/56px 1px no-repeat, linear-gradient(var(--k),var(--k)) bottom right/1px 56px no-repeat;
+}
+.anasayfa .kahraman h1{text-shadow:0 2px 40px rgba(3,10,18,.35)}
+.kaydir{display:none}
+.anasayfa .kaydir{position:absolute; z-index:2; right:58px; bottom:128px; display:flex; flex-direction:column; align-items:center; gap:14px; color:rgba(243,238,228,.78); font:600 .6rem/1 var(--sans); letter-spacing:.32em; text-transform:uppercase}
+.anasayfa .kaydir span{writing-mode:vertical-rl}
+.anasayfa .kaydir i{position:relative; display:block; width:1px; height:46px; background:rgba(217,190,140,.35); overflow:hidden}
+.anasayfa .kaydir i::after{content:""; position:absolute; left:0; top:0; width:1px; height:16px; background:var(--pirinc-acik); animation:kaydirIs 2.4s cubic-bezier(.6,0,.3,1) infinite}
+.anasayfa .kaydir:hover{color:#fff}
+@keyframes kaydirIs{0%{transform:translateY(-16px)} 70%,100%{transform:translateY(46px)}}
+.anasayfa .serit{background:linear-gradient(180deg, rgba(6,16,26,.42) 0%, rgba(6,16,26,.78) 100%); border-top:0}
+.anasayfa .serit::before{content:""; position:absolute; left:0; right:0; top:0; height:1px; background:linear-gradient(90deg, transparent, rgba(217,190,140,.6) 20%, rgba(217,190,140,.6) 80%, transparent)}
+.anasayfa .serit b{color:var(--pirinc-acik); font-size:2.3rem}
+.anasayfa .serit div + div{border-left-color:rgba(217,190,140,.2)}
+
+/* Söz: pusula gülü ve sıcak bir ışık halesi. */
+.anasayfa .soz{background:radial-gradient(760px 380px at 50% 46%, rgba(169,130,75,.08), transparent 70%)}
+.anasayfa .soz .ic::before{content:""; display:block; width:58px; height:58px; margin:0 auto 26px; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23A9824B' stroke-width='1'%3E%3Ccircle cx='32' cy='32' r='22' opacity='.55'/%3E%3Ccircle cx='32' cy='32' r='15' opacity='.3'/%3E%3Cpath d='M32 3L36 28L61 32L36 36L32 61L28 36L3 32L28 28Z' fill='%23A9824B' fill-opacity='.1'/%3E%3Cpath d='M32 3L36 28L32 32ZM61 32L36 36L32 32ZM32 61L28 36L32 32ZM3 32L28 28L32 32Z' fill='%23A9824B' fill-opacity='.6' stroke='none'/%3E%3Ccircle cx='32' cy='32' r='1.6' fill='%23A9824B' stroke='none'/%3E%3C/svg%3E") center/contain no-repeat}
+.anasayfa .soz p{font-size:clamp(2rem, 3.8vw, 3.2rem)}
+
+/* Liman kartları: sıra numarası, derin gölge, üzerine gelince açılan pirinç iç çerçeve. */
+.anasayfa .vit{box-shadow:0 34px 60px -34px rgba(11,27,43,.55)}
+.anasayfa .vit::after{background:linear-gradient(180deg, rgba(6,16,26,.42) 0%, rgba(6,16,26,0) 24%), linear-gradient(0deg, rgba(6,16,26,.84) 0%, rgba(6,16,26,.22) 46%, rgba(6,16,26,0) 66%)}
+.vit-no{display:none}
+.anasayfa .vit-no{position:absolute; z-index:2; top:20px; left:24px; display:flex; align-items:center; gap:10px; font:italic 500 1.35rem/1 var(--serif); color:#E9D4A6; text-shadow:0 1px 12px rgba(3,10,18,.6); font-variant-numeric:lining-nums}
+.anasayfa .vit-no::after{content:""; width:26px; height:1px; background:currentColor; opacity:.7}
+.anasayfa .vit::before{content:""; position:absolute; z-index:1; inset:14px; border:1px solid rgba(217,190,140,.6); pointer-events:none; opacity:0; transform:scale(1.015); transition:opacity .5s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover) and (pointer:fine){ .anasayfa .vit:hover::before{opacity:1; transform:none} }
+
+/* Kiralama ve tur: fotoğrafta ince iç çerçeve, metinde büyük soluk bölüm numarası, altın rakam. */
+.anasayfa .hizmet .foto::after{content:""; position:absolute; inset:24px; border:1px solid rgba(255,255,255,.42); pointer-events:none}
+.anasayfa .hizmet .foto::before{content:"01"; position:absolute; z-index:1; left:0; right:0; bottom:0; height:46%; display:flex; align-items:flex-end; gap:14px; padding:0 0 46px 50px; background:linear-gradient(0deg, rgba(6,16,26,.6) 0%, rgba(6,16,26,0) 100%); color:#fff; font:italic 500 3.4rem/1 var(--serif); font-variant-numeric:lining-nums; text-shadow:0 2px 18px rgba(3,10,18,.35); pointer-events:none}
+.anasayfa .hizmet.ters .foto::before{content:"02"}
+.anasayfa .hizmet .sayi b{background:linear-gradient(180deg, #CBA86E 0%, #A9824B 55%, #8A6936 100%); -webkit-background-clip:text; background-clip:text; color:transparent}
+.anasayfa .hizmet .ortaklar{border-top-color:rgba(169,130,75,.3)}
+
+/* Yatta hizmet: halkalar çift çizgili. */
+.anasayfa .keyif{background-image:radial-gradient(700px 320px at 50% 30%, rgba(169,130,75,.07), transparent 70%), url(img/doku.png)}
+.anasayfa .keyif-ik{box-shadow:0 0 0 5px var(--kart), 0 0 0 6px rgba(169,130,75,.22)}
+
+/* Uygulama (gece): üstte pirinç ışık çizgisi; özellik kutuları üzerine gelince hafifçe aydınlanır. */
+.anasayfa .gece{position:relative}
+.anasayfa .gece::before{content:""; position:absolute; left:0; right:0; top:0; height:1px; background:linear-gradient(90deg, transparent, rgba(217,190,140,.55) 25%, rgba(217,190,140,.55) 75%, transparent)}
+.anasayfa .oz{position:relative; transition:background .4s}
+.anasayfa .oz::before{content:""; position:absolute; left:0; right:0; top:-1px; height:1px; background:var(--pirinc-acik); transform:scaleX(0); transform-origin:left; transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover) and (pointer:fine){
+  .anasayfa .oz:hover{background:linear-gradient(180deg, rgba(217,190,140,.05), transparent)}
+  .anasayfa .oz:hover::before{transform:scaleX(1)}
+}
+
+/* Fiyat: yükselen kart, Pro'da altın hale ve ince iç çerçeve. */
+.anasayfa .planlar{border-color:rgba(169,130,75,.3); box-shadow:0 60px 110px -60px rgba(11,27,43,.45)}
+.anasayfa .plan.pro{position:relative; background:radial-gradient(620px 320px at 85% 0%, rgba(217,190,140,.16), transparent 62%), var(--gece)}
+.anasayfa .plan.pro::before{content:""; position:absolute; inset:12px; border:1px solid rgba(217,190,140,.22); pointer-events:none}
+.anasayfa .plan .tutar b{background:linear-gradient(180deg, #CBA86E 0%, #A9824B 60%, #8A6936 100%); -webkit-background-clip:text; background-clip:text; color:transparent}
+.anasayfa .plan.pro .tutar b{background:none; color:#fff}
+
+/* Sık sorulanlar: açık soruda solda pirinç çizgi, üzerine gelince pirinç başlık. */
+.anasayfa .sss details{position:relative}
+.anasayfa .sss details::before{content:""; position:absolute; left:-22px; top:28px; bottom:28px; width:1px; background:var(--pirinc); transform:scaleY(0); transform-origin:top; transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.anasayfa .sss details[open]::before{transform:none}
+.anasayfa .sss summary{transition:color .25s}
+.anasayfa .sss summary:hover{color:var(--pirinc-koyu)}
+
+/* Kapanış: açılıştaki gibi pirinç köşe izleri. */
+.anasayfa .kapanis::before{
+  content:""; position:absolute; z-index:1; pointer-events:none; inset:32px;
+  --k:rgba(217,190,140,.5);
+  background:
+    linear-gradient(var(--k),var(--k)) top left/56px 1px no-repeat, linear-gradient(var(--k),var(--k)) top left/1px 56px no-repeat,
+    linear-gradient(var(--k),var(--k)) top right/56px 1px no-repeat, linear-gradient(var(--k),var(--k)) top right/1px 56px no-repeat,
+    linear-gradient(var(--k),var(--k)) bottom left/56px 1px no-repeat, linear-gradient(var(--k),var(--k)) bottom left/1px 56px no-repeat,
+    linear-gradient(var(--k),var(--k)) bottom right/56px 1px no-repeat, linear-gradient(var(--k),var(--k)) bottom right/1px 56px no-repeat;
+}
+.anasayfa .kapanis h2{text-shadow:0 2px 40px rgba(3,10,18,.35)}
+
+/* Alt bilgi: üstte pirinç ışık çizgisi ve sıcak hale. */
+.anasayfa .alt-bilgi{position:relative; background:radial-gradient(900px 320px at 50% 0%, rgba(217,190,140,.08), transparent 70%), #07121D}
+.anasayfa .alt-bilgi::before{content:""; position:absolute; left:0; right:0; top:0; height:1px; background:linear-gradient(90deg, transparent, rgba(217,190,140,.5) 25%, rgba(217,190,140,.5) 75%, transparent)}
+
+@media (max-width:640px){
+  .anasayfa .kahraman::before{display:none}
+  .anasayfa .kaydir{display:none}
+  .anasayfa .serit b{font-size:1.7rem}
+  .anasayfa .soz .ic::before{width:48px; height:48px; margin-bottom:20px}
+  .anasayfa .vit-no{top:16px; left:18px}
+  .anasayfa .hizmet .foto::after{inset:14px}
+  .anasayfa .hizmet .foto::before{padding:0 0 28px 30px; font-size:2.6rem}
+  .anasayfa .sss details::before{left:-12px}
+  .anasayfa .kapanis::before{inset:16px}
+}
+@media (prefers-reduced-motion: reduce){
+  .anasayfa .kaydir i::after{animation:none; transform:translateY(15px)}
+}
+
+/* ================================================================ ana sayfa: gece ve altın
+ * Daha görkemli görünüm: sayfanın çoğu gece laciverti, aralarda şampanya tonunda
+ * soluklar; vurgu kelimeleri altın yaldız, kartlarda kalıcı altın çerçeve. Renkler
+ * bölüm değişkenleriyle değişir; içerik ve yerleşim aynı. */
+.anasayfa{--yaldiz:linear-gradient(180deg, #F1DDAE 0%, #D4B072 45%, #A9824B 100%)}
+.anasayfa h2{font-size:clamp(2.6rem, 5.2vw, 4.6rem)}
+.anasayfa h1 em, .anasayfa h2 em, .anasayfa .soz p em{background:var(--yaldiz); -webkit-background-clip:text; background-clip:text; color:transparent; padding-right:.06em}
+.anasayfa .kahraman h1{font-size:clamp(3.4rem, 8.6vw, 7.8rem)}
+
+/* Gece bölümleri */
+.anasayfa .bolgeler, .anasayfa .hizmet, .anasayfa .sss{
+  --kart:#0E2234; --metin:#F3EEE4; --soluk:#A9B4C0; --cizgi:rgba(217,190,140,.2); --pirinc:#D9BE8C; --pirinc-koyu:#E3C995;
+  background-color:#0B1B2B; color:var(--metin);
+}
+.anasayfa .bolgeler{background:radial-gradient(900px 500px at 15% 0%, rgba(217,190,140,.1), transparent 60%), #0B1B2B; padding-top:130px}
+.anasayfa .hizmet{background:#0E2234}
+.anasayfa .sss{background:radial-gradient(800px 420px at 85% 20%, rgba(217,190,140,.08), transparent 60%), #0B1B2B; padding-top:130px}
+.anasayfa .hizmet .foto::after{border-color:rgba(217,190,140,.55)}
+.anasayfa .hizmet .sayi b{font-size:5rem}
+
+/* Şampanya soluklar */
+.anasayfa .soz, .anasayfa .keyif, .anasayfa .fiyat{--kart:#FBF6EC; --cizgi:rgba(138,105,54,.2)}
+.anasayfa .soz{background:radial-gradient(760px 380px at 50% 46%, rgba(212,176,114,.16), transparent 70%), url(img/doku.png), #F4ECDE}
+.anasayfa .keyif{background:radial-gradient(700px 320px at 50% 30%, rgba(212,176,114,.14), transparent 70%), url(img/doku.png), #F6EFE3; border-top:0}
+.anasayfa .fiyat{background:url(img/doku.png), #F4ECDE}
+
+/* Liman kartları: kalıcı altın çerçeve, daha uzun vitrin */
+.anasayfa .vitrin{grid-auto-rows:170px; gap:20px}
+.anasayfa .vit{box-shadow:0 40px 70px -36px rgba(0,0,0,.7), 0 0 0 1px rgba(217,190,140,.35)}
+.anasayfa .vit::before{opacity:.75; transform:none; border-color:rgba(217,190,140,.45)}
+@media (hover:hover) and (pointer:fine){ .anasayfa .vit:hover::before{opacity:1; border-color:rgba(233,212,166,.85)} }
+.anasayfa .vit h3{font-size:2.3rem}
+.anasayfa .v1 h3{font-size:3.4rem}
+
+/* Altın düğmeler hepsi yaldızlı ve parıltılı */
+.anasayfa .dug-pirinc{position:relative; overflow:hidden; isolation:isolate; background:linear-gradient(180deg, #C9A466 0%, #A9824B 55%, #94713D 100%); color:#fff; box-shadow:0 0 0 1px rgba(255,236,200,.6), 0 12px 30px rgba(169,130,75,.35)}
+.anasayfa .dug-pirinc::after{content:""; position:absolute; top:-20%; bottom:-20%; left:0; width:42%; z-index:-1; pointer-events:none; will-change:transform; background:linear-gradient(100deg, transparent 0%, rgba(255,250,238,.5) 50%, transparent 100%); transform:translateX(-160%) skewX(-18deg); animation:altinParilti 4.8s cubic-bezier(.4,0,.2,1) 1.5s infinite}
+.anasayfa .dug-pirinc > *{position:relative}
+
+/* Menü: kaydırınca gece camı, altın alt çizgi */
+.anasayfa .ust.kayik{background:rgba(11,27,43,.95); color:#F3EEE4; box-shadow:0 1px 0 rgba(217,190,140,.35)}
+.anasayfa .ust.kayik .menu a::after{background:var(--pirinc-acik)}
+.anasayfa .ust.kayik .dug-cizgi{border-color:rgba(217,190,140,.7); color:#F3EEE4}
+.anasayfa .ust.kayik .dug-cizgi:hover{background:rgba(217,190,140,.14); color:#fff}
+.anasayfa .ust.kayik .mmenu summary{border-color:rgba(217,190,140,.45)}
+@media (hover:hover) and (pointer:fine){ .anasayfa .ust.kayik{background:rgba(11,27,43,.86)} }
+
+/* Fiyat: ücretsiz kart şampanya, Pro gece; ikisi de altın kenarlı */
+.anasayfa .planlar{border:1px solid rgba(169,130,75,.45)}
+.anasayfa .plan:not(.pro){background:#FBF6EC}
+
+@media (max-width:640px){
+  .anasayfa h2{font-size:clamp(2.3rem, 9vw, 2.9rem)}
+  .anasayfa .kahraman h1{font-size:3.2rem}
+  .anasayfa .bolgeler, .anasayfa .sss{padding-top:90px}
+  .anasayfa .vitrin{grid-auto-rows:250px}
+  .anasayfa .vit h3, .anasayfa .v1 h3{font-size:2.4rem}
+  .anasayfa .hizmet .sayi b{font-size:4rem}
+}
+@media (prefers-reduced-motion: reduce){ .anasayfa .dug-pirinc::after{animation:none; display:none} }
+
+/* Açılış ve kapanıştaki köşe izleri kaldırıldı. */
+.anasayfa .kahraman::before, .anasayfa .kapanis::before{display:none}
