@@ -465,7 +465,6 @@ html[data-tema="koyu"] .kb-bolum{background:#081521}
   .ky-kahraman > picture img{object-position:58% 60%}
   .ky-kahraman::after{background:linear-gradient(180deg, rgba(6,16,26,.6) 0%, rgba(6,16,26,.42) 30%, rgba(6,16,26,.72) 55%, rgba(6,16,26,.9) 100%)}
   .hv-kahraman::after{background:linear-gradient(180deg, rgba(6,16,26,.5) 0%, rgba(6,16,26,.15) 30%, rgba(6,16,26,.55) 55%, rgba(6,16,26,.9) 100%)}
-  .ky-kahraman .kr-dug{flex-direction:column; align-items:stretch}
   .sk-bolum, .kb-bolum, .ip-bolum{padding:84px 0}
   .sk-izgara{grid-template-columns:1fr; gap:22px}
   .sk-govde{padding:22px 20px}

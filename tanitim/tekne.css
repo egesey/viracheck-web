@@ -382,8 +382,11 @@ html[data-tema="koyu"] .ss-arti::before, html[data-tema="koyu"] .ss-arti::after{
   .kr-kahraman::after{background:linear-gradient(180deg, rgba(6,16,26,.6) 0%, rgba(6,16,26,.15) 30%, rgba(6,16,26,.6) 60%, rgba(6,16,26,.92) 100%)}
   .kr-kahraman h1{font-size:2.9rem; margin:20px 0 18px}
   .kr-kahraman p.alt{margin-bottom:28px; font-size:1rem}
-  .kr-dug{flex-direction:column; align-items:stretch}
-  .kr-dug a{width:100%}
+  .kr-dug{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  .kr-dug .tk-ara, .kr-dug .dug-cerceve{width:100%; min-height:48px; padding:0 10px; gap:8px; font-size:.6rem; letter-spacing:.12em}
+  .kr-dug .ik{width:15px; height:15px}
+  .tk-ara{min-height:52px; padding:0 22px; font-size:.68rem; letter-spacing:.16em}
+  .dug-cerceve{min-height:48px; padding:0 20px; font-size:.64rem; letter-spacing:.16em}
   .kr-guvence{gap:12px 18px; margin-top:24px}
   .kr-guvence li{font-size:.6rem; letter-spacing:.14em}
   .kr-sayilar div div{padding:14px 0; gap:9px}
@@ -457,7 +460,7 @@ html[data-tema="koyu"] .ss-arti::before, html[data-tema="koyu"] .ss-arti::after{
   .oz-govde{padding:28px 22px 26px}
   .oz-liste dd{font-size:1.15rem}
   .oz-guven{grid-template-columns:1fr}
-  .oz-dug{font-size:.72rem; padding:0 18px}
+  .oz-dug{min-height:56px; font-size:.68rem; padding:0 18px}
 
   .ss-bolum{padding:84px 0}
   .ss-oge summary{font-size:1.2rem; padding:20px 0}
