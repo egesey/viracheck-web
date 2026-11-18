@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-1b6YB2YgRRPcXCTZWaweYJW9MdtOSe2/YDDpjRo9V2Q='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://tiles.openfreemap.org; media-src 'self'; worker-src 'self' blob:; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-b871VoOrsnovLXsbPBj0rTTC6x3GelKRpTbyzeZe6Yg='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://tiles.openfreemap.org; media-src 'self'; worker-src 'self' blob:; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Koylar ve Plajlar — Koy Bulucu, Mavi Bayrak | ViraCheck</title>
@@ -169,7 +169,7 @@
             <button type="button" data-filtre="hepsi" aria-pressed="true">Tümü</button><button type="button" data-filtre="k" aria-pressed="false">Koylar</button><button type="button" data-filtre="p" aria-pressed="false">Plajlar</button><button type="button" data-filtre="b" aria-pressed="false"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>Mavi Bayrak</button>
           </div>
           <div class="kb-yaricap" role="group" aria-label="Yarıçap">
-            <button type="button" data-nm="5" aria-pressed="false">5 NM</button><button type="button" data-nm="10" aria-pressed="true">10 NM</button><button type="button" data-nm="20" aria-pressed="false">20 NM</button>
+            <button type="button" data-km="10" aria-pressed="false">10 km</button><button type="button" data-km="20" aria-pressed="true">20 km</button><button type="button" data-km="40" aria-pressed="false">40 km</button>
           </div>
         </div>
       </div>
@@ -245,7 +245,7 @@
   var TUR_AD = { k: 'Koy', p: 'Plaj', b: 'Mavi Bayrak', m: 'Mavi Bayrak marina' };
 
   /* ------------------------------------------------------------ durum */
-  var VERI = null, merkez = null, filtre = 'hepsi', yaricap = 10, gosterilen = 30, sonuc = [], gorunen = [];
+  var VERI = null, merkez = null, filtre = 'hepsi', yaricap = 20, gosterilen = 30, sonuc = [], gorunen = [];
 
   /* ------------------------------------------------------------ geometri ve adlar */
   var R = Math.PI / 180;
@@ -280,6 +280,10 @@
 
   /* ------------------------------------------------------------ arama */
   function dogal(t) { return t === 'k' || t === 'p'; }
+  // Hesap deniz mili ile (koy verisi ve uygulama öyle); ekranda km ve km/sa.
+  var KM = 1.852;
+  function km(nm) { return sayi(nm * KM, nm * KM < 10 ? 1 : 0); }
+  function hiz(kt) { return sayi(Math.round(kt * KM)); }
   function bul(la, lo, nm) {
     var payA = nm / 60 + 0.01, payO = payA / Math.max(0.2, Math.cos(la * R)), aday = [];
     function ekle(kayit, tur) {
@@ -391,7 +395,7 @@
     pencere = new maplibregl.Popup({ closeButton: false, className: 'kb-popup', offset: 14, maxWidth: '280px' })
       .setLngLat([s.o, s.a])
       .setHTML('<div class="kb-pop"><span class="kb-pop-tur t-' + s.t + '">' + TUR_AD[s.t] + '</span><b>' + kac(s.ad) + '</b>' +
-        '<span class="kb-pop-m">' + sayi(s.d, 1) + ' NM · ' + YON_K[yonIdx(s.y)] + ' · ' + sayi(s.y) + '°</span>' +
+        '<span class="kb-pop-m">' + km(s.d) + ' km · ' + YON_K[yonIdx(s.y)] + ' · ' + sayi(s.y) + '°</span>' +
         '<span class="kb-pop-dug"><a href="' + yolAdresi(s) + '" target="_blank" rel="noopener">' + ik('harita') + 'Yol tarifi</a><a href="' + havaAdresi(s) + '">' + ik('ruzgar') + 'Hava</a></span></div>')
       .addTo(harita);
   }
@@ -402,20 +406,20 @@
     var liste = sonuc.filter(uygunMu), sayac = { k: 0, p: 0, b: 0 };
     gorunen = liste;
     sonuc.forEach(function (s) { sayac[s.t === 'm' ? 'b' : s.t]++; });
-    $('kb-ozet').innerHTML = '<b>' + kac(merkez.ad) + '</b> çevresinde ' + yaricap + ' deniz mili içinde ' +
+    $('kb-ozet').innerHTML = '<b>' + kac(merkez.ad) + '</b> çevresinde ' + yaricap + ' km içinde ' +
       '<span>' + sayi(sayac.k) + ' koy</span> · <span>' + sayi(sayac.p) + ' plaj</span> · <span class="ozet-bf">' + sayi(sayac.b) + ' Mavi Bayrak</span>';
 
     if (haritaHazir) {
       if (pencere) { pencere.remove(); pencere = null; }
       vurguluNo = null;
       harita.setPaintProperty('genel-nokta', 'circle-opacity', 0.28);
-      harita.getSource('cember').setData({ type: 'FeatureCollection', features: [cember(merkez.lat, merkez.lon, yaricap)] });
+      harita.getSource('cember').setData({ type: 'FeatureCollection', features: [cember(merkez.lat, merkez.lon, yaricap / KM)] });
       harita.getSource('sonuc').setData({ type: 'FeatureCollection', features: liste.map(function (s, i) {
         return { type: 'Feature', geometry: { type: 'Point', coordinates: [s.o, s.a] }, properties: { i: i, t: s.t, on: i < gosterilen ? 1 : 0 } };
       }).reverse() });
       if (!merkezIsaret) { var el = document.createElement('div'); el.className = 'kb-merkez-im'; el.innerHTML = '<span></span>'; merkezIsaret = new maplibregl.Marker({ element: el }); }
       merkezIsaret.setLngLat([merkez.lon, merkez.lat]).addTo(harita);
-      if (uc) git(sinir(merkez.lat, merkez.lon, yaricap), 18);
+      if (uc) git(sinir(merkez.lat, merkez.lon, yaricap / KM), 18);
     }
 
     if (!liste.length) {
@@ -425,7 +429,7 @@
         return '<li class="kb-oge" data-i="' + i + '" tabindex="0">' +
           '<span class="kb-no">' + String(i + 1).padStart(2, '0') + '</span>' +
           '<span class="kb-ad"><b' + (s.oz !== s.ad ? ' title="' + kac(s.oz) + '"' : '') + '>' + kac(s.ad) + '</b><span class="kb-tur t-' + s.t + '">' + (s.t === 'b' || s.t === 'm' ? ik('bayrak') : '') + TUR_AD[s.t] + '</span></span>' +
-          '<span class="kb-mesafe"><b>' + sayi(s.d, 1) + '</b> NM<small>' + YON_K[yonIdx(s.y)] + ' · ' + sayi(s.y) + '°</small></span>' +
+          '<span class="kb-mesafe"><b>' + km(s.d) + '</b> km<small>' + YON_K[yonIdx(s.y)] + ' · ' + sayi(s.y) + '°</small></span>' +
           '<span class="kb-dug"><a href="' + yolAdresi(s) + '" target="_blank" rel="noopener" aria-label="' + kac(s.ad) + ' için yol tarifi" title="Yol tarifi">' + ik('harita') + '</a>' +
           '<a href="' + havaAdresi(s) + '" aria-label="' + kac(s.ad) + ' hava raporu" title="Hava raporu">' + ik('ruzgar') + '</a></span></li>';
       }).join('');
@@ -474,7 +478,7 @@
       var hava = 'hava.html?ad=' + encodeURIComponent(merkez.ad) + '&lat=' + merkez.lat.toFixed(3) + '&lon=' + merkez.lon.toFixed(3) + (merkez.ulke ? '&alt=' + encodeURIComponent(merkez.ulke) : '');
       kutu.innerHTML =
         '<div class="kr-ust"><span class="kr-ok" style="transform:rotate(' + (((d || 0) + 180) % 360) + 'deg)"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9l6-6 6 6"/></svg></span>' +
-        '<span><small>Şu an · ' + kac(merkez.ad) + '</small><b>' + sayi(s) + ' kt ' + YON[yi] + '</b><em>hamle ' + sayi(typeof g === 'number' ? Math.max(g, s) : s) + ' kt</em></span></div>' +
+        '<span><small>Şu an · ' + kac(merkez.ad) + '</small><b>' + hiz(s) + ' km/sa ' + YON[yi] + '</b><em>hamle ' + hiz(typeof g === 'number' ? Math.max(g, s) : s) + ' km/sa</em></span></div>' +
         '<p>' + ipucu + '</p><a href="' + hava + '">Seyir raporu' + ik('ok') + '</a>';
     })['catch'](function () { if (no === ruzgarNo) kutu.innerHTML = '<span class="kr-yuk">Rüzgâr bilgisi şu an alınamadı.</span>'; });
   }
@@ -486,7 +490,7 @@
     $('kb-konum').setAttribute('aria-pressed', String(!!m.konum));
     if (!m.konum) { try { history.replaceState(null, '', '?ad=' + encodeURIComponent(m.ad) + '&lat=' + m.lat.toFixed(4) + '&lon=' + m.lon.toFixed(4) + '#bul'); } catch (e) {} }
     $('kb-calisma').classList.add('secili');
-    if (VERI) { sonuc = bul(m.lat, m.lon, yaricap); gosterilen = 30; ciz(true); }
+    if (VERI) { sonuc = bul(m.lat, m.lon, yaricap / KM); gosterilen = 30; ciz(true); }
     ruzgar();
     if (kaydir) $('kb-calisma').scrollIntoView({ behavior: hareketAz ? 'auto' : 'smooth', block: 'start' });
   }
@@ -526,9 +530,9 @@
   });
   document.querySelectorAll('.kb-yaricap button').forEach(function (b) {
     b.addEventListener('click', function () {
-      yaricap = +b.dataset.nm;
+      yaricap = +b.dataset.km;
       document.querySelectorAll('.kb-yaricap button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-      if (merkez && VERI) { sonuc = bul(merkez.lat, merkez.lon, yaricap); gosterilen = 30; ciz(true); }
+      if (merkez && VERI) { sonuc = bul(merkez.lat, merkez.lon, yaricap / KM); gosterilen = 30; ciz(true); }
     });
   });
   $('kb-daha').addEventListener('click', function () { gosterilen += 30; ciz(false); });
@@ -565,7 +569,7 @@
   fetch('veri/koylar.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (v) {
     VERI = v;
     document.querySelectorAll('.kb-bolge').forEach(function (b) {
-      var n = bul(+b.dataset.lat, +b.dataset.lon, 10).filter(function (s) { return dogal(s.t); }).length;
+      var n = bul(+b.dataset.lat, +b.dataset.lon, 20 / KM).filter(function (s) { return dogal(s.t); }).length;
       b.querySelector('.kb-sayi').textContent = sayi(n) + ' koy ve plaj';
     });
     if (haritaHazir || !harita) hazirsa();

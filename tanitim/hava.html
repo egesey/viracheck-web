@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-th3xle00sySriPmAT/b1Wy+L3SL8Rund04+yAbLxYIQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://marine-api.open-meteo.com https://geocoding-api.open-meteo.com; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-hbRUgGwbbLPhxPvQuFaPGi4NYSKj88aeqdpyfGhfTAI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://marine-api.open-meteo.com https://geocoding-api.open-meteo.com; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Deniz Hava Durumu — Rüzgâr, Dalga, Seyir Raporu | ViraCheck</title>
@@ -76,7 +76,7 @@
           <text y="-97" class="p-yon">K</text><text x="99" y="4" class="p-yon">D</text><text y="105" class="p-yon">G</text><text x="-99" y="4" class="p-yon">B</text>
           <g id="p-ok"><path d="M0 -84 L9 -60 L3 -62 L3 60 L-3 60 L-3 -62 L-9 -60 Z" class="p-ok"/><circle r="5" class="p-mil"/></g>
         </svg>
-        <div class="p-sayi"><b id="p-kt">—</b><span>knot</span></div>
+        <div class="p-sayi"><b id="p-kt">—</b><span>km/sa</span></div>
         <p class="p-alt" id="p-alt">&nbsp;</p>
       </div>
       <dl class="rp-olcu" id="rp-olcu"></dl>
@@ -88,7 +88,7 @@
 <section class="st-bolum" id="saatlik">
   <div class="ic">
     <div class="bas bel"><div><span class="etiket">Önümüzdeki 48 saat</span><h2>Rüzgâr, <em>saat saat.</em></h2></div>
-      <p>Çubuğun boyu rüzgâr hızını, rengi seyir değerlendirmesini gösterir; ince çizgi hamleyi, ok rüzgârın estiği yönü.</p></div>
+      <p>Sayılar km/sa. Çubuğun boyu rüzgâr hızını, rengi seyir değerlendirmesini gösterir; ince çizgi hamleyi, ok rüzgârın estiği yönü.</p></div>
     <div class="st-kap">
       <button type="button" class="st-kaydir st-geri" data-yon="-1" aria-label="Önceki saatler"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button>
       <div class="st-serit" id="st-serit" tabindex="0" aria-label="Saatlik rüzgâr şeridi"></div>
@@ -119,7 +119,7 @@
         <li><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14V5a2 2 0 0 1 4 0v9a4 4 0 1 1-4 0z"/><path d="M12 9v7"/></svg><span><b>Soğuk su.</b> Deniz 15 °C’nin altındaysa denize düşme hâlinde dayanma süresi kısalır.</span></li>
       </ul>
     </div>
-    <div class="bf-tablo-kap bel"><table class="bf-tablo"><thead><tr><th>Bf</th><th>Rüzgâr ve deniz</th><th>Hız</th><th>Değerlendirme</th></tr></thead><tbody><tr><td class="bf-no">0</td><td><b>Sakin</b><small>Deniz ayna gibi</small></td><td class="bf-kt">< 1 kt</td><td><span class="karar-hap k-uygun">Seyre uygun</span></td></tr><tr><td class="bf-no">1</td><td><b>Esinti</b><small>Hafif kırışıklık</small></td><td class="bf-kt">1–3 kt</td><td><span class="karar-hap k-uygun">Seyre uygun</span></td></tr><tr><td class="bf-no">2</td><td><b>Hafif rüzgâr</b><small>Küçük dalgacıklar</small></td><td class="bf-kt">4–6 kt</td><td><span class="karar-hap k-uygun">Seyre uygun</span></td></tr><tr><td class="bf-no">3</td><td><b>Tatlı rüzgâr</b><small>Beyaz köpükler başlıyor</small></td><td class="bf-kt">7–10 kt</td><td><span class="karar-hap k-uygun">Seyre uygun</span></td></tr><tr><td class="bf-no">4</td><td><b>Orta rüzgâr</b><small>Sık beyaz köpükler</small></td><td class="bf-kt">11–16 kt</td><td><span class="karar-hap k-dikkat">Dikkatli olun</span></td></tr><tr><td class="bf-no">5</td><td><b>Sert rüzgâr</b><small>Orta boy dalgalar, serpinti</small></td><td class="bf-kt">17–21 kt</td><td><span class="karar-hap k-tecrube">Tecrübe gerektirir</span></td></tr><tr><td class="bf-no">6</td><td><b>Çok sert rüzgâr</b><small>Büyük dalgalar, yaygın köpük</small></td><td class="bf-kt">22–27 kt</td><td><span class="karar-hap k-onerilmez">Çıkış önerilmez</span></td></tr><tr><td class="bf-no">7</td><td><b>Fırtınamsı rüzgâr</b><small>Deniz kabarık, köpük çizgileri</small></td><td class="bf-kt">28–33 kt</td><td><span class="karar-hap k-onerilmez">Çıkış önerilmez</span></td></tr><tr><td class="bf-no">8</td><td><b>Fırtına</b><small>Yüksek dalgalar, savrulan köpük</small></td><td class="bf-kt">34–40 kt</td><td><span class="karar-hap k-tehlikeli">Tehlikeli</span></td></tr><tr><td class="bf-no">9</td><td><b>Kuvvetli fırtına</b><small>Görüş kısıtlı, dalga tepeleri devriliyor</small></td><td class="bf-kt">41–47 kt</td><td><span class="karar-hap k-tehlikeli">Tehlikeli</span></td></tr></tbody></table></div>
+    <div class="bf-tablo-kap bel"><table class="bf-tablo"><thead><tr><th>Bf</th><th>Rüzgâr ve deniz</th><th>Hız</th><th>Değerlendirme</th></tr></thead><tbody><tr><td class="bf-no">0</td><td><b>Sakin</b><small>Deniz ayna gibi</small></td><td class="bf-kt">< 1 km/sa</td><td><span class="karar-hap k-uygun">Seyre uygun</span></td></tr><tr><td class="bf-no">1</td><td><b>Esinti</b><small>Hafif kırışıklık</small></td><td class="bf-kt">1–5 km/sa</td><td><span class="karar-hap k-uygun">Seyre uygun</span></td></tr><tr><td class="bf-no">2</td><td><b>Hafif rüzgâr</b><small>Küçük dalgacıklar</small></td><td class="bf-kt">6–11 km/sa</td><td><span class="karar-hap k-uygun">Seyre uygun</span></td></tr><tr><td class="bf-no">3</td><td><b>Tatlı rüzgâr</b><small>Beyaz köpükler başlıyor</small></td><td class="bf-kt">12–19 km/sa</td><td><span class="karar-hap k-uygun">Seyre uygun</span></td></tr><tr><td class="bf-no">4</td><td><b>Orta rüzgâr</b><small>Sık beyaz köpükler</small></td><td class="bf-kt">20–28 km/sa</td><td><span class="karar-hap k-dikkat">Dikkatli olun</span></td></tr><tr><td class="bf-no">5</td><td><b>Sert rüzgâr</b><small>Orta boy dalgalar, serpinti</small></td><td class="bf-kt">29–38 km/sa</td><td><span class="karar-hap k-tecrube">Tecrübe gerektirir</span></td></tr><tr><td class="bf-no">6</td><td><b>Çok sert rüzgâr</b><small>Büyük dalgalar, yaygın köpük</small></td><td class="bf-kt">39–49 km/sa</td><td><span class="karar-hap k-onerilmez">Çıkış önerilmez</span></td></tr><tr><td class="bf-no">7</td><td><b>Fırtınamsı rüzgâr</b><small>Deniz kabarık, köpük çizgileri</small></td><td class="bf-kt">50–61 km/sa</td><td><span class="karar-hap k-onerilmez">Çıkış önerilmez</span></td></tr><tr><td class="bf-no">8</td><td><b>Fırtına</b><small>Yüksek dalgalar, savrulan köpük</small></td><td class="bf-kt">62–74 km/sa</td><td><span class="karar-hap k-tehlikeli">Tehlikeli</span></td></tr><tr><td class="bf-no">9</td><td><b>Kuvvetli fırtına</b><small>Görüş kısıtlı, dalga tepeleri devriliyor</small></td><td class="bf-kt">75–88 km/sa</td><td><span class="karar-hap k-tehlikeli">Tehlikeli</span></td></tr></tbody></table></div>
   </div>
 </section>
 
@@ -226,6 +226,8 @@
 
   /* ------------------------------------------------------------------ biçim */
   function sayi(x, b) { return x.toLocaleString('tr-TR', { minimumFractionDigits: b || 0, maximumFractionDigits: b || 0 }); }
+  // Değerlendirme knot ile yapılır (Beaufort eşikleri knot); ekranda km/sa gösterilir.
+  function hiz(kt) { return sayi(Math.round(kt * 1.852)); }
   function saat(t) { return t ? t.slice(11, 16) : '—'; }
   function gunNo(t) { var p = t.slice(0, 10).split('-'); return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])).getUTCDay(); }
   function tarihYazi(t) { var p = t.slice(0, 10).split('-'); return (+p[2]) + ' ' + AY[+p[1] - 1]; }
@@ -310,12 +312,12 @@
     $('rp-neden').innerHTML = nd.join('');
 
     $('p-ok').setAttribute('transform', 'rotate(' + ((yon + 180) % 360) + ')');
-    $('p-kt').textContent = sayi(ruzgar);
+    $('p-kt').textContent = hiz(ruzgar);
     var yi = yonIdx(yon);
     $('p-alt').innerHTML = '<b>' + YON[yi] + '</b> · ' + YON_K[yi] + ' · ' + sayi(yon) + '°<br>Beaufort ' + d.bf + ' · ' + BF_AD[d.bf];
 
     $('rp-olcu').innerHTML =
-      olcu('ruzgar', 'Hamle', sayi(g) + ' kt', g > ruzgar + 1 ? 'Sabit rüzgârın ' + sayi(g - ruzgar) + ' kt üstü' : 'Sabit rüzgâra yakın') +
+      olcu('ruzgar', 'Hamle', hiz(g) + ' km/sa', g > ruzgar + 1 ? 'Sabit rüzgârın ' + hiz(g - ruzgar) + ' km/sa üstü' : 'Sabit rüzgâra yakın') +
       olcu('dalga', 'Dalga', dalga == null ? '—' : sayi(dalga, 1) + ' m', dalga == null ? 'Veri yok' : dalgaAd(dalga) + (periyot ? ' · ' + sayi(periyot) + ' sn' : '')) +
       olcu('damla', 'Deniz suyu', su == null ? '—' : sayi(su) + ' °C', su == null ? 'Veri yok' : su < 15 ? 'Soğuk' : su < 20 ? 'Serin' : 'Yüzmeye uygun') +
       olcu('termo', 'Hava', sayi(n(c.temperature_2m) || 0) + ' °C', 'Hissedilen ' + sayi(n(c.apparent_temperature) || 0) + ' °C') +
@@ -346,7 +348,7 @@
         '<span class="st-gun">' + (yeniGun ? (i === 0 ? 'Şimdi' : GUN_K[gunNo(s.t)]) : '') + '</span>' +
         '<span class="st-zaman">' + saat(s.t) + '</span>' + simge(s.k, s.gun) +
         '<span class="st-cubuk"><i class="st-dolgu" style="height:' + (s.r / tavan * 100).toFixed(1) + '%"></i><i class="st-hamle" style="bottom:' + (s.g / tavan * 100).toFixed(1) + '%"></i></span>' +
-        '<b class="st-kt">' + sayi(s.r) + '</b><span class="st-hkt">' + sayi(s.g) + '</span>' +
+        '<b class="st-kt">' + hiz(s.r) + '</b><span class="st-hkt">' + hiz(s.g) + '</span>' +
         '<span class="st-ok" style="transform:rotate(' + ((s.y + 180) % 360) + 'deg)">' + OK + '</span>' +
         '<span class="st-dalga">' + (s.dalga == null ? '—' : sayi(s.dalga, 1) + ' m') + '</span></div>';
     }).join('');
@@ -374,8 +376,8 @@
         '<div class="gn-gok">' + simge(kod, true) + '<span>' + gokAd(kod) + '</span></div>' +
         '<span class="karar-hap k-' + dg.karar + '">' + KARAR[dg.karar][0] + '</span>' +
         '<dl>' +
-        '<div><dt>Rüzgâr</dt><dd>' + sayi(r) + ' kt <small>' + YON[yi] + '</small></dd></div>' +
-        '<div><dt>Hamle</dt><dd>' + sayi(gs) + ' kt</dd></div>' +
+        '<div><dt>Rüzgâr</dt><dd>' + hiz(r) + ' km/sa <small>' + YON[yi] + '</small></dd></div>' +
+        '<div><dt>Hamle</dt><dd>' + hiz(gs) + ' km/sa</dd></div>' +
         '<div><dt>Dalga</dt><dd>' + (dal == null ? '—' : sayi(dal, 1) + ' m') + '</dd></div>' +
         '<div><dt>Sıcaklık</dt><dd>' + sayi(n(d.temperature_2m_max[i]) || 0) + '° <small>/ ' + sayi(n(d.temperature_2m_min[i]) || 0) + '°</small></dd></div>' +
         '<div><dt>Yağış</dt><dd>' + (yg == null ? '—' : '%' + sayi(yg)) + '</dd></div>' +
