@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-m2zGyGmUodA7MJG6uIqrpNPUg5qNuTCJtiKudUUqziE='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://tiles.openfreemap.org; media-src 'self'; worker-src 'self' blob:; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Koylar ve Plajlar — Koy Bulucu, Mavi Bayrak | ViraCheck</title>
+<meta name="description" content="Türkiye, Yunanistan ve Hırvatistan kıyılarında 9.310 koy ve plaj, 1.523 Mavi Bayraklı nokta. Bölge seçin, en yakın koyları mesafe ve yönüyle görün; rüzgâra göre en korunaklısını seçin.">
+<link rel="canonical" href="https://viracheck.com.tr/tanitim/koylar.html">
+<link rel="icon" href="favicon.png?v=2" type="image/png">
+<link rel="apple-touch-icon" href="icon.png?v=2">
+<meta name="theme-color" content="#0B1B2B">
+<style>html{background:#F7F3EC} html[data-tema="koyu"]{background:#0B1B2B}</style>
+<script>
+  try { if (JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').theme === 'dark') document.documentElement.setAttribute('data-tema', 'koyu'); } catch (e) {}
+</script>
+<meta property="og:title" content="Koylar ve Plajlar — Koy Bulucu, Mavi Bayrak | ViraCheck">
+<meta property="og:description" content="Türkiye, Yunanistan ve Hırvatistan kıyılarında 9.310 koy ve plaj, 1.523 Mavi Bayraklı nokta. Bölge seçin, en yakın koyları mesafe ve yönüyle görün; rüzgâra göre en korunaklısını seçin.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://viracheck.com.tr/tanitim/koylar.html">
+<meta property="og:image" content="https://viracheck.com.tr/tanitim/img/koy-kahraman.jpg">
+<link rel="preload" href="yazi/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="vip.css?v=f0f2d93db1">
+<link rel="stylesheet" href="tekne.css?v=9220cf159b">
+<link rel="stylesheet" href="deniz.css?v=b828100e96">
+<link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
+</head>
+<body class="tekne-sayfa deniz-sayfa koylar-sayfa">
+<header class="ust" id="ust">
+  <div class="ic">
+    <a class="marka" href="index.html"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</a>
+    <nav class="menu" aria-label="Menü"><a href="tekne-kirala.html">Kirala &amp; Tur</a><a href="hava.html">Hava</a><a href="koylar.html" aria-current="page">Koylar</a><a href="index.html#fiyat">Fiyat</a><a href="index.html#sss">SSS</a></nav>
+    <a class="dil" href="index-en.html" hreflang="en">EN</a>
+    <a class="dug dug-cizgi" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">Uygulamayı indir</a>
+    <details class="mmenu"><summary aria-label="Menü"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="tekne-kirala.html">Kirala &amp; Tur</a><a class="mm-a" href="hava.html">Hava</a><a class="mm-a" href="koylar.html" aria-current="page">Koylar</a><a class="mm-a" href="index.html#fiyat">Fiyat</a><a class="mm-a" href="index.html#sss">SSS</a><a class="mm-btn" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">App Store'dan indir</a></div></details>
+  </div>
+</header>
+
+
+<section class="dz-kahraman ky-kahraman">
+  <picture><source srcset="img/koy-kahraman.webp" type="image/webp"><img src="img/koy-kahraman.jpg" alt="" width="1920" height="1203"></picture>
+  <div class="ic">
+    <span class="etiket">ViraCheck Koy Rehberi</span>
+    <h1>Turkuaz koylara <em>demir atın.</em></h1>
+    <p class="alt">Türkiye, Yunanistan ve Hırvatistan kıyılarında 9.310 koy ve plaj. Bir bölge seçin; en yakın koylar mesafesi ve yönüyle sıralansın, o anki rüzgâra göre en korunaklısını seçin.</p>
+    <div class="kr-dug">
+      <a class="tk-ara" href="#bul"><span>Koy bulucuya geçin</span><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      <a class="dug-cerceve dug-acik" href="#secki">Seçkin koylar<svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+  <div class="kr-sayilar"><div class="ic">
+    <div><b>9.310</b><span>koy ve plaj</span></div><div><b>1.523</b><span>Mavi Bayraklı nokta</span></div><div><b>27</b><span>seyir bölgesi</span></div><div><b>3</b><span>ülkenin kıyıları</span></div>
+  </div></div>
+</section>
+
+<section class="sk-bolum" id="secki">
+  <div class="ic">
+    <div class="bas bel"><div><span class="etiket">Seçkin koylar</span><h2>Akdeniz’in en güzel <em>demir yerleri.</em></h2></div>
+      <p>Kartpostallardan tanıdığınız koylar. Birini seçin; çevresindeki tüm koyları bulucuda açalım, ya da o noktanın hava raporuna bakın.</p></div>
+    <div class="sk-izgara">
+      <article class="sk-kart bel sk-0">
+        <div class="sk-gorsel"><picture><source srcset="img/koy-oludeniz.webp" type="image/webp"><img src="img/koy-oludeniz.jpg" alt="Ölüdeniz" loading="lazy" width="1200" height="900"></picture><span class="sk-tur">Lagün · Plaj</span></div>
+        <div class="sk-govde">
+          <span class="sk-yer"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg>Fethiye · Muğla</span>
+          <h3>Ölüdeniz</h3>
+          <p>Lagünün durgun turkuaz suyu ve Babadağ’ın gölgesi. Lagün tabiat parkıdır; teknenizle yaklaşmadan önce kurallarını kontrol edin.</p>
+          <div class="sk-dug">
+            <button type="button" class="dug-cerceve sk-bul" data-ad="Ölüdeniz" data-lat="36.5497" data-lon="29.1153">Çevresindeki koylar<svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+            <a class="sk-hava" href="hava.html?ad=Ölüdeniz&lat=36.5497&lon=29.1153&alt=Fethiye%20%C2%B7%20Muğla"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"/></svg>Hava raporu</a>
+          </div>
+        </div>
+      </article>
+      <article class="sk-kart bel sk-1">
+        <div class="sk-gorsel"><picture><source srcset="img/koy-kaputas.webp" type="image/webp"><img src="img/koy-kaputas.jpg" alt="Kaputaş" loading="lazy" width="1200" height="900"></picture><span class="sk-tur">Plaj · Kayalık</span></div>
+        <div class="sk-govde">
+          <span class="sk-yer"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg>Kaş · Antalya</span>
+          <h3>Kaputaş</h3>
+          <p>Kalkan ile Kaş arasında, yüksek kayalıkların dibinde ince kumlu bir koy. Suyun rengi günün saatine göre maviden zümrüte döner.</p>
+          <div class="sk-dug">
+            <button type="button" class="dug-cerceve sk-bul" data-ad="Kaputaş" data-lat="36.2297" data-lon="29.4497">Çevresindeki koylar<svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+            <a class="sk-hava" href="hava.html?ad=Kaputaş&lat=36.2297&lon=29.4497&alt=Kaş%20%C2%B7%20Antalya"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"/></svg>Hava raporu</a>
+          </div>
+        </div>
+      </article>
+      <article class="sk-kart bel sk-2">
+        <div class="sk-gorsel"><picture><source srcset="img/koy-kelebek.webp" type="image/webp"><img src="img/koy-kelebek.jpg" alt="Kelebekler Vadisi" loading="lazy" width="1200" height="900"></picture><span class="sk-tur">Koy · Vadi</span></div>
+        <div class="sk-govde">
+          <span class="sk-yer"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg>Fethiye · Muğla</span>
+          <h3>Kelebekler Vadisi</h3>
+          <p>Yalnızca denizden ya da sarp bir patikadan ulaşılan vadi; yazın Jersey kaplanı kelebeklerine ev sahipliği yapar.</p>
+          <div class="sk-dug">
+            <button type="button" class="dug-cerceve sk-bul" data-ad="Kelebekler Vadisi" data-lat="36.5246" data-lon="29.1023">Çevresindeki koylar<svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+            <a class="sk-hava" href="hava.html?ad=Kelebekler%20Vadisi&lat=36.5246&lon=29.1023&alt=Fethiye%20%C2%B7%20Muğla"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"/></svg>Hava raporu</a>
+          </div>
+        </div>
+      </article>
+      <article class="sk-kart bel sk-3">
+        <div class="sk-gorsel"><picture><source srcset="img/koy-kekova.webp" type="image/webp"><img src="img/koy-kekova.jpg" alt="Kekova" loading="lazy" width="1200" height="900"></picture><span class="sk-tur">Koy · Antik kent</span></div>
+        <div class="sk-govde">
+          <span class="sk-yer"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg>Demre · Antalya</span>
+          <h3>Kekova</h3>
+          <p>Adanın kıyısında suya gömülü antik Likya kenti. Batık şehrin üzerinde yüzmek ve dalmak yasaktır; kalıntıları tekneden izleyin.</p>
+          <div class="sk-dug">
+            <button type="button" class="dug-cerceve sk-bul" data-ad="Kekova" data-lat="36.189" data-lon="29.868">Çevresindeki koylar<svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+            <a class="sk-hava" href="hava.html?ad=Kekova&lat=36.189&lon=29.868&alt=Demre%20%C2%B7%20Antalya"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"/></svg>Hava raporu</a>
+          </div>
+        </div>
+      </article>
+      <article class="sk-kart bel sk-4">
+        <div class="sk-gorsel"><picture><source srcset="img/koy-sedir.webp" type="image/webp"><img src="img/koy-sedir.jpg" alt="Sedir Adası" loading="lazy" width="1200" height="900"></picture><span class="sk-tur">Ada · Plaj</span></div>
+        <div class="sk-govde">
+          <span class="sk-yer"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg>Gökova · Muğla</span>
+          <h3>Sedir Adası</h3>
+          <p>Kleopatra plajının efsanevi ince kumu koruma altındadır; plajda ve çevresinde kurallara uyulması gerekir.</p>
+          <div class="sk-dug">
+            <button type="button" class="dug-cerceve sk-bul" data-ad="Sedir Adası" data-lat="36.988" data-lon="28.204">Çevresindeki koylar<svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+            <a class="sk-hava" href="hava.html?ad=Sedir%20Adası&lat=36.988&lon=28.204&alt=Gökova%20%C2%B7%20Muğla"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"/></svg>Hava raporu</a>
+          </div>
+        </div>
+      </article>
+      <article class="sk-kart bel sk-5">
+        <div class="sk-gorsel"><picture><source srcset="img/koy-navagio.webp" type="image/webp"><img src="img/koy-navagio.jpg" alt="Navagio" loading="lazy" width="1200" height="900"></picture><span class="sk-tur">Koy · Gemi enkazı</span></div>
+        <div class="sk-govde">
+          <span class="sk-yer"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.3"/></svg>Zakintos · Yunanistan</span>
+          <h3>Navagio</h3>
+          <p>Dik beyaz kayalıklarla çevrili, yalnızca denizden ulaşılan koy; kumsalda 1980’den beri bir gemi enkazı yatar. Kayalıklar nedeniyle kumsala çıkış kısıtlanabilir.</p>
+          <div class="sk-dug">
+            <button type="button" class="dug-cerceve sk-bul" data-ad="Navagio" data-lat="37.8597" data-lon="20.6247">Çevresindeki koylar<svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+            <a class="sk-hava" href="hava.html?ad=Navagio&lat=37.8597&lon=20.6247&alt=Zakintos%20%C2%B7%20Yunanistan"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"/></svg>Hava raporu</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="kb-bolum" id="bul">
+  <div class="ic">
+    <div class="kb-bas bel">
+      <div><span class="etiket">Koy bulucu</span><h2>Nereden <em>bakalım?</em></h2></div>
+      <p>Bir ülke ve bölge seçin, haritada dilediğiniz noktaya dokunun ya da konumunuzu paylaşın. Çevresindeki koylar haritada belirsin; mesafesi ve yönüyle sıralansın.</p>
+    </div>
+
+    <div class="kb-adim bel"><span class="kb-adim-no">01</span><span class="kb-adim-ad">Kıyı seçin</span></div>
+    <div class="kb-ulkeler bel"><button type="button" class="kb-ulke" data-grup="0" aria-pressed="false">
+        <picture><source srcset="img/koy-kaputas.webp" type="image/webp"><img src="img/koy-kaputas.jpg" alt="" loading="lazy" width="1200" height="900"></picture>
+        <span class="kb-ulke-yazi"><span class="kb-ulke-sayi">12 bölge</span><b>Türkiye</b><small>Ege ve Akdeniz kıyıları</small></span>
+        <span class="kb-ulke-isaret"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></button><button type="button" class="kb-ulke" data-grup="1" aria-pressed="false">
+        <picture><source srcset="img/bolge-yunanistan.webp" type="image/webp"><img src="img/bolge-yunanistan.jpg" alt="" loading="lazy" width="1200" height="900"></picture>
+        <span class="kb-ulke-yazi"><span class="kb-ulke-sayi">9 bölge</span><b>Yunanistan</b><small>Kiklad, İyon ve Onikiadalar</small></span>
+        <span class="kb-ulke-isaret"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></button><button type="button" class="kb-ulke" data-grup="2" aria-pressed="false">
+        <picture><source srcset="img/bolge-hirvatistan.webp" type="image/webp"><img src="img/bolge-hirvatistan.jpg" alt="" loading="lazy" width="1200" height="900"></picture>
+        <span class="kb-ulke-yazi"><span class="kb-ulke-sayi">6 bölge</span><b>Hırvatistan ve Karadağ</b><small>Dalmaçya ve Kotor Körfezi</small></span>
+        <span class="kb-ulke-isaret"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></button><button type="button" class="kb-ulke kb-ulke-konum" id="kb-konum" aria-pressed="false">
+        <span class="kb-konum-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="2.2"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg></span>
+        <span class="kb-ulke-yazi"><span class="kb-ulke-sayi">Konum izniyle</span><b>Bulunduğunuz yer</b><small id="kb-konum-not">Çevrenizdeki koyları gösterelim</small></span>
+        <span class="kb-ulke-isaret"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></button>
+    </div>
+
+    <div class="kb-adim bel" id="kb-adim-2"><span class="kb-adim-no">02</span><span class="kb-adim-ad">Bölge seçin</span><span class="kb-adim-not" id="kb-bolge-not">Önce yukarıdan bir kıyı seçin</span></div>
+    <div class="kb-bolgeler bel"><div class="kb-grup" data-grup="0" hidden><button type="button" class="kb-bolge" data-ad="Bodrum" data-ulke="Türkiye" data-lat="37.03" data-lon="27.42" aria-pressed="false"><b>Bodrum</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Gökova" data-ulke="Türkiye" data-lat="36.97" data-lon="28.1" aria-pressed="false"><b>Gökova</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Datça" data-ulke="Türkiye" data-lat="36.73" data-lon="27.68" aria-pressed="false"><b>Datça</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Marmaris" data-ulke="Türkiye" data-lat="36.84" data-lon="28.27" aria-pressed="false"><b>Marmaris</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Göcek" data-ulke="Türkiye" data-lat="36.73" data-lon="28.93" aria-pressed="false"><b>Göcek</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Fethiye" data-ulke="Türkiye" data-lat="36.62" data-lon="29.1" aria-pressed="false"><b>Fethiye</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Kaş" data-ulke="Türkiye" data-lat="36.19" data-lon="29.64" aria-pressed="false"><b>Kaş</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Kekova" data-ulke="Türkiye" data-lat="36.18" data-lon="29.86" aria-pressed="false"><b>Kekova</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Kemer" data-ulke="Türkiye" data-lat="36.6" data-lon="30.57" aria-pressed="false"><b>Kemer</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Çeşme" data-ulke="Türkiye" data-lat="38.32" data-lon="26.3" aria-pressed="false"><b>Çeşme</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Ayvalık" data-ulke="Türkiye" data-lat="39.32" data-lon="26.69" aria-pressed="false"><b>Ayvalık</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Kuşadası" data-ulke="Türkiye" data-lat="37.86" data-lon="27.26" aria-pressed="false"><b>Kuşadası</b><span class="kb-sayi">&nbsp;</span></button></div><div class="kb-grup" data-grup="1" hidden><button type="button" class="kb-bolge" data-ad="Mikonos" data-ulke="Yunanistan" data-lat="37.45" data-lon="25.33" aria-pressed="false"><b>Mikonos</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Santorini" data-ulke="Yunanistan" data-lat="36.42" data-lon="25.43" aria-pressed="false"><b>Santorini</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Rodos" data-ulke="Yunanistan" data-lat="36.43" data-lon="28.22" aria-pressed="false"><b>Rodos</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Kos" data-ulke="Yunanistan" data-lat="36.89" data-lon="27.29" aria-pressed="false"><b>Kos</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Korfu" data-ulke="Yunanistan" data-lat="39.62" data-lon="19.92" aria-pressed="false"><b>Korfu</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Lefkada" data-ulke="Yunanistan" data-lat="38.83" data-lon="20.71" aria-pressed="false"><b>Lefkada</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Zakintos" data-ulke="Yunanistan" data-lat="37.78" data-lon="20.9" aria-pressed="false"><b>Zakintos</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Hydra" data-ulke="Yunanistan" data-lat="37.35" data-lon="23.47" aria-pressed="false"><b>Hydra</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Girit" data-ulke="Yunanistan" data-lat="35.52" data-lon="24.02" aria-pressed="false"><b>Girit</b><span class="kb-sayi">&nbsp;</span></button></div><div class="kb-grup" data-grup="2" hidden><button type="button" class="kb-bolge" data-ad="Split" data-ulke="Hırvatistan ve Karadağ" data-lat="43.51" data-lon="16.44" aria-pressed="false"><b>Split</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Hvar" data-ulke="Hırvatistan ve Karadağ" data-lat="43.17" data-lon="16.44" aria-pressed="false"><b>Hvar</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Dubrovnik" data-ulke="Hırvatistan ve Karadağ" data-lat="42.64" data-lon="18.11" aria-pressed="false"><b>Dubrovnik</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Zadar" data-ulke="Hırvatistan ve Karadağ" data-lat="44.12" data-lon="15.23" aria-pressed="false"><b>Zadar</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Şibenik" data-ulke="Hırvatistan ve Karadağ" data-lat="43.73" data-lon="15.89" aria-pressed="false"><b>Şibenik</b><span class="kb-sayi">&nbsp;</span></button><button type="button" class="kb-bolge" data-ad="Kotor" data-ulke="Hırvatistan ve Karadağ" data-lat="42.42" data-lon="18.77" aria-pressed="false"><b>Kotor</b><span class="kb-sayi">&nbsp;</span></button></div></div>
+
+    <div class="kb-calisma bel" id="kb-calisma">
+      <div class="kb-ust-cubuk">
+        <div class="kb-ozet" id="kb-ozet">Haritada 9.310 koy ve plaj. Bir bölge seçin ya da haritada bir noktaya dokunun.</div>
+        <div class="kb-kontrol-sag">
+          <div class="kb-filtre" role="group" aria-label="Tür">
+            <button type="button" data-filtre="hepsi" aria-pressed="true">Tümü</button><button type="button" data-filtre="k" aria-pressed="false">Koylar</button><button type="button" data-filtre="p" aria-pressed="false">Plajlar</button><button type="button" data-filtre="b" aria-pressed="false"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>Mavi Bayrak</button>
+          </div>
+          <div class="kb-yaricap" role="group" aria-label="Yarıçap">
+            <button type="button" data-nm="5" aria-pressed="false">5 NM</button><button type="button" data-nm="10" aria-pressed="true">10 NM</button><button type="button" data-nm="20" aria-pressed="false">20 NM</button>
+          </div>
+        </div>
+      </div>
+      <div class="kb-izgara">
+        <div class="kb-harita-kap">
+          <div class="kb-ruzgar" id="kb-ruzgar" hidden aria-live="polite"></div>
+          <div id="kb-harita" class="kb-harita" role="region" aria-label="Koy haritası"></div>
+          <p class="kb-ipucu"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="2.2"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg>Haritada bir noktaya dokunun; orayı merkez alalım.</p>
+        </div>
+        <div class="kb-sonuc">
+          <ol class="kb-liste" id="kb-liste"><li class="kb-bekle"><span class="kb-bekle-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span><b>Koylar sizi bekliyor</b><span>Bölge seçtiğinizde en yakın koylar burada mesafesi ve yönüyle sıralanır.</span></li></ol>
+          <button type="button" class="dug-cerceve kb-daha" id="kb-daha" hidden>Daha fazla göster</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ip-bolum">
+  <div class="ic">
+    <div class="bas bel"><div><span class="etiket">Demirlemeden önce</span><h2>Koyda <em>huzurlu bir gece.</em></h2></div>
+      <p>Güzel bir koyu, iyi bir demir yerinden ayıran dört alışkanlık.</p></div>
+    <ul class="ip-izgara"><li class="ip-kart bel"><span class="ip-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v14M8 10h8M4 13a8 8 0 0 0 16 0"/></svg></span><h3>Rüzgâra sırtınızı verin</h3><p>Koyun ağzı rüzgârın estiği yöne açıksa dalga içeri girer. Rüzgâr tarafı karayla kapalı koyu seçin; gece dönebilecek rüzgârı da hesaba katın.</p></li><li class="ip-kart bel"><span class="ip-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14z"/><path d="M5 19 13 11"/></svg></span><h3>Deniz çayırına demir atmayın</h3><p>Posidonia çayırları suyu berrak tutan, çok yavaş büyüyen bir ekosistemdir. Demiri kumlu zemine bırakın, çayırın üzerinde zincir sürüklemeyin.</p></li><li class="ip-kart bel"><span class="ip-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20c3-3 3-6 0-9s0-6 3-7M10 20c3-3 3-6 0-9s0-6 3-7M16 20c3-3 3-6 0-9s0-6 3-7"/></svg></span><h3>Zinciri cömert verin</h3><p>Derinliğin en az üç ila beş katı zincir verin ve demirin tuttuğunu geri vitesle deneyin. Kıyıya halat verecekseniz ağaca ve kayaya zarar vermeyin.</p></li><li class="ip-kart bel"><span class="ip-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></span><h3>Yüzücülere yol verin</h3><p>Şamandıralı yüzme alanlarına ve Mavi Bayraklı plajların önüne motorla girmeyin; koy içinde yavaşlayın, sudaki yüzücülere dikkat edin.</p></li></ul>
+  </div>
+</section>
+
+<section class="ub-bolum">
+  <div class="ic">
+    <div class="ub-ust bel">
+      <div><span class="etiket">ViraCheck uygulaması</span><h2>Denizde, <em>cebinizde.</em></h2></div>
+      <div class="ub-sag">
+        <p class="ub-giris">Bu sayfa planlamanız için. Teknedeyken ihtiyaç duyacağınız her şey ise iPhone ve iPad uygulamamızda: seyir defteri, kontrol listeleri, tekne kaydı ve acil durum ekranı.</p>
+        <div class="ub-dug"><a class="tk-ara" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener"><span>App Store'dan indir</span><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a><span class="ub-not">iPhone ve iPad · Ücretsiz başlayın, hesap gerekmez</span></div>
+      </div>
+    </div>
+    <ul class="ub-liste bel"><li class="ub-oz"><span class="ub-no">i.</span><span class="ub-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></span><b>Uygun gün bildirimi</b><span class="ub-yazi">Seçtiğiniz bölgede seyre uygun bir gün geldiğinde telefonunuza haber verir.</span></li><li class="ub-oz"><span class="ub-no">ii.</span><span class="ub-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11M9 8h6"/></svg></span><b>Seyir defteri</b><span class="ub-yazi">Liman, saat, mesafe, motor ve yakıt. Her seferi kaydedin, PDF olarak paylaşın.</span></li><li class="ub-oz"><span class="ub-no">iii.</span><span class="ub-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.2 1.2L7 5M3.5 12l1.2 1.2L7 11M3.5 18l1.2 1.2L7 17"/></svg></span><b>Kontrol listeleri</b><span class="ub-yazi">Kalkış öncesi hazır listeler; işaretledikçe hazırlık yüzdeniz artar.</span></li><li class="ub-oz"><span class="ub-no">iv.</span><span class="ub-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3 4.5 15H11zM13 6.5 18.5 15H13zM3 17.5h18l-2.2 3H5.2z"/></svg></span><b>Tekne kaydı</b><span class="ub-yazi">Ruhsat, sigorta ve servis tarihleri; süresi dolmadan size hatırlatır.</span></li><li class="ub-oz"><span class="ub-no">v.</span><span class="ub-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m5.6 5.6 3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/></svg></span><b>Acil durum</b><span class="ub-yazi">Bulunduğunuz ülkenin acil hatları ve tekne bilgilerinizle hazır MAYDAY metni.</span></li><li class="ub-oz"><span class="ub-no">vi.</span><span class="ub-ik"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 17c5 0 2-6 7-6s2-4 2-4"/></svg></span><b>Rota ve koylar</b><span class="ub-yazi">Koyları seçin, rotanız çizilsin. Koy listesi şebeke yokken de açılır.</span></li></ul>
+  </div>
+</section>
+<template id="ik-harita"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg></template><template id="ik-ruzgar"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"/></svg></template><template id="ik-bayrak"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></template><template id="ik-ok"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></template>
+<section class="dz-not">
+  <div class="ic"><p><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="m9 12 2 2 4-4"/></svg><span>Koy ve plaj verileri © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> katkıda bulunanları (ODbL), 2026; Mavi Bayrak listesi <a href="https://www.blueflag.global">FEE</a>, 2026 sezonu; rüzgâr <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0). Liste seyir planlaması içindir, deniz haritasının ve yerel kuralların yerine geçmez. Harita <a href="https://openfreemap.org">OpenFreeMap</a> · © OpenMapTiles · © OpenStreetMap katkıda bulunanları. Konumunuzu kullanırsanız mesafeler tarayıcınızda hesaplanır; konum yalnızca rüzgâr bilgisi için Open-Meteo’ya iletilir.</span></p></div>
+</section>
+
+<footer class="alt-bilgi">
+  <div class="ic">
+    <div class="izgara">
+      <div>
+        <div class="marka"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</div>
+        <p style="max-width:300px;margin:0">Tekne kiralama, tekne turu ve seyir asistanı. On iki ülkede, tek uygulamada.</p>
+      </div>
+      <div><h4>Keşfet</h4><ul><li><a href="tekne-kirala.html">Kirala &amp; Tur</a></li><li><a href="hava.html">Hava</a></li><li><a href="koylar.html">Koylar</a></li><li><a href="index.html#fiyat">Fiyat</a></li><li><a href="index.html#sss">Sık sorulanlar</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="is-ortakligi.html">İş ortaklığı</a></li><li><a href="mailto:seymen@viracheck.com.tr">İletişim</a></li><li><a href="kaynaklar.html">Fotoğraf kaynakları</a></li><li><a href="index-en.html">English</a></li></ul></div><div><h4>Yasal</h4><ul><li><a href="privacy-tr.html">Gizlilik Politikası</a></li><li><a href="kvkk-tr.html">KVKK Aydınlatma Metni</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Kullanım Koşulları</a></li></ul></div>
+    </div>
+    <p class="veri">Hava ve deniz verileri: <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Koy ve plaj verileri © <a href="https://www.openstreetmap.org">OpenStreetMap</a> katkıda bulunanları · Mavi Bayrak: <a href="https://www.blueflag.global">FEE</a>, 2026 sezonu</p>
+    <div class="dip"><span>© 2026 ViraCheck · Resmî denizcilik uyarılarının ve kaptanın kararının yerine geçmez.</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>
+  </div>
+</footer>
+
+<script src="vendor/maplibre/maplibre-gl.js"></script>
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+  function kac(x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function sayi(x, b) { return x.toLocaleString('tr-TR', { minimumFractionDigits: b || 0, maximumFractionDigits: b || 0 }); }
+  function ik(ad) { var t = document.querySelector('template#ik-' + ad); return t ? t.innerHTML : ''; }
+  var hareketAz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var YON_K = ['K', 'KD', 'D', 'GD', 'G', 'GB', 'B', 'KB'];
+  var YON = ['Yıldız', 'Poyraz', 'Gündoğusu', 'Keşişleme', 'Kıble', 'Lodos', 'Günbatısı', 'Karayel'];
+  var YON_AYRILMA = ['kuzeyden', 'kuzeydoğudan', 'doğudan', 'güneydoğudan', 'güneyden', 'güneybatıdan', 'batıdan', 'kuzeybatıdan'];
+  var YON_YONELME = ['kuzeye', 'kuzeydoğuya', 'doğuya', 'güneydoğuya', 'güneye', 'güneybatıya', 'batıya', 'kuzeybatıya'];
+  var YON_IYELIK = ['kuzeyi', 'kuzeydoğusu', 'doğusu', 'güneydoğusu', 'güneyi', 'güneybatısı', 'batısı', 'kuzeybatısı'];
+  function yonIdx(d) { return Math.round((((d % 360) + 360) % 360) / 45) % 8; }
+  var TUR_AD = { k: 'Koy', p: 'Plaj', b: 'Mavi Bayrak', m: 'Mavi Bayrak marina' };
+
+  /* ------------------------------------------------------------ durum */
+  var VERI = null, merkez = null, filtre = 'hepsi', yaricap = 10, gosterilen = 30, sonuc = [], gorunen = [];
+
+  /* ------------------------------------------------------------ geometri ve adlar */
+  var R = Math.PI / 180;
+  function mesafeNM(a1, o1, a2, o2) {
+    var da = (a2 - a1) * R, dO = (o2 - o1) * R;
+    var h = Math.sin(da / 2) * Math.sin(da / 2) + Math.cos(a1 * R) * Math.cos(a2 * R) * Math.sin(dO / 2) * Math.sin(dO / 2);
+    return 2 * 3440.065 * Math.asin(Math.min(1, Math.sqrt(h)));
+  }
+  function kerteriz(a1, o1, a2, o2) {
+    var y = Math.sin((o2 - o1) * R) * Math.cos(a2 * R);
+    var x = Math.cos(a1 * R) * Math.sin(a2 * R) - Math.sin(a1 * R) * Math.cos(a2 * R) * Math.cos((o2 - o1) * R);
+    return (Math.atan2(y, x) / R + 360) % 360;
+  }
+  function latinMi(s) { return /^[\u0000-ɏ\s'’.\-()]+$/.test(s); }
+  // Yunanca ve Kiril adları Latin harfle (ELOT 743'e yakın, sadeleştirilmiş); özgün ad ipucunda kalır.
+  var EL2 = { 'ου': 'ou', 'αι': 'ai', 'ει': 'ei', 'οι': 'oi', 'αυ': 'av', 'ευ': 'ev', 'γγ': 'ng', 'γκ': 'gk', 'μπ': 'mp', 'ντ': 'nt', 'τσ': 'ts', 'τζ': 'tz' };
+  var EL1 = { 'α': 'a', 'β': 'v', 'γ': 'g', 'δ': 'd', 'ε': 'e', 'ζ': 'z', 'η': 'i', 'θ': 'th', 'ι': 'i', 'κ': 'k', 'λ': 'l', 'μ': 'm', 'ν': 'n', 'ξ': 'x', 'ο': 'o', 'π': 'p', 'ρ': 'r', 'σ': 's', 'ς': 's', 'τ': 't', 'υ': 'y', 'φ': 'f', 'χ': 'ch', 'ψ': 'ps', 'ω': 'o',
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'ђ': 'đ', 'е': 'e', 'ж': 'ž', 'з': 'z', 'и': 'i', 'ј': 'j', 'к': 'k', 'л': 'l', 'љ': 'lj', 'м': 'm', 'н': 'n', 'њ': 'nj', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'ћ': 'ć', 'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'c', 'ч': 'č', 'џ': 'dž', 'ш': 'š', 'й': 'y', 'ы': 'y', 'э': 'e', 'ю': 'yu', 'я': 'ya', 'щ': 'shch', 'ь': '', 'ъ': '' };
+  function latinle(ad) {
+    var o = ad;
+    if (!latinMi(ad)) {
+      var s = ad.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); o = '';
+      for (var i = 0; i < s.length; i++) {
+        var iki = s.substr(i, 2);
+        if (EL2[iki]) { o += EL2[iki]; i++; continue; }
+        o += EL1[s[i]] != null ? EL1[s[i]] : s[i];
+      }
+      o = o.replace(/(^|[\s\-(])([a-zđžćčš])/g, function (m, a, b) { return a + b.toUpperCase(); });
+    }
+    return o.charAt(0).toLocaleUpperCase('tr') + o.slice(1);
+  }
+
+  /* ------------------------------------------------------------ arama */
+  function dogal(t) { return t === 'k' || t === 'p'; }
+  function bul(la, lo, nm) {
+    var payA = nm / 60 + 0.01, payO = payA / Math.max(0.2, Math.cos(la * R)), aday = [];
+    function ekle(kayit, tur) {
+      var a = kayit[2], o = kayit[3];
+      if (Math.abs(a - la) > payA || Math.abs(o - lo) > payO) return;
+      var d = mesafeNM(la, lo, a, o);
+      if (d > nm) return;
+      aday.push({ ad: latinle(kayit[0]), oz: kayit[0], t: tur, a: a, o: o, d: d, y: kerteriz(la, lo, a, o) });
+    }
+    VERI.k.forEach(function (k) { ekle(k, k[1]); });
+    VERI.b.forEach(function (b) { ekle(b, b[1] === 'm' ? 'm' : 'b'); });
+    aday.sort(function (x, y) { return x.d - y.d; });
+    // OSM'de aynı yer bazen iki kez çizilmiş: 150 m içinde aynı tür ya da yarım mil içinde aynı ad.
+    var tekil = [];
+    aday.forEach(function (s) {
+      for (var i = 0; i < tekil.length; i++) {
+        var e = tekil[i];
+        if (Math.abs(e.a - s.a) > 0.01 || Math.abs(e.o - s.o) > 0.012) continue;
+        var dd = mesafeNM(e.a, e.o, s.a, s.o);
+        if ((e.t === s.t || (dogal(e.t) && dogal(s.t))) && dd < 0.08) { if (!latinMi(e.oz) && latinMi(s.oz)) e.ad = s.ad; return; }
+        if (e.t === s.t && e.ad.toLocaleLowerCase('tr') === s.ad.toLocaleLowerCase('tr') && dd < 0.5) return;
+      }
+      tekil.push(s);
+    });
+    return tekil;
+  }
+  function uygunMu(s) { return filtre === 'hepsi' ? dogal(s.t) : filtre === 'b' ? (s.t === 'b' || s.t === 'm') : s.t === filtre; }
+
+  /* ------------------------------------------------------------ harita (MapLibre + OpenFreeMap) */
+  var harita = null, haritaHazir = false, merkezIsaret = null, pencere = null, vurguluNo = null;
+  function bos() { return { type: 'FeatureCollection', features: [] }; }
+  function sinir(la, lo, nm) { var dA = nm / 60, dO = dA / Math.cos(la * R); return [[lo - dO, la - dA], [lo + dO, la + dA]]; }
+  function git(sinirlar, dolgu) {
+    if (!harita) return;
+    harita.fitBounds(sinirlar, { padding: dolgu || 24, duration: hareketAz ? 0 : 1100, essential: true });
+  }
+  try {
+    harita = new maplibregl.Map({
+      container: 'kb-harita',
+      style: 'veri/harita-stili.json',
+      bounds: [[12.9, 34.6], [36.5, 45.9]],
+      fitBoundsOptions: { padding: 24 },
+      minZoom: 3.5, maxZoom: 16,
+      dragRotate: false, pitchWithRotate: false, touchPitch: false,
+      cooperativeGestures: true,
+      locale: {
+        'CooperativeGesturesHandler.WindowsHelpText': 'Yakınlaştırmak için Ctrl tuşuna basılıyken kaydırın',
+        'CooperativeGesturesHandler.MacHelpText': 'Yakınlaştırmak için ⌘ tuşuna basılıyken kaydırın',
+        'CooperativeGesturesHandler.MobileHelpText': 'Haritayı iki parmakla hareket ettirin',
+        'NavigationControl.ZoomIn': 'Yakınlaştır', 'NavigationControl.ZoomOut': 'Uzaklaştır'
+      }
+    });
+    harita.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+    harita.touchZoomRotate.disableRotation();
+    harita.on('load', function () {
+      harita.addSource('genel', { type: 'geojson', data: bos() });
+      harita.addLayer({ id: 'genel-nokta', type: 'circle', source: 'genel', paint: {
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 1.3, 8, 2.6, 12, 4.5],
+        'circle-color': ['match', ['get', 't'], 'k', '#A9824B', '#0B1B2B'],
+        'circle-opacity': 0.6
+      } });
+      harita.addSource('cember', { type: 'geojson', data: bos() });
+      harita.addLayer({ id: 'cember-dolgu', type: 'fill', source: 'cember', paint: { 'fill-color': '#D9BE8C', 'fill-opacity': 0.12 } });
+      harita.addLayer({ id: 'cember-cizgi', type: 'line', source: 'cember', paint: { 'line-color': '#A9824B', 'line-width': 1.6, 'line-dasharray': [3, 2.5] } });
+      harita.addSource('sonuc', { type: 'geojson', data: bos(), promoteId: 'i' });
+      var vurgu = ['boolean', ['feature-state', 'vurgu'], false], on = ['==', ['get', 'on'], 1];
+      harita.addLayer({ id: 'sonuc-nokta', type: 'circle', source: 'sonuc', paint: {
+        'circle-radius': ['case', vurgu, 11, on, 7, 4.5],
+        'circle-color': ['match', ['get', 't'], 'k', '#A9824B', 'p', '#0B1B2B', '#2F7FC1'],
+        'circle-stroke-color': '#FFFDF9',
+        'circle-stroke-width': ['case', vurgu, 3, on, 2, 1.5],
+        'circle-opacity': ['case', on, 1, 0.75]
+      } });
+      harita.on('mouseenter', 'sonuc-nokta', function (e) { harita.getCanvas().style.cursor = 'pointer'; vurgula(e.features[0].properties.i, true); });
+      harita.on('mouseleave', 'sonuc-nokta', function () { harita.getCanvas().style.cursor = ''; if (vurguluNo != null) vurgula(vurguluNo, false); });
+      harita.on('click', function (e) {
+        var f = harita.queryRenderedFeatures(e.point, { layers: ['sonuc-nokta'] })[0];
+        if (f) {
+          var i = f.properties.i; pencereAc(i);
+          var li = document.querySelector('.kb-oge[data-i="' + i + '"]');
+          if (li) { li.scrollIntoView({ block: 'nearest', behavior: hareketAz ? 'auto' : 'smooth' }); li.classList.add('vurgu'); setTimeout(function () { li.classList.remove('vurgu'); }, 1600); }
+          return;
+        }
+        merkezBelirle({ ad: 'Seçtiğiniz nokta', lat: e.lngLat.lat, lon: e.lngLat.lng, nokta: true }, false);
+      });
+      haritaHazir = true;
+      hazirsa();
+    });
+  } catch (e) {
+    harita = null;
+    $('kb-harita').innerHTML = '<p class="kb-harita-yok">Harita bu tarayıcıda gösterilemiyor. Koylar yandaki listede.</p>';
+  }
+
+  function genelCiz() {
+    if (!haritaHazir || !VERI) return;
+    harita.getSource('genel').setData({ type: 'FeatureCollection', features: VERI.k.map(function (k) { return { type: 'Feature', geometry: { type: 'Point', coordinates: [k[3], k[2]] }, properties: { t: k[1] } }; }) });
+  }
+  function cember(la, lo, nm) {
+    var n = [], dA = nm / 60, cos = Math.cos(la * R);
+    for (var i = 0; i <= 96; i++) { var t = i / 96 * 2 * Math.PI; n.push([lo + dA * Math.sin(t) / cos, la + dA * Math.cos(t)]); }
+    return { type: 'Feature', geometry: { type: 'Polygon', coordinates: [n] }, properties: {} };
+  }
+
+  function havaAdresi(s) { return 'hava.html?ad=' + encodeURIComponent(s.ad) + '&lat=' + s.a.toFixed(4) + '&lon=' + s.o.toFixed(4) + '&alt=' + encodeURIComponent(merkez.ad + ' çevresi'); }
+  function yolAdresi(s) { return 'https://www.google.com/maps/search/?api=1&query=' + s.a.toFixed(5) + ',' + s.o.toFixed(5); }
+  function pencereAc(i) {
+    var s = gorunen[i]; if (!s || !haritaHazir) return;
+    if (pencere) pencere.remove();
+    pencere = new maplibregl.Popup({ closeButton: false, className: 'kb-popup', offset: 14, maxWidth: '280px' })
+      .setLngLat([s.o, s.a])
+      .setHTML('<div class="kb-pop"><span class="kb-pop-tur t-' + s.t + '">' + TUR_AD[s.t] + '</span><b>' + kac(s.ad) + '</b>' +
+        '<span class="kb-pop-m">' + sayi(s.d, 1) + ' NM · ' + YON_K[yonIdx(s.y)] + ' · ' + sayi(s.y) + '°</span>' +
+        '<span class="kb-pop-dug"><a href="' + yolAdresi(s) + '" target="_blank" rel="noopener">' + ik('harita') + 'Yol tarifi</a><a href="' + havaAdresi(s) + '">' + ik('ruzgar') + 'Hava</a></span></div>')
+      .addTo(harita);
+  }
+
+  /* ------------------------------------------------------------ çizim */
+  function ciz(uc) {
+    if (!merkez || !VERI) return;
+    var liste = sonuc.filter(uygunMu), sayac = { k: 0, p: 0, b: 0 };
+    gorunen = liste;
+    sonuc.forEach(function (s) { sayac[s.t === 'm' ? 'b' : s.t]++; });
+    $('kb-ozet').innerHTML = '<b>' + kac(merkez.ad) + '</b> çevresinde ' + yaricap + ' deniz mili içinde ' +
+      '<span>' + sayi(sayac.k) + ' koy</span> · <span>' + sayi(sayac.p) + ' plaj</span> · <span class="ozet-bf">' + sayi(sayac.b) + ' Mavi Bayrak</span>';
+
+    if (haritaHazir) {
+      if (pencere) { pencere.remove(); pencere = null; }
+      vurguluNo = null;
+      harita.setPaintProperty('genel-nokta', 'circle-opacity', 0.28);
+      harita.getSource('cember').setData({ type: 'FeatureCollection', features: [cember(merkez.lat, merkez.lon, yaricap)] });
+      harita.getSource('sonuc').setData({ type: 'FeatureCollection', features: liste.map(function (s, i) {
+        return { type: 'Feature', geometry: { type: 'Point', coordinates: [s.o, s.a] }, properties: { i: i, t: s.t, on: i < gosterilen ? 1 : 0 } };
+      }).reverse() });
+      if (!merkezIsaret) { var el = document.createElement('div'); el.className = 'kb-merkez-im'; el.innerHTML = '<span></span>'; merkezIsaret = new maplibregl.Marker({ element: el }); }
+      merkezIsaret.setLngLat([merkez.lon, merkez.lat]).addTo(harita);
+      if (uc) git(sinir(merkez.lat, merkez.lon, yaricap), 18);
+    }
+
+    if (!liste.length) {
+      $('kb-liste').innerHTML = '<li class="kb-bos">Bu yarıçapta ' + (filtre === 'hepsi' ? 'kayıtlı koy ya da plaj' : filtre === 'b' ? 'Mavi Bayraklı plaj ya da marina' : TUR_AD[filtre].toLowerCase()) + ' yok. Yarıçapı büyütün ya da haritada başka bir noktaya dokunun.</li>';
+    } else {
+      $('kb-liste').innerHTML = liste.slice(0, gosterilen).map(function (s, i) {
+        return '<li class="kb-oge" data-i="' + i + '" tabindex="0">' +
+          '<span class="kb-no">' + String(i + 1).padStart(2, '0') + '</span>' +
+          '<span class="kb-ad"><b' + (s.oz !== s.ad ? ' title="' + kac(s.oz) + '"' : '') + '>' + kac(s.ad) + '</b><span class="kb-tur t-' + s.t + '">' + (s.t === 'b' || s.t === 'm' ? ik('bayrak') : '') + TUR_AD[s.t] + '</span></span>' +
+          '<span class="kb-mesafe"><b>' + sayi(s.d, 1) + '</b> NM<small>' + YON_K[yonIdx(s.y)] + ' · ' + sayi(s.y) + '°</small></span>' +
+          '<span class="kb-dug"><a href="' + yolAdresi(s) + '" target="_blank" rel="noopener" aria-label="' + kac(s.ad) + ' için yol tarifi" title="Yol tarifi">' + ik('harita') + '</a>' +
+          '<a href="' + havaAdresi(s) + '" aria-label="' + kac(s.ad) + ' hava raporu" title="Hava raporu">' + ik('ruzgar') + '</a></span></li>';
+      }).join('');
+    }
+    $('kb-daha').hidden = liste.length <= gosterilen;
+    $('kb-daha').textContent = 'Daha fazla göster (' + sayi(liste.length - gosterilen) + ')';
+  }
+
+  function vurgula(i, acik) {
+    var li = document.querySelector('.kb-oge[data-i="' + i + '"]');
+    if (li) li.classList.toggle('vurgu', acik);
+    if (haritaHazir && gorunen[i]) {
+      if (acik && vurguluNo != null && vurguluNo !== i) harita.setFeatureState({ source: 'sonuc', id: vurguluNo }, { vurgu: false });
+      harita.setFeatureState({ source: 'sonuc', id: i }, { vurgu: acik });
+      vurguluNo = acik ? i : null;
+    }
+  }
+  var lst = $('kb-liste');
+  lst.addEventListener('mouseover', function (e) { var t = e.target.closest('.kb-oge'); if (t) vurgula(+t.dataset.i, true); });
+  lst.addEventListener('mouseout', function (e) { var t = e.target.closest('.kb-oge'); if (t) vurgula(+t.dataset.i, false); });
+  lst.addEventListener('click', function (e) {
+    if (e.target.closest('a')) return;
+    var t = e.target.closest('.kb-oge'); if (!t || !haritaHazir) return;
+    var s = gorunen[+t.dataset.i]; if (!s) return;
+    harita.easeTo({ center: [s.o, s.a], duration: hareketAz ? 0 : 600 });
+    pencereAc(+t.dataset.i);
+  });
+  lst.addEventListener('keydown', function (e) { if (e.key === 'Enter') { var t = e.target.closest('.kb-oge'); if (t) t.click(); } });
+
+  /* ------------------------------------------------------------ rüzgâr */
+  var ruzgarNo = 0;
+  function ruzgar() {
+    var no = ++ruzgarNo, kutu = $('kb-ruzgar');
+    kutu.hidden = false;
+    kutu.innerHTML = '<span class="kr-yuk">Rüzgâr alınıyor…</span>';
+    var u = 'https://api.open-meteo.com/v1/forecast?latitude=' + merkez.lat.toFixed(3) + '&longitude=' + merkez.lon.toFixed(3) +
+      '&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=kn&timezone=auto';
+    fetch(u).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (v) {
+      if (no !== ruzgarNo) return;
+      var c = v.current || {}, s = c.wind_speed_10m, d = c.wind_direction_10m, g = c.wind_gusts_10m;
+      if (typeof s !== 'number') throw 0;
+      var yi = yonIdx(d || 0), karsi = (yi + 4) % 8;
+      var ipucu = s < 4
+        ? 'Rüzgâr çok hafif: koyu rüzgâra göre değil, zemine ve derinliğe göre seçebilirsiniz.'
+        : 'Rüzgâr ' + YON_AYRILMA[yi] + ' esiyor: ağzı ' + YON_YONELME[karsi] + ' bakan, ' + YON_IYELIK[yi] + ' karayla kapalı koylar daha sakin olur.';
+      var hava = 'hava.html?ad=' + encodeURIComponent(merkez.ad) + '&lat=' + merkez.lat.toFixed(3) + '&lon=' + merkez.lon.toFixed(3) + (merkez.ulke ? '&alt=' + encodeURIComponent(merkez.ulke) : '');
+      kutu.innerHTML =
+        '<div class="kr-ust"><span class="kr-ok" style="transform:rotate(' + (((d || 0) + 180) % 360) + 'deg)"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9l6-6 6 6"/></svg></span>' +
+        '<span><small>Şu an · ' + kac(merkez.ad) + '</small><b>' + sayi(s) + ' kt ' + YON[yi] + '</b><em>hamle ' + sayi(typeof g === 'number' ? Math.max(g, s) : s) + ' kt</em></span></div>' +
+        '<p>' + ipucu + '</p><a href="' + hava + '">Seyir raporu' + ik('ok') + '</a>';
+    })['catch'](function () { if (no === ruzgarNo) kutu.innerHTML = '<span class="kr-yuk">Rüzgâr bilgisi şu an alınamadı.</span>'; });
+  }
+
+  /* ------------------------------------------------------------ seçim */
+  function merkezBelirle(m, kaydir) {
+    merkez = m;
+    document.querySelectorAll('.kb-bolge').forEach(function (b) { b.setAttribute('aria-pressed', String(!m.konum && !m.nokta && b.dataset.ad === m.ad)); });
+    $('kb-konum').setAttribute('aria-pressed', String(!!m.konum));
+    if (!m.konum) { try { history.replaceState(null, '', '?ad=' + encodeURIComponent(m.ad) + '&lat=' + m.lat.toFixed(4) + '&lon=' + m.lon.toFixed(4) + '#bul'); } catch (e) {} }
+    $('kb-calisma').classList.add('secili');
+    if (VERI) { sonuc = bul(m.lat, m.lon, yaricap); gosterilen = 30; ciz(true); }
+    ruzgar();
+    if (kaydir) $('kb-calisma').scrollIntoView({ behavior: hareketAz ? 'auto' : 'smooth', block: 'start' });
+  }
+  function ulkeSec(i) {
+    document.querySelectorAll('.kb-ulke[data-grup]').forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.grup === +i)); });
+    document.querySelectorAll('.kb-grup').forEach(function (g) { g.hidden = +g.dataset.grup !== +i; });
+    $('kb-bolge-not').textContent = 'Bir bölgeye dokunun ya da haritada dilediğiniz noktayı seçin';
+  }
+  document.querySelectorAll('.kb-ulke[data-grup]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      ulkeSec(b.dataset.grup);
+      var g = document.querySelector('.kb-grup[data-grup="' + b.dataset.grup + '"]');
+      if (!merkez) {
+        var la = [], lo = [];
+        g.querySelectorAll('.kb-bolge').forEach(function (x) { la.push(+x.dataset.lat); lo.push(+x.dataset.lon); });
+        git([[Math.min.apply(null, lo) - 0.4, Math.min.apply(null, la) - 0.3], [Math.max.apply(null, lo) + 0.4, Math.max.apply(null, la) + 0.3]], 30);
+      }
+      $('kb-adim-2').scrollIntoView({ behavior: hareketAz ? 'auto' : 'smooth', block: 'center' });
+    });
+  });
+  document.querySelectorAll('.kb-bolge').forEach(function (b) {
+    b.addEventListener('click', function () { merkezBelirle({ ad: b.dataset.ad, ulke: b.dataset.ulke, lat: +b.dataset.lat, lon: +b.dataset.lon }, true); });
+  });
+  document.querySelectorAll('.sk-bul').forEach(function (b) {
+    b.addEventListener('click', function () { merkezBelirle({ ad: b.dataset.ad, lat: +b.dataset.lat, lon: +b.dataset.lon }, true); });
+  });
+  // Kartın tamamı tıklanır: görsele ya da yazıya basmak "Çevresindeki koylar" ile aynı.
+  document.querySelectorAll('.sk-kart').forEach(function (k) {
+    k.addEventListener('click', function (e) { if (e.target.closest('a, button')) return; k.querySelector('.sk-bul').click(); });
+  });
+  document.querySelectorAll('.kb-filtre button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      filtre = b.dataset.filtre; gosterilen = 30;
+      document.querySelectorAll('.kb-filtre button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      ciz(false);
+    });
+  });
+  document.querySelectorAll('.kb-yaricap button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      yaricap = +b.dataset.nm;
+      document.querySelectorAll('.kb-yaricap button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      if (merkez && VERI) { sonuc = bul(merkez.lat, merkez.lon, yaricap); gosterilen = 30; ciz(true); }
+    });
+  });
+  $('kb-daha').addEventListener('click', function () { gosterilen += 30; ciz(false); });
+
+  var kd = $('kb-konum'), kdNot = $('kb-konum-not');
+  kd.addEventListener('click', function () {
+    if (!navigator.geolocation) { kdNot.textContent = 'Tarayıcınız konum vermiyor'; return; }
+    kd.classList.add('bekliyor'); kdNot.textContent = 'Konum alınıyor…';
+    navigator.geolocation.getCurrentPosition(function (p) {
+      kd.classList.remove('bekliyor'); kdNot.textContent = 'Çevrenizdeki koyları gösterelim';
+      document.querySelectorAll('.kb-ulke[data-grup]').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      merkezBelirle({ ad: 'Bulunduğunuz yer', lat: p.coords.latitude, lon: p.coords.longitude, konum: true }, true);
+      var kapsam = VERI && VERI.kutular.some(function (k) { return p.coords.latitude >= k[0] && p.coords.latitude <= k[2] && p.coords.longitude >= k[1] && p.coords.longitude <= k[3]; });
+      if (VERI && !kapsam) $('kb-ozet').innerHTML = 'Konumunuz şimdilik koy rehberimizin kapsadığı Türkiye, Yunanistan ve Hırvatistan kıyılarının dışında. Yukarıdan bir bölge seçebilirsiniz.';
+    }, function () {
+      kd.classList.remove('bekliyor'); kdNot.textContent = 'Konum izni verilmedi';
+    }, { enableHighAccuracy: false, timeout: 12000, maximumAge: 600000 });
+  });
+
+  /* ------------------------------------------------------------ başlangıç */
+  var bekleyen = null;
+  (function () {
+    var p = new URLSearchParams(location.search), la = parseFloat(p.get('lat')), lo = parseFloat(p.get('lon'));
+    if (isFinite(la) && isFinite(lo) && Math.abs(la) <= 90 && Math.abs(lo) <= 180) bekleyen = { ad: (p.get('ad') || 'Seçilen nokta').slice(0, 60), lat: la, lon: lo };
+  })();
+  // Veri ve harita ayrı ayrı yüklenir; ikisi de hazır olunca çizilir.
+  function hazirsa() {
+    if (!VERI) return;
+    genelCiz();
+    var m = bekleyen || merkez;
+    bekleyen = null;
+    if (m) merkezBelirle(m, false);
+  }
+  fetch('veri/koylar.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (v) {
+    VERI = v;
+    document.querySelectorAll('.kb-bolge').forEach(function (b) {
+      var n = bul(+b.dataset.lat, +b.dataset.lon, 10).filter(function (s) { return dogal(s.t); }).length;
+      b.querySelector('.kb-sayi').textContent = sayi(n) + ' koy ve plaj';
+    });
+    if (haritaHazir || !harita) hazirsa();
+  })['catch'](function () { $('kb-ozet').textContent = 'Koy listesi yüklenemedi. Sayfayı yenileyip tekrar deneyin.'; });
+
+  /* ------------------------------------------------------------ sayfa */
+  var ust = $('ust');
+  function kaydirma() { ust.classList.toggle('kayik', window.scrollY > 40); }
+  addEventListener('scroll', kaydirma, { passive: true }); kaydirma();
+  if ('IntersectionObserver' in window) {
+    var gz = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('gor'); gz.unobserve(e.target); if (e.target.id === 'kb-calisma' && harita) setTimeout(function () { harita.resize(); }, 60); } }); }, { threshold: 0.06 });
+    document.querySelectorAll('.bel').forEach(function (el) { gz.observe(el); });
+  } else document.querySelectorAll('.bel').forEach(function (el) { el.classList.add('gor'); });
+  document.querySelectorAll('.mmenu a').forEach(function (l) { l.addEventListener('click', function () { l.closest('details').removeAttribute('open'); }); });
+})();
+
+</script>
+</body>
+</html>
