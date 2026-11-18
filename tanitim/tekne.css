@@ -210,6 +210,7 @@ html.kilitli{overflow:hidden}
 .tn-alt{font-size:.84rem; color:rgba(255,255,255,.75)}
 .tn-olcu{display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:10px; padding-top:12px; border-top:1px solid rgba(217,190,140,.28); font:600 .62rem/1 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--pirinc-acik)}
 .tn-olcu span{display:inline-flex; align-items:center; gap:7px}
+.tn-olcu .tn-fiyat{font:600 .92rem/1 var(--sans); letter-spacing:.02em; text-transform:none; color:#fff; font-variant-numeric:lining-nums tabular-nums}
 .tn-olcu .ik{width:14px; height:14px}
 .tn-isaret{position:absolute; top:16px; right:16px; display:grid; place-items:center; width:34px; height:34px; border-radius:50%; background:rgba(6,16,26,.45); border:1px solid rgba(217,190,140,.6); color:transparent; transition:all .35s; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px)}
 .tn-isaret .ik{width:16px; height:16px; stroke-width:2}
