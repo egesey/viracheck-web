@@ -216,23 +216,123 @@ html.kilitli{overflow:hidden}
 .tn-kart[aria-pressed="true"]{box-shadow:0 0 0 2px var(--pirinc), 0 24px 50px rgba(11,27,43,.28)}
 .tn-kart[aria-pressed="true"] .tn-isaret{background:var(--altin); border-color:transparent; color:#fff}
 .tn-kart[aria-pressed="false"] img{filter:saturate(.85)}
-.mod-tur .tn-izgara, .mod-tur .zm-sure{display:none}
+.mod-tur .tn-izgara{display:none}
 
-.zm-satir{display:grid; grid-template-columns:minmax(240px, 1fr) 2.2fr; background:var(--kart); border:1px solid rgba(169,130,75,.25)}
-.zm-alan{display:flex; flex-direction:column; justify-content:center; gap:12px; padding:22px 28px; min-width:0}
-.zm-alan + .zm-alan{border-left:1px solid rgba(169,130,75,.2)}
-.mod-tur .zm-satir{grid-template-columns:1fr; max-width:520px}
-.zm-etiket{display:inline-flex; align-items:center; gap:9px; font:600 .62rem/1 var(--sans); letter-spacing:.22em; text-transform:uppercase; color:var(--pirinc-koyu)}
-.zm-etiket .ik{width:16px; height:16px}
-.zm-alan input[type="date"]{font:500 1.5rem/1.2 var(--serif); color:var(--metin); background:none; border:0; padding:0; width:100%; min-height:36px; cursor:pointer; font-variant-numeric:lining-nums; color-scheme:light; -webkit-appearance:none; appearance:none}
-.zm-alan input[type="date"]:focus{outline:none}
-.zm-alan:focus-within{box-shadow:inset 0 -2px 0 var(--pirinc)}
-.zm-alan input::-webkit-calendar-picker-indicator{opacity:.55; cursor:pointer}
-.zm-cipler{display:grid; grid-template-columns:repeat(4,1fr); gap:8px}
-.zm-cipler button{min-height:48px; padding:0 10px !important; text-align:center; border:1px solid rgba(169,130,75,.35) !important; font:600 .66rem/1.2 var(--sans) !important; letter-spacing:.14em; text-transform:uppercase; color:var(--metin); transition:background .3s, color .3s, border-color .3s}
-.zm-cipler button:hover{border-color:var(--pirinc) !important}
-.zm-cipler button[aria-pressed="true"]{background:var(--gece) !important; border-color:var(--gece) !important; color:var(--pirinc-acik) !important}
+/* Tarih kartı: uygulamadaki "Ne zaman?" kartı. Saatlik / günlük → tarih kutuları → (saatlikte) gün içi dönem. */
+.zm-kart{display:grid; gap:14px; padding:22px; background:var(--kart); border:1px solid rgba(169,130,75,.25)}
+.mod-tur .zm-kart{max-width:520px}
+.zm-donem, .mod-tur .zm-sekme, .zm-kart.bekle .zm-kutular{display:none}
+.zm-kart.saatlik .zm-donem{display:grid}
+.zm-sekme{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.zm-sekme button{display:flex; align-items:center; justify-content:center; gap:9px; min-height:50px; border:1px solid rgba(169,130,75,.35); font:600 .68rem/1 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--soluk); transition:background .3s, border-color .3s, color .3s}
+.zm-sekme button .ik{width:17px; height:17px}
+.zm-sekme button:hover, .zm-sekme.sira button{border-color:var(--pirinc)}
+.zm-sekme.sira button{background:rgba(169,130,75,.05)}
+.zm-sekme button[aria-pressed="true"]{background:rgba(18,50,74,.07); border-color:var(--gece); color:var(--gece)}
+.zm-kutular{display:flex; gap:10px}
+.zm-kutu{flex:1; min-width:0; display:flex; align-items:center; gap:12px; padding:14px 16px; border:1px solid rgba(169,130,75,.3); background:var(--kart); text-align:left; transition:border-color .3s, box-shadow .3s, background .3s}
+.zm-kutu[hidden]{display:none}
+.zm-kutu:hover{border-color:var(--pirinc)}
+.zm-kutu .ik{width:20px; height:20px; color:var(--soluk)}
+.zm-kutu.dolu{border-color:var(--pirinc-koyu)}
+.zm-kutu.dolu .ik{color:var(--pirinc-koyu)}
+.zm-kutu-yazi{display:flex; flex-direction:column; gap:5px; min-width:0}
+.zm-kutu small{font:700 .58rem/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:var(--pirinc-koyu)}
+.zm-kutu b{font:500 1.4rem/1.1 var(--serif); color:var(--metin); font-variant-numeric:lining-nums; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.zm-kutu b i{margin-left:8px; font:500 .72rem/1 var(--sans); font-style:normal; letter-spacing:.04em; color:var(--soluk)}
+.zm-kutu em{font:400 1rem/1.25 var(--sans); font-style:normal; color:var(--soluk)}
+.zm-kutular.sira .zm-kutu:not(.dolu){border-color:var(--pirinc); box-shadow:inset 0 0 0 1px var(--pirinc); background:rgba(169,130,75,.06)}
+.zm-donem{grid-template-columns:repeat(3, 1fr); gap:10px}
+.zm-donem button{display:flex; flex-direction:column; align-items:center; gap:4px; padding:12px 6px; border:1px solid rgba(169,130,75,.3); text-align:center; transition:background .3s, border-color .3s}
+.zm-donem button:hover, .zm-donem.sira button{border-color:var(--pirinc)}
+.zm-donem button .ik{width:18px; height:18px; color:var(--soluk)}
+.zm-donem b{font:600 .9rem/1.2 var(--sans); color:var(--metin)}
+.zm-donem small{font-size:.74rem; line-height:1.2; color:var(--soluk)}
+.zm-donem button[aria-pressed="true"]{background:var(--gece); border-color:var(--pirinc)}
+.zm-donem button[aria-pressed="true"] .ik{color:var(--pirinc-acik)}
+.zm-donem button[aria-pressed="true"] b{color:#fff}
+.zm-donem button[aria-pressed="true"] small{color:rgba(255,255,255,.7)}
+.as-ozet{margin-left:auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font:600 .78rem/1.2 var(--sans); letter-spacing:.02em; text-transform:none; color:var(--soluk)}
+
+/* Takvim penceresi: uygulamadaki gibi aylık görünüm; masaüstünde ortada, telefonda alttan. */
+.tv-ortu{position:fixed; inset:0; z-index:210; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(10,20,32,.45); opacity:0; transition:opacity .26s}
+.tv-ortu[hidden]{display:none}
+.tv-ortu.acik{opacity:1}
+.tv-pano{width:min(420px, 100%); display:flex; flex-direction:column; gap:14px; padding:16px 24px 24px; background:var(--kart); color:var(--metin); border-radius:22px; box-shadow:0 40px 100px rgba(0,0,0,.35); transform:translateY(18px) scale(.985); transition:transform .32s cubic-bezier(.2,.7,.2,1)}
+.tv-ortu.acik .tv-pano{transform:none}
+.tv-tutamak{display:none; align-self:center; width:40px; height:4px; border-radius:2px; background:#E2D8C8}
+.tv-bas{display:flex; align-items:center; justify-content:space-between}
+.tv-bas h3{margin:0; font:500 1.6rem/1 var(--serif); font-variant-numeric:lining-nums}
+.tv-ok{display:grid; place-items:center; width:38px; height:38px; border-radius:50%; border:1px solid #E2D8C8; color:var(--metin)}
+.tv-ok:disabled{opacity:.3; cursor:default}
+.tv-hafta, .tv-gunler{display:grid; grid-template-columns:repeat(7, 1fr)}
+.tv-hafta span{text-align:center; font:600 .74rem/1 var(--sans); color:#5F6874}
+.tv-gunler{row-gap:4px}
+.tv-hucre{position:relative; aspect-ratio:1; display:grid}
+.tv-hucre.arada::before, .tv-hucre.bant-sag::before, .tv-hucre.bant-sol::before{content:""; position:absolute; top:4px; bottom:4px; left:0; right:0; background:rgba(18,50,74,.08)}
+.tv-hucre.bant-sag::before{left:50%}
+.tv-hucre.bant-sol::before{right:50%}
+.tv-gun{position:relative; margin:4px; border-radius:50%; display:grid; place-items:center; font:500 1.25rem/1 var(--serif); font-variant-numeric:lining-nums; text-align:center; color:var(--metin); transition:background .2s}
+.tv-gun:hover:not(:disabled):not(.uc){background:rgba(169,130,75,.12)}
+.tv-gun:disabled{opacity:.28; cursor:default}
+.tv-hucre.arada .tv-gun{color:#12324A}
+.tv-gun.uc{background:var(--gece); color:#fff; box-shadow:0 0 0 1px #8A6936}
+.tv-gun:focus-visible, .tv-ok:focus-visible, .tv-temizle:focus-visible, .tv-tamam:focus-visible{outline:2px solid var(--pirinc); outline-offset:2px}
+.tv-ipucu{margin:0; text-align:center; font:600 .8rem/1.3 var(--sans); color:#525D69}
+.tv-dugmeler{display:grid; grid-template-columns:1fr 2fr; gap:10px}
+.tv-temizle, .tv-tamam{min-height:50px; border-radius:12px; font:600 .9rem/1 var(--sans); text-align:center}
+.tv-temizle{border:1px solid #E2D8C8; color:#525D69}
+.tv-tamam{background:var(--gece); color:#fff}
+.tv-tamam:disabled{opacity:.4; cursor:default}
+html[data-tema="koyu"] .zm-kutu{background:var(--gece-2)}
+html[data-tema="koyu"] .zm-kutu b, html[data-tema="koyu"] .zm-donem b{color:#F3EEE4}
+html[data-tema="koyu"] .zm-sekme button[aria-pressed="true"]{background:rgba(217,190,140,.14); border-color:var(--pirinc-acik); color:var(--pirinc-acik)}
+html[data-tema="koyu"] .tv-pano{background:var(--gece-2); color:#F3EEE4}
+html[data-tema="koyu"] .tv-ok, html[data-tema="koyu"] .tv-temizle{border-color:#23415B; color:#F3EEE4}
+html[data-tema="koyu"] .tv-tutamak{background:#23415B}
+html[data-tema="koyu"] .tv-gun{color:#F3EEE4}
+html[data-tema="koyu"] .tv-hucre.arada::before, html[data-tema="koyu"] .tv-hucre.bant-sag::before, html[data-tema="koyu"] .tv-hucre.bant-sol::before{background:rgba(217,190,140,.14)}
+html[data-tema="koyu"] .tv-hucre.arada .tv-gun{color:var(--pirinc-acik)}
+html[data-tema="koyu"] .tv-gun.uc{background:#07121D; box-shadow:0 0 0 1px var(--pirinc-acik)}
+html[data-tema="koyu"] .tv-tamam{background:#07121D; box-shadow:inset 0 0 0 1px rgba(217,190,140,.5)}
+html[data-tema="koyu"] .tv-ipucu, html[data-tema="koyu"] .tv-hafta span{color:#AAB5C1}
+@media (max-width:640px){
+  .tv-ortu{padding:0; align-items:flex-end}
+  .tv-tutamak{display:block}
+  .tv-pano{width:100%; border-radius:22px 22px 0 0; padding:12px 18px calc(18px + env(safe-area-inset-bottom)); transform:translateY(100%)}
+  .zm-kart{padding:14px; gap:12px}
+  .zm-kutu{padding:12px; gap:10px}
+  .zm-kutu b{font-size:1.2rem}
+  .zm-kutu b i{margin-left:6px}
+  .zm-donem{gap:8px}
+  .zm-donem button{padding:11px 4px}
+  .zm-donem b{font-size:.78rem; white-space:nowrap}
+  .zm-donem small{font-size:.66rem}
+  .as-ozet{font-size:.7rem}
+}
 .zm-not{margin:18px 0 0; padding-left:16px; border-left:2px solid var(--pirinc); font:italic 400 1.15rem/1.4 var(--serif); color:var(--soluk)}
+/* Adım 2'nin alt başlıkları: sıradaki bölüm "Sıradaki" işareti, tamamlanan tik taşır. */
+.as-bas{display:flex; align-items:center; gap:12px; margin:8px 0 16px; min-height:28px; scroll-margin-top:96px; font:600 .64rem/1 var(--sans); letter-spacing:.22em; text-transform:uppercase; color:var(--pirinc-koyu); transition:color .35s}
+#as-mod{margin-top:0}
+.as-tik{display:grid; place-items:center; width:24px; height:24px; flex:none; border-radius:50%; border:1px solid rgba(169,130,75,.45); color:transparent; transition:all .35s}
+.as-tik .ik{width:13px; height:13px; stroke-width:2.2}
+.as-bas.tamam .as-tik{background:var(--altin); border-color:transparent; color:#fff}
+.as-durum{display:none; align-items:center; gap:8px; margin-left:4px; padding:7px 11px; border:1px solid rgba(169,130,75,.55); color:var(--pirinc); font-size:.56rem; letter-spacing:.18em}
+.as-durum::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--pirinc); animation:asNabiz 1.6s ease-in-out infinite}
+.as-bas.sira{color:var(--metin)}
+.as-bas.sira .as-durum{display:inline-flex}
+.mod-tur #as-tekne, .mod-tur .as-yat{display:none}
+@keyframes asNabiz{0%, 100%{opacity:1; transform:scale(1)} 50%{opacity:.35; transform:scale(.7)}}
+/* Boş tarih: tarayıcının gg.aa.yyyy yazısı yerine "Gün seçin"; bekleyen alan pirinç çerçeveli. */
+.oz-bos{font-style:italic; color:rgba(243,238,228,.42)}
+html[data-tema="koyu"] .as-bas{color:var(--pirinc-acik)}
+html[data-tema="koyu"] .as-bas.sira{color:#F3EEE4}
+html[data-tema="koyu"] .as-durum{color:var(--pirinc-acik)}
+@media (prefers-reduced-motion: reduce){ .as-durum::before{animation:none} }
+@media (max-width:640px){
+  .as-bas{scroll-margin-top:80px; gap:10px; margin-bottom:12px; font-size:.58rem; letter-spacing:.18em}
+  .as-durum{padding:6px 9px; font-size:.52rem}
+}
 
 /* ------------------------------------------------------------ Adım 3 · özet */
 .ad-3{background:var(--kum)}
@@ -317,13 +417,11 @@ html.kilitli{overflow:hidden}
 .ilr-dug:not(.hazir)::after{display:none}
 
 /* ------------------------------------------------------------ koyu tema */
-html[data-tema="koyu"] .yh-adim, html[data-tema="koyu"] .mod-kart:not([aria-pressed="true"]), html[data-tema="koyu"] .zm-satir, html[data-tema="koyu"] .sh-sehir:not(.secili){background:var(--gece-2) !important}
+html[data-tema="koyu"] .yh-adim, html[data-tema="koyu"] .mod-kart:not([aria-pressed="true"]), html[data-tema="koyu"] .zm-kart, html[data-tema="koyu"] .sh-sehir:not(.secili){background:var(--gece-2) !important}
 html[data-tema="koyu"] .yh-ik{box-shadow:0 0 0 1px rgba(217,190,140,.5), 0 0 0 7px var(--gece-2), 0 0 0 8px rgba(217,190,140,.3)}
 html[data-tema="koyu"] .ad-3{background:var(--gece-2)}
 html[data-tema="koyu"] .oz-kart{background:#081521}
 html[data-tema="koyu"] .oz-gorsel::after{background:linear-gradient(90deg, rgba(8,21,33,0) 55%, #081521 100%)}
-html[data-tema="koyu"] .zm-alan input[type="date"]{color-scheme:dark}
-html[data-tema="koyu"] .zm-cipler button[aria-pressed="true"]{background:var(--pirinc) !important; border-color:var(--pirinc) !important; color:#0B1B2B !important}
 html[data-tema="koyu"] .ad-secim-dolu{background:#081521}
 html[data-tema="koyu"] .ad-degistir{border-color:var(--pirinc-acik) !important; color:var(--pirinc-acik) !important}
 html[data-tema="koyu"] .ad-degistir:hover{background:var(--pirinc-acik) !important; color:#0B1B2B !important}
@@ -365,8 +463,6 @@ html[data-tema="koyu"] .ss-arti::before, html[data-tema="koyu"] .ss-arti::after{
   .ul-acik{display:none}
   .ul-0 .ul-acik{display:block}
   .tn-izgara{grid-template-columns:repeat(2,1fr)}
-  .zm-satir{grid-template-columns:1fr}
-  .zm-alan + .zm-alan{border-left:0; border-top:1px solid rgba(169,130,75,.2)}
   .oz-kart{grid-template-columns:1fr}
   .oz-gorsel{height:220px; min-height:0}
   .oz-gorsel::after{background:linear-gradient(0deg, rgba(11,27,43,1) 0%, rgba(11,27,43,0) 60%)}
@@ -445,7 +541,7 @@ html[data-tema="koyu"] .ss-arti::before, html[data-tema="koyu"] .ss-arti::after{
   .mod-ik{width:42px; height:42px}
   .mod-ik .ik{width:19px; height:19px}
   .mod-isaret{position:absolute; top:12px; right:12px; width:26px; height:26px}
-  .mod-tur .zm-satir{max-width:none}
+  .mod-tur .zm-kart{max-width:none}
   .tn-izgara{gap:10px}
   .tn-kart{height:200px}
   .tn-yazi{padding:14px 14px 16px}
@@ -453,8 +549,6 @@ html[data-tema="koyu"] .ss-arti::before, html[data-tema="koyu"] .ss-arti::after{
   .tn-alt{display:none}
   .tn-olcu{flex-direction:column; gap:6px; font-size:.54rem; letter-spacing:.12em; margin-top:8px; padding-top:9px}
   .tn-isaret{top:10px; right:10px; width:28px; height:28px}
-  .zm-alan{padding:18px}
-  .zm-cipler{grid-template-columns:1fr 1fr}
 
   .oz-govde{padding:28px 22px 26px}
   .oz-liste dd{font-size:1.15rem}
