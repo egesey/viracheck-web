@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-6Cz1E1QjZw75rzijfhaahqsleqtAMsPJLJxFAqLQnBM='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://marine-api.open-meteo.com https://geocoding-api.open-meteo.com; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-th3xle00sySriPmAT/b1Wy+L3SL8Rund04+yAbLxYIQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://marine-api.open-meteo.com https://geocoding-api.open-meteo.com; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Deniz Hava Durumu — Rüzgâr, Dalga, Seyir Raporu | ViraCheck</title>
@@ -21,9 +21,9 @@
 <meta property="og:url" content="https://viracheck.com.tr/tanitim/hava.html">
 <meta property="og:image" content="https://viracheck.com.tr/tanitim/img/hava-kahraman.jpg">
 <link rel="preload" href="yazi/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="vip.css?v=a70cd8c723">
-<link rel="stylesheet" href="tekne.css?v=fd5466a46b">
-<link rel="stylesheet" href="deniz.css?v=0c74d8e945">
+<link rel="stylesheet" href="vip.css?v=e3a5635165">
+<link rel="stylesheet" href="tekne.css?v=ffd156879b">
+<link rel="stylesheet" href="deniz.css?v=a5e48a9618">
 
 </head>
 <body class="tekne-sayfa deniz-sayfa hava-sayfa">
@@ -89,7 +89,7 @@
   <div class="ic">
     <div class="bas bel"><div><span class="etiket">Önümüzdeki 48 saat</span><h2>Rüzgâr, <em>saat saat.</em></h2></div>
       <p>Çubuğun boyu rüzgâr hızını, rengi seyir değerlendirmesini gösterir; ince çizgi hamleyi, ok rüzgârın estiği yönü.</p></div>
-    <div class="st-kap bel">
+    <div class="st-kap">
       <button type="button" class="st-kaydir st-geri" data-yon="-1" aria-label="Önceki saatler"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button>
       <div class="st-serit" id="st-serit" tabindex="0" aria-label="Saatlik rüzgâr şeridi"></div>
       <button type="button" class="st-kaydir st-ileri" data-yon="1" aria-label="Sonraki saatler"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
@@ -490,10 +490,11 @@
 
   /* ------------------------------------------------------------------ sayfa */
   var ust = $('ust');
-  function kaydir() { ust.classList.toggle('kayik', window.scrollY > 40); }
-  addEventListener('scroll', kaydir, { passive: true }); kaydir();
+  var menuBekliyor = false;
+  function kaydir() { menuBekliyor = false; ust.classList.toggle('kayik', window.scrollY > 40); }
+  addEventListener('scroll', function () { if (!menuBekliyor) { menuBekliyor = true; requestAnimationFrame(kaydir); } }, { passive: true }); kaydir();
   if ('IntersectionObserver' in window) {
-    var gz = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('gor'); gz.unobserve(e.target); } }); }, { threshold: 0.08 });
+    var gz = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('gor'); gz.unobserve(e.target); } }); }, { threshold: 0, rootMargin: '0px 0px 12% 0px' });
     document.querySelectorAll('.bel').forEach(function (el) { gz.observe(el); });
   } else document.querySelectorAll('.bel').forEach(function (el) { el.classList.add('gor'); });
   document.querySelectorAll('.mmenu a').forEach(function (l) { l.addEventListener('click', function () { l.closest('details').removeAttribute('open'); }); });

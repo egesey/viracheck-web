@@ -75,7 +75,7 @@ h2 em, h1 em{font-style:italic; color:var(--pirinc)}
 .menu a:hover{opacity:1}
 .ust .dil{font:600 .72rem/1 var(--sans); letter-spacing:.16em; opacity:.8}
 .ust .dug{height:42px; padding:0 20px; font-size:.72rem}
-.ust.kayik{background:rgba(247,243,236,.9); backdrop-filter:blur(16px) saturate(1.4); -webkit-backdrop-filter:blur(16px) saturate(1.4); color:var(--metin); height:70px; box-shadow:0 1px 0 var(--cizgi)}
+.ust.kayik{background:rgba(247,243,236,.97); color:var(--metin); height:70px; box-shadow:0 1px 0 var(--cizgi)}
 .ust.kayik .dug-cizgi{border-color:var(--metin); color:var(--metin)}
 .ust.kayik .dug-cizgi:hover{background:var(--metin); color:var(--fildisi)}
 
@@ -101,7 +101,7 @@ h2 em, h1 em{font-style:italic; color:var(--pirinc)}
 }
 .serit{
   position:absolute; z-index:2; left:0; right:0; bottom:0; border-top:1px solid rgba(255,255,255,.18);
-  background:rgba(6,16,26,.28); backdrop-filter:blur(6px);
+  background:rgba(6,16,26,.55);
 }
 .serit .ic{display:grid; grid-template-columns:repeat(4,1fr); height:auto; padding-top:0; padding-bottom:0}
 .serit div{padding:20px 0; display:flex; align-items:baseline; gap:12px}
@@ -161,7 +161,7 @@ h2 em, h1 em{font-style:italic; color:var(--pirinc)}
 .sahne{position:relative; display:flex; justify-content:center; align-items:flex-end; margin:90px 0 100px; height:620px}
 .sahne::before{content:""; position:absolute; left:50%; top:50%; width:760px; height:760px; transform:translate(-50%,-50%); background:radial-gradient(circle, rgba(217,190,140,.18), transparent 62%)}
 .tel{position:relative; width:280px; border-radius:46px; padding:9px; background:linear-gradient(160deg, #2a3a4b, #0d1823 55%, #1e2c3a); box-shadow:0 60px 80px -40px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.08)}
-.tel img{border-radius:38px}
+.tel img{border-radius:38px; height:auto}
 .tel.y{width:240px; opacity:.9}
 .tel.sol{transform:translateX(60px) translateY(40px) rotate(-6deg)}
 .tel.sag{transform:translateX(-60px) translateY(40px) rotate(6deg)}
@@ -228,7 +228,7 @@ h2 em, h1 em{font-style:italic; color:var(--pirinc)}
 .alt-bilgi .dip{margin-top:70px; padding-top:26px; border-top:1px solid rgba(255,255,255,.1); display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; font-size:.8rem; color:rgba(255,255,255,.45)}
 
 /* ------------------------------------------------------- belirme hareketi */
-.bel{opacity:0; transform:translateY(28px); transition:opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1)}
+.bel{opacity:0; transform:translateY(16px); transition:opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1)}
 .bel.gor{opacity:1; transform:none}
 @media (prefers-reduced-motion: reduce){.bel{opacity:1; transform:none; transition:none} .kahraman video{transform:none}}
 
@@ -330,7 +330,7 @@ html[data-tema="koyu"]{
   --pirinc:#D9BE8C; --pirinc-koyu:#C4A574;
 }
 html[data-tema="koyu"] .dug-pirinc, html[data-tema="koyu"] .mm-btn{color:#0B1B2B}
-html[data-tema="koyu"] .ust.kayik{background:rgba(11,27,43,.88)}
+html[data-tema="koyu"] .ust.kayik{background:rgba(11,27,43,.97)}
 html[data-tema="koyu"] .plan.pro{background:#07121D}
 html[data-tema="koyu"] .gece{background:radial-gradient(900px 500px at 80% 10%, rgba(217,190,140,.12), transparent 60%), linear-gradient(180deg, #081522 0%, #06101A 100%)}
 html[data-tema="koyu"] .mm-ikincil{color:var(--metin); border-color:var(--metin)}
@@ -401,9 +401,9 @@ html[data-tema="koyu"] .yapiskan-cta{color:#0B1B2B}
   70% {box-shadow:0 0 0 12px rgba(217,190,140,0), 0 0 26px 6px rgba(217,190,140,.18)}
   100%{box-shadow:0 0 0 0 rgba(217,190,140,0), 0 0 18px 2px rgba(217,190,140,.35)}
 }
-.kahraman .dug-pirinc{animation:pirincHale 2.6s ease-out infinite}
+.kahraman .dug-pirinc{animation:none}
 .kahraman .dug-pirinc:hover{animation-play-state:paused; box-shadow:0 0 22px 4px rgba(217,190,140,.5)}
-.yapiskan-cta.acik{animation:pirincHaleCta 2.6s ease-out infinite}
+.yapiskan-cta.acik{animation:none}
 @keyframes pirincHaleCta{
   0%  {box-shadow:0 18px 44px rgba(3,10,18,.35), 0 0 0 1px rgba(217,190,140,.7), 0 0 0 0 rgba(217,190,140,.55), 0 0 18px 2px rgba(217,190,140,.35)}
   70% {box-shadow:0 18px 44px rgba(3,10,18,.35), 0 0 0 1px rgba(217,190,140,.7), 0 0 0 12px rgba(217,190,140,0), 0 0 26px 6px rgba(217,190,140,.18)}
@@ -458,8 +458,8 @@ html[data-tema="koyu"] .yapiskan-cta{color:#0B1B2B}
    daha sık geçen parıltı. */
 .kahraman .dug-pirinc{
   background:linear-gradient(180deg, #C29C62 0%, #A9824B 55%, #97743F 100%);
-  box-shadow:0 0 0 1px rgba(255,238,205,.75), 0 10px 30px rgba(217,190,140,.35), 0 0 26px 2px rgba(232,206,150,.45);
-  animation:altinNefes 3.2s ease-in-out infinite;
+  box-shadow:0 0 0 1px rgba(255,240,210,.85), 0 12px 34px rgba(217,190,140,.42), 0 0 32px 4px rgba(236,210,155,.5);
+  animation:none;
 }
 @keyframes altinNefes{
   0%,100%{box-shadow:0 0 0 1px rgba(255,238,205,.7), 0 10px 30px rgba(217,190,140,.32), 0 0 22px 1px rgba(232,206,150,.38)}
@@ -472,3 +472,14 @@ html[data-tema="koyu"] .yapiskan-cta{color:#0B1B2B}
 }
 .kahraman .dug-pirinc:hover{animation-play-state:paused}
 @media (prefers-reduced-motion: reduce){ .kahraman .dug-pirinc{animation:none} }
+
+/* ------------------------------------------------------------ akıcı kaydırma
+ * Telefonda kaydırma sırasında her karede yeniden çizilen efektler takılma
+ * yapıyordu: sabit menünün arkasını bulanıklaştırmak (backdrop-filter) ve
+ * gölgesi sürekli değişen ışıltılar. Bulanıklık yalnızca fare kullanılan
+ * ekranlarda kalır; parıltılar yalnızca transform ile (ekran kartında) döner. */
+@media (hover:hover) and (pointer:fine){
+  .ust.kayik{background:rgba(247,243,236,.9); backdrop-filter:blur(16px) saturate(1.4); -webkit-backdrop-filter:blur(16px) saturate(1.4)}
+  html[data-tema="koyu"] .ust.kayik{background:rgba(11,27,43,.88)}
+}
+.kahraman .dug-pirinc::after, .yapiskan-cta::after{will-change:transform}

@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-iis7V8Y2im69Dm5vqg0QEZ3rLGtEW6/tx1PEndrnWIs='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-2S7pseFRWAiXcfwbE95hmMFjud9YttxfhEABEvPiGrk='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yat Kiralama — Gulet, Motoryat, Katamaran | ViraCheck</title>
@@ -21,8 +21,8 @@
 <meta property="og:url" content="https://viracheck.com.tr/tanitim/tekne-kirala.html">
 <meta property="og:image" content="https://viracheck.com.tr/tanitim/img/kira-kahraman.jpg">
 <link rel="preload" href="yazi/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="vip.css?v=a70cd8c723">
-<link rel="stylesheet" href="tekne.css?v=fd5466a46b">
+<link rel="stylesheet" href="vip.css?v=e3a5635165">
+<link rel="stylesheet" href="tekne.css?v=ffd156879b">
 </head>
 <body class="tekne-sayfa">
 <header class="ust" id="ust">
@@ -445,17 +445,24 @@
   var gelis = /^#ulke-([a-z]{2})$/.exec(location.hash);
   if (gelis && V.u[gelis[1]]) setTimeout(function () { git('adim-1'); setTimeout(function () { pencereAc(gelis[1]); }, 450); }, 150);
 
-  // Sabit çubuk: kahramandan sonra görünür, kapanış ve alt bilgide gizlenir.
+  // Sabit çubuk: açılıştan sonra görünür; özet düğmesi ekrandayken ve kapanışa gelince gizlenir.
+  // Her kaydırmada ölçüm yapmak telefonda takılma yapıyordu; durumu gözlemciler tutar.
   var ilrEl = document.getElementById('ilr'), ust = document.getElementById('ust');
-  function kaydir() {
-    ust.classList.toggle('kayik', window.scrollY > 40);
-    var k = document.querySelector('.kr-kahraman').getBoundingClientRect().bottom, son = document.querySelector('.tk-kapanis').getBoundingClientRect().top;
-    var oz = document.getElementById('oz-dug').getBoundingClientRect(), ozGorunur = oz.top < innerHeight && oz.bottom > 0;
-    ilrEl.classList.toggle('gorunur', k < 80 && son > innerHeight * 0.6 && !ozGorunur);
-  }
-  addEventListener('scroll', kaydir, { passive: true }); kaydir();
+  var durum = { kahraman: true, son: false, oz: false };
+  function ilrGuncelle() { ilrEl.classList.toggle('gorunur', !durum.kahraman && !durum.son && !durum.oz); }
   if ('IntersectionObserver' in window) {
-    var g = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('gor'); g.unobserve(e.target); } }); }, { threshold: 0.08 });
+    var izle = function (el, ad, ayar, gecti) {
+      new IntersectionObserver(function (es) { var e = es[es.length - 1]; durum[ad] = e.isIntersecting || (gecti && e.boundingClientRect.top < 0); ilrGuncelle(); }, ayar).observe(el);
+    };
+    izle(document.querySelector('.kr-kahraman'), 'kahraman', { rootMargin: '-80px 0px 0px 0px' });
+    izle(document.querySelector('.tk-kapanis'), 'son', { rootMargin: '0px 0px -40% 0px' }, true);
+    izle(document.getElementById('oz-dug'), 'oz', {});
+  }
+  var menuBekliyor = false;
+  function menu() { menuBekliyor = false; ust.classList.toggle('kayik', window.scrollY > 40); }
+  addEventListener('scroll', function () { if (!menuBekliyor) { menuBekliyor = true; requestAnimationFrame(menu); } }, { passive: true }); menu();
+  if ('IntersectionObserver' in window) {
+    var g = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('gor'); g.unobserve(e.target); } }); }, { threshold: 0, rootMargin: '0px 0px 12% 0px' });
     document.querySelectorAll('.bel').forEach(function (el) { g.observe(el); });
   } else document.querySelectorAll('.bel').forEach(function (el) { el.classList.add('gor'); });
   document.querySelectorAll('.mmenu a').forEach(function (l) { l.addEventListener('click', function () { l.closest('details').removeAttribute('open'); }); });
