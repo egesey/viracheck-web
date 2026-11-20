@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-iRuJxRYb4eLzDI/l2d73T7wtniptE0QwaE81et5IYiM='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-Xhb0FpbnUaw1EzPSEg4oGGTNvxBRbOPomLEYZh8TeE0='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yat Kiralama — Gulet, Motoryat, Katamaran | ViraCheck</title>
@@ -236,7 +236,7 @@
     <div class="zm-kart bel" id="zm-kart">
       <div class="zm-sekme" id="zm-sekme" role="radiogroup" aria-label="Kiralama şekli">
         <button type="button" data-sure="saatlik" aria-pressed="false"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Saatlik</button>
-        <button type="button" data-sure="gunluk" aria-pressed="false"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>Günlük</button>
+        <button type="button" data-sure="gunluk" aria-pressed="false"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>Konaklamalı</button>
       </div>
       <div class="zm-kutular" id="zm-kutular"><button type="button" class="zm-kutu" id="zm-k1"></button><button type="button" class="zm-kutu" id="zm-k2" hidden></button></div>
       <div class="zm-donem" id="zm-donem" role="radiogroup" aria-label="Gün içinde">
@@ -381,9 +381,9 @@
   // Turda yat tipi, süre ve dönem sorulmaz.
   var SIRA = ['sehir', 'mod', 'tekne', 'sure', 'tarih', 'donem'];
   var HEDEF = { sehir: 'adim-1', mod: 'adim-2', tekne: 'as-tekne', sure: 'as-zaman', tarih: 'as-zaman', donem: 'as-zaman' };
-  var EKSIK = { sehir: 'bir liman seçin', mod: 'yat ya da tur seçin', tekne: 'yat tipini seçin', sure: 'saatlik ya da günlük seçin', tarih: 'tarih seçin', donem: 'saati seçin' };
+  var EKSIK = { sehir: 'bir liman seçin', mod: 'yat ya da tur seçin', tekne: 'yat tipini seçin', sure: 'saatlik ya da konaklamalı seçin', tarih: 'tarih seçin', donem: 'saati seçin' };
   var EKSIK_DUG = { sehir: 'Liman seçin', mod: 'Deneyim seçin', tekne: 'Yat seçin', sure: 'Süre seçin', tarih: 'Tarih seçin', donem: 'Saat seçin' };
-  var IPUCU = { mod: 'Önce yat mı, tur mu, onu seçin.', tekne: 'Şimdi yatınızı seçin.', sure: 'Saatlik mi, günlük mü kiralayacaksınız?', tarih: 'Şimdi takvimden gününüzü seçin.', donem: 'Son olarak günün hangi saatlerinde denizde olacağınızı seçin.' };
+  var IPUCU = { mod: 'Önce yat mı, tur mu, onu seçin.', tekne: 'Şimdi yatınızı seçin.', sure: 'Saatlik mi, konaklamalı mı kiralayacaksınız?', tarih: 'Şimdi takvimden gününüzü seçin.', donem: 'Son olarak günün hangi saatlerinde denizde olacağınızı seçin.' };
   function eksikler() {
     var tur = d.mod === 'tur';
     return SIRA.filter(function (k) {
