@@ -2,12 +2,31 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-b871VoOrsnovLXsbPBj0rTTC6x3GelKRpTbyzeZe6Yg='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://tiles.openfreemap.org; media-src 'self'; worker-src 'self' blob:; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V+D5VstHpi+JB1NT6Whq2CDd9nb7YuaY07hfWTmr4yY=' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-b871VoOrsnovLXsbPBj0rTTC6x3GelKRpTbyzeZe6Yg='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://tiles.openfreemap.org; media-src 'self'; worker-src 'self' blob:; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Koylar ve Plajlar — Koy Bulucu, Mavi Bayrak | ViraCheck</title>
 <meta name="description" content="Türkiye, Yunanistan ve Hırvatistan kıyılarında 9.310 koy ve plaj, 1.523 Mavi Bayraklı nokta. Bölge seçin, en yakın koyları mesafe ve yönüyle görün; rüzgâra göre en korunaklısını seçin.">
 <link rel="canonical" href="https://viracheck.com.tr/tanitim/koylar.html">
+<link rel="alternate" hreflang="tr" href="https://viracheck.com.tr/tanitim/koylar.html">
+<link rel="alternate" hreflang="en" href="https://viracheck.com.tr/tanitim/coves.html">
+<link rel="alternate" hreflang="x-default" href="https://viracheck.com.tr/tanitim/koylar.html">
+<script>
+  // Dil: seçilen dil (uygulamayla ortak ayar), yoksa tarayıcı dili; sayfa öbür dildeyse karşılığına geçilir.
+  // Arama motorları ve otomatik tarayıcılar yönlendirilmez; her dil kendi adresinde dizinlenir.
+  (function () {
+    function yaz(l) { try { var a = JSON.parse(localStorage.getItem('vira.settings.v1') || '{}'); if (a.language !== l) { a.language = l; localStorage.setItem('vira.settings.v1', JSON.stringify(a)); } } catch (e) {} }
+    document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[hreflang]'); if (a && /^(tr|en)$/.test(a.getAttribute('hreflang'))) yaz(a.getAttribute('hreflang')); }, true);
+    try {
+      if (/bot|crawl|spider|slurp|headless|lighthouse|preview/i.test(navigator.userAgent)) return;
+      var t = JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').language;
+      var d = t === 'tr' || t === 'en' ? t : (/^tr/i.test(navigator.language || '') ? 'tr' : 'en');
+      if (d === document.documentElement.lang) return;
+      var l = document.querySelector('link[rel="alternate"][hreflang="' + d + '"]');
+      if (l) location.replace(new URL(l.href).pathname + location.search + location.hash);
+    } catch (e) {}
+  })();
+</script>
 <link rel="icon" href="favicon.png?v=2" type="image/png">
 <link rel="apple-touch-icon" href="icon.png?v=2">
 <meta name="theme-color" content="#0B1B2B">
@@ -22,8 +41,8 @@
 <meta property="og:image" content="https://viracheck.com.tr/tanitim/img/koy-kahraman.jpg">
 <link rel="preload" href="yazi/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="vip.css?v=37e6d1a5b6">
-<link rel="stylesheet" href="tekne.css?v=91c5752158">
-<link rel="stylesheet" href="deniz.css?v=a5e48a9618">
+<link rel="stylesheet" href="tekne.css?v=c415f08548">
+<link rel="stylesheet" href="deniz.css?v=4c02d942c1">
 <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
 </head>
 <body class="tekne-sayfa deniz-sayfa koylar-sayfa">
@@ -31,7 +50,7 @@
   <div class="ic">
     <a class="marka" href="index.html"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</a>
     <nav class="menu" aria-label="Menü"><a href="tekne-kirala.html">Kirala &amp; Tur</a><a href="hava.html">Hava</a><a href="koylar.html" aria-current="page">Koylar</a><a href="index.html#fiyat">Fiyat</a><a href="index.html#sss">SSS</a></nav>
-    <a class="dil" href="index-en.html" hreflang="en">EN</a>
+    <a class="dil" href="coves.html" hreflang="en">EN</a>
     <a class="dug dug-cizgi" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">Uygulamayı indir</a>
     <details class="mmenu"><summary aria-label="Menü"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="tekne-kirala.html">Kirala &amp; Tur</a><a class="mm-a" href="hava.html">Hava</a><a class="mm-a" href="koylar.html" aria-current="page">Koylar</a><a class="mm-a" href="index.html#fiyat">Fiyat</a><a class="mm-a" href="index.html#sss">SSS</a><a class="mm-btn" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">App Store'dan indir</a></div></details>
   </div>
@@ -220,7 +239,7 @@
         <div class="marka"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</div>
         <p style="max-width:300px;margin:0">Tekne kiralama, tekne turu ve seyir asistanı. On iki ülkede, tek uygulamada.</p>
       </div>
-      <div><h4>Keşfet</h4><ul><li><a href="tekne-kirala.html">Kirala &amp; Tur</a></li><li><a href="hava.html">Hava</a></li><li><a href="koylar.html">Koylar</a></li><li><a href="index.html#fiyat">Fiyat</a></li><li><a href="index.html#sss">Sık sorulanlar</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="is-ortakligi.html">İş ortaklığı</a></li><li><a href="mailto:seymen@viracheck.com.tr">İletişim</a></li><li><a href="kaynaklar.html">Fotoğraf kaynakları</a></li><li><a href="index-en.html">English</a></li></ul></div><div><h4>Yasal</h4><ul><li><a href="privacy-tr.html">Gizlilik Politikası</a></li><li><a href="kvkk-tr.html">KVKK Aydınlatma Metni</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Kullanım Koşulları</a></li></ul></div>
+      <div><h4>Keşfet</h4><ul><li><a href="tekne-kirala.html">Kirala &amp; Tur</a></li><li><a href="hava.html">Hava</a></li><li><a href="koylar.html">Koylar</a></li><li><a href="index.html#fiyat">Fiyat</a></li><li><a href="index.html#sss">Sık sorulanlar</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="is-ortakligi.html">İş ortaklığı</a></li><li><a href="mailto:seymen@viracheck.com.tr">İletişim</a></li><li><a href="kaynaklar.html">Fotoğraf kaynakları</a></li><li><a href="coves.html" hreflang="en">English</a></li></ul></div><div><h4>Yasal</h4><ul><li><a href="privacy-tr.html">Gizlilik Politikası</a></li><li><a href="kvkk-tr.html">KVKK Aydınlatma Metni</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Kullanım Koşulları</a></li></ul></div>
     </div>
     <p class="veri">Hava ve deniz verileri: <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Koy ve plaj verileri © <a href="https://www.openstreetmap.org">OpenStreetMap</a> katkıda bulunanları · Mavi Bayrak: <a href="https://www.blueflag.global">FEE</a>, 2026 sezonu</p>
     <div class="dip"><span>© 2026 ViraCheck · Resmî denizcilik uyarılarının ve kaptanın kararının yerine geçmez.</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>

@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-mVonpRkIepdvEUBCLFIsFWKhV2C1SvYoDiLnIwky1Vo=' 'sha256-wwaqqXiEmQqOfedDMa7uGCOG7QDqrSfzFD2f74TUpnk=' 'sha256-KgnCmQU2u3ybqHF3tmCMTGpCeE3GAdxCZP0fHJjdw18=' 'sha256-9Aw0BaZSV9Hj8WiVNzqjtBcmbVazMdJkm9BPRUuR2H8=' 'sha256-SNswq+EnutB3AKnNtfiHxe+1WWX2j3gYiugubZEAAcM=' 'sha256-qCY4nqnlyap5UdpFDQAtXEaV83epPOl7sI9zxC2Ibks='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V+D5VstHpi+JB1NT6Whq2CDd9nb7YuaY07hfWTmr4yY=' 'sha256-mVonpRkIepdvEUBCLFIsFWKhV2C1SvYoDiLnIwky1Vo=' 'sha256-wwaqqXiEmQqOfedDMa7uGCOG7QDqrSfzFD2f74TUpnk=' 'sha256-KgnCmQU2u3ybqHF3tmCMTGpCeE3GAdxCZP0fHJjdw18=' 'sha256-9Aw0BaZSV9Hj8WiVNzqjtBcmbVazMdJkm9BPRUuR2H8=' 'sha256-SNswq+EnutB3AKnNtfiHxe+1WWX2j3gYiugubZEAAcM=' 'sha256-qCY4nqnlyap5UdpFDQAtXEaV83epPOl7sI9zxC2Ibks='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ViraCheck — Tekne Kiralama, Tekne Turu ve Seyir Asistanı</title>
@@ -11,6 +11,22 @@
 <link rel="alternate" hreflang="tr" href="https://viracheck.com.tr/tanitim/">
 <link rel="alternate" hreflang="en" href="https://viracheck.com.tr/tanitim/index-en.html">
 <link rel="alternate" hreflang="x-default" href="https://viracheck.com.tr/tanitim/">
+<script>
+  // Dil: seçilen dil (uygulamayla ortak ayar), yoksa tarayıcı dili; sayfa öbür dildeyse karşılığına geçilir.
+  // Arama motorları ve otomatik tarayıcılar yönlendirilmez; her dil kendi adresinde dizinlenir.
+  (function () {
+    function yaz(l) { try { var a = JSON.parse(localStorage.getItem('vira.settings.v1') || '{}'); if (a.language !== l) { a.language = l; localStorage.setItem('vira.settings.v1', JSON.stringify(a)); } } catch (e) {} }
+    document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[hreflang]'); if (a && /^(tr|en)$/.test(a.getAttribute('hreflang'))) yaz(a.getAttribute('hreflang')); }, true);
+    try {
+      if (/bot|crawl|spider|slurp|headless|lighthouse|preview/i.test(navigator.userAgent)) return;
+      var t = JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').language;
+      var d = t === 'tr' || t === 'en' ? t : (/^tr/i.test(navigator.language || '') ? 'tr' : 'en');
+      if (d === document.documentElement.lang) return;
+      var l = document.querySelector('link[rel="alternate"][hreflang="' + d + '"]');
+      if (l) location.replace(new URL(l.href).pathname + location.search + location.hash);
+    } catch (e) {}
+  })();
+</script>
 <link rel="icon" href="favicon.png?v=2" type="image/png">
 <link rel="apple-touch-icon" href="icon.png?v=2">
 <meta name="theme-color" content="#0B1B2B">
@@ -186,7 +202,7 @@ html.cercevede a[href="https://viracheck.com.tr/"]{display:none}
         <div class="marka"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</div>
         <p style="max-width:300px;margin:0">Tekne kiralama, tekne turu ve seyir asistanı. On iki ülkede, tek uygulamada.</p>
       </div>
-      <div><h4>Keşfet</h4><ul><li><a href="tekne-kirala.html">Kirala &amp; Tur</a></li><li><a href="hava.html">Hava</a></li><li><a href="koylar.html">Koylar</a></li><li><a href="#fiyat">Fiyat</a></li><li><a href="#sss">Sık sorulanlar</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="is-ortakligi.html">İş ortaklığı</a></li><li><a href="mailto:seymen@viracheck.com.tr">İletişim</a></li><li><a href="kaynaklar.html">Fotoğraf kaynakları</a></li><li><a href="index-en.html">English</a></li></ul></div><div><h4>Yasal</h4><ul><li><a href="privacy-tr.html">Gizlilik Politikası</a></li><li><a href="kvkk-tr.html">KVKK Aydınlatma Metni</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Kullanım Koşulları</a></li></ul></div>
+      <div><h4>Keşfet</h4><ul><li><a href="tekne-kirala.html">Kirala &amp; Tur</a></li><li><a href="bodrum-yat-kiralama.html">Bodrum yat kiralama</a></li><li><a href="istanbul-yat-kiralama.html">İstanbul yat kiralama</a></li><li><a href="hava.html">Hava</a></li><li><a href="koylar.html">Koylar</a></li><li><a href="#fiyat">Fiyat</a></li><li><a href="#sss">Sık sorulanlar</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="is-ortakligi.html">İş ortaklığı</a></li><li><a href="mailto:seymen@viracheck.com.tr">İletişim</a></li><li><a href="kaynaklar.html">Fotoğraf kaynakları</a></li><li><a href="index-en.html" hreflang="en">English</a></li></ul></div><div><h4>Yasal</h4><ul><li><a href="privacy-tr.html">Gizlilik Politikası</a></li><li><a href="kvkk-tr.html">KVKK Aydınlatma Metni</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Kullanım Koşulları</a></li></ul></div>
     </div>
     <p class="veri">Hava ve deniz verileri: <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Koy ve plaj verileri © <a href="https://www.openstreetmap.org">OpenStreetMap</a> katkıda bulunanları · Mavi Bayrak: <a href="https://www.blueflag.global">FEE</a>, 2026 sezonu</p>
     <div class="dip"><span>© 2026 ViraCheck · Resmî denizcilik uyarılarının ve kaptanın kararının yerine geçmez.</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>

@@ -2,12 +2,31 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-Xhb0FpbnUaw1EzPSEg4oGGTNvxBRbOPomLEYZh8TeE0='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-V+D5VstHpi+JB1NT6Whq2CDd9nb7YuaY07hfWTmr4yY=' 'sha256-S0qcoLf2nNYdoWlxvCav6QYfDHOgjQzCn5kUBmODFJc=' 'sha256-N+yhIchhm7Q34JWVmhNKLLCkR4Z99Qmuo54dZ+03mcI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Yat Kiralama — Gulet, Motoryat, Katamaran | ViraCheck</title>
-<meta name="description" content="12 ülkede 93 limanda gulet, motoryat, katamaran ve yelkenli kiralayın; tekne turlarına katılın. Limanınızı seçin, yatınızı belirleyin, rezervasyonunuzu üç adımda güvenle tamamlayın.">
+<title>Yat Kiralama ve Tekne Kiralama — Gulet, Motoryat, Katamaran | ViraCheck</title>
+<meta name="description" content="Yat kiralama ve tekne kiralama: 12 ülkede 93 limanda gulet, motoryat, katamaran ve yelkenli kiralayın; tekne turlarına katılın. Limanınızı seçin, yatınızı belirleyin, rezervasyonunuzu üç adımda güvenle tamamlayın.">
 <link rel="canonical" href="https://viracheck.com.tr/tanitim/tekne-kirala.html">
+<link rel="alternate" hreflang="tr" href="https://viracheck.com.tr/tanitim/tekne-kirala.html">
+<link rel="alternate" hreflang="en" href="https://viracheck.com.tr/tanitim/yacht-charter.html">
+<link rel="alternate" hreflang="x-default" href="https://viracheck.com.tr/tanitim/yacht-charter.html">
+<script>
+  // Dil: seçilen dil (uygulamayla ortak ayar), yoksa tarayıcı dili; sayfa öbür dildeyse karşılığına geçilir.
+  // Arama motorları ve otomatik tarayıcılar yönlendirilmez; her dil kendi adresinde dizinlenir.
+  (function () {
+    function yaz(l) { try { var a = JSON.parse(localStorage.getItem('vira.settings.v1') || '{}'); if (a.language !== l) { a.language = l; localStorage.setItem('vira.settings.v1', JSON.stringify(a)); } } catch (e) {} }
+    document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[hreflang]'); if (a && /^(tr|en)$/.test(a.getAttribute('hreflang'))) yaz(a.getAttribute('hreflang')); }, true);
+    try {
+      if (/bot|crawl|spider|slurp|headless|lighthouse|preview/i.test(navigator.userAgent)) return;
+      var t = JSON.parse(localStorage.getItem('vira.settings.v1') || '{}').language;
+      var d = t === 'tr' || t === 'en' ? t : (/^tr/i.test(navigator.language || '') ? 'tr' : 'en');
+      if (d === document.documentElement.lang) return;
+      var l = document.querySelector('link[rel="alternate"][hreflang="' + d + '"]');
+      if (l) location.replace(new URL(l.href).pathname + location.search + location.hash);
+    } catch (e) {}
+  })();
+</script>
 <link rel="icon" href="favicon.png?v=2" type="image/png">
 <link rel="apple-touch-icon" href="icon.png?v=2">
 <meta name="theme-color" content="#0B1B2B">
@@ -22,14 +41,14 @@
 <meta property="og:image" content="https://viracheck.com.tr/tanitim/img/kira-kahraman.jpg">
 <link rel="preload" href="yazi/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="vip.css?v=37e6d1a5b6">
-<link rel="stylesheet" href="tekne.css?v=91c5752158">
+<link rel="stylesheet" href="tekne.css?v=c415f08548">
 </head>
 <body class="tekne-sayfa">
 <header class="ust" id="ust">
   <div class="ic">
     <a class="marka" href="index.html"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</a>
     <nav class="menu" aria-label="Menü"><a href="tekne-kirala.html" aria-current="page">Kirala &amp; Tur</a><a href="hava.html">Hava</a><a href="koylar.html">Koylar</a><a href="index.html#fiyat">Fiyat</a><a href="index.html#sss">SSS</a></nav>
-    <a class="dil" href="index-en.html" hreflang="en">EN</a>
+    <a class="dil" href="yacht-charter.html" hreflang="en">EN</a>
     <a class="dug dug-cizgi" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">Uygulamayı indir</a>
     <details class="mmenu"><summary aria-label="Menü"><span></span></summary><div class="mmenu-panel"><a class="mm-a" href="tekne-kirala.html" aria-current="page">Kirala &amp; Tur</a><a class="mm-a" href="hava.html">Hava</a><a class="mm-a" href="koylar.html">Koylar</a><a class="mm-a" href="index.html#fiyat">Fiyat</a><a class="mm-a" href="index.html#sss">SSS</a><a class="mm-btn" href="https://apps.apple.com/tr/app/viracheck/id6806044930" target="_blank" rel="noopener">App Store'dan indir</a></div></details>
   </div>
@@ -39,7 +58,7 @@
 <section class="kr-kahraman">
   <picture><source srcset="img/kira-kahraman.webp" type="image/webp"><img src="img/kira-kahraman.jpg" alt="" width="2400" height="1350"></picture>
   <div class="ic">
-    <span class="etiket">ViraCheck Yat Koleksiyonu</span>
+    <span class="etiket">Yat kiralama · Tekne kiralama · Tekne turu</span>
     <h1>Denizin en seçkin <em>yatları,</em><br>size özel.</h1>
     <p class="alt">Türkiye’den Saint-Tropez’e, 12 ülkede 93 limanda gulet, motoryat ve katamaran. Limanınızı seçin, yatınızı belirleyin; rezervasyonunuz üç adımda, güvenle tamamlansın.</p>
     <div class="kr-dug">
@@ -295,7 +314,7 @@
         <div class="marka"><img src="icon.png" alt="" width="34" height="34"> ViraCheck</div>
         <p style="max-width:300px;margin:0">Tekne kiralama, tekne turu ve seyir asistanı. On iki ülkede, tek uygulamada.</p>
       </div>
-      <div><h4>Keşfet</h4><ul><li><a href="tekne-kirala.html">Kirala &amp; Tur</a></li><li><a href="hava.html">Hava</a></li><li><a href="koylar.html">Koylar</a></li><li><a href="index.html#fiyat">Fiyat</a></li><li><a href="index.html#sss">Sık sorulanlar</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="is-ortakligi.html">İş ortaklığı</a></li><li><a href="mailto:seymen@viracheck.com.tr">İletişim</a></li><li><a href="kaynaklar.html">Fotoğraf kaynakları</a></li><li><a href="index-en.html">English</a></li></ul></div><div><h4>Yasal</h4><ul><li><a href="privacy-tr.html">Gizlilik Politikası</a></li><li><a href="kvkk-tr.html">KVKK Aydınlatma Metni</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Kullanım Koşulları</a></li></ul></div>
+      <div><h4>Keşfet</h4><ul><li><a href="tekne-kirala.html">Kirala &amp; Tur</a></li><li><a href="bodrum-yat-kiralama.html">Bodrum yat kiralama</a></li><li><a href="istanbul-yat-kiralama.html">İstanbul yat kiralama</a></li><li><a href="hava.html">Hava</a></li><li><a href="koylar.html">Koylar</a></li><li><a href="index.html#fiyat">Fiyat</a></li><li><a href="index.html#sss">Sık sorulanlar</a></li></ul></div><div><h4>ViraCheck</h4><ul><li><a href="is-ortakligi.html">İş ortaklığı</a></li><li><a href="mailto:seymen@viracheck.com.tr">İletişim</a></li><li><a href="kaynaklar.html">Fotoğraf kaynakları</a></li><li><a href="index-en.html" hreflang="en">English</a></li></ul></div><div><h4>Yasal</h4><ul><li><a href="privacy-tr.html">Gizlilik Politikası</a></li><li><a href="kvkk-tr.html">KVKK Aydınlatma Metni</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Kullanım Koşulları</a></li></ul></div>
     </div>
     <p class="veri">Hava ve deniz verileri: <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) · Koy ve plaj verileri © <a href="https://www.openstreetmap.org">OpenStreetMap</a> katkıda bulunanları · Mavi Bayrak: <a href="https://www.blueflag.global">FEE</a>, 2026 sezonu</p>
     <div class="dip"><span>© 2026 ViraCheck · Resmî denizcilik uyarılarının ve kaptanın kararının yerine geçmez.</span><a href="mailto:seymen@viracheck.com.tr">seymen@viracheck.com.tr</a></div>
@@ -368,6 +387,9 @@
   function yerAdi(s) { return tum(s) ? V.u[s.u].ad + ' (tümü)' : s.a + ', ' + V.u[s.u].ad; }
   function kisaAd(s) { return tum(s) ? V.u[s.u].ad : s.a; }
   function sehir(id) { for (var i = 0; i < V.s.length; i++) if (V.s[i].id === id) return V.s[i]; return null; }
+  // QR kartlarından ve aracı bağlantılarından gelişler: ?o=KOD uygulamayla aynı kayda yazılır (30 gün geçerli).
+  // Yeni gelen kod öncekinin yerine geçer; biçim uygulamadakiyle aynı (2–20 harf/rakam).
+  try { var oKod = new URLSearchParams(location.search).get('o'); if (oKod && /^[A-Za-z0-9]{2,20}$/.test(oKod)) localStorage.setItem('vira.organizer.v1', JSON.stringify({ kod: oKod.toUpperCase(), at: Date.now() })); } catch (e) {}
   function organizasyoncu() { try { var k = JSON.parse(localStorage.getItem('vira.organizer.v1') || 'null'); if (k && k.kod && Date.now() - k.at <= 30 * 864e5) return k.kod; } catch (e) {} return null; }
   function etiket(a) { var o = organizasyoncu(); return ((o ? 'o-' + o + '_' : '') + 'web-' + a).replace(/[^a-zA-Z0-9-]+/g, '_'); }
   function param(u, p) { var q = Object.keys(p).filter(function (k) { return p[k] != null && p[k] !== ''; }).map(function (k) { return k + '=' + encodeURIComponent(p[k]); }).join('&'); return q ? u + (u.indexOf('?') < 0 ? '?' : '&') + q : u; }
@@ -631,7 +653,17 @@
   }
   // Ana sayfadan gelişler: ?mod=tur tur seçili açar, #ulke-xx o ülkenin şehir penceresini açar.
   if (/[?&]mod=tur(&|$)/.test(location.search)) d.mod = 'tur';
+  // Liman sayfalarından ve QR kartlarından gelişler: ?liman=bodrum seçili limanla, ?tekne=gulet
+  // seçili yat tipiyle açar; sayfa ilk boş adıma kayar. Bilinmeyen değerler yok sayılır.
+  var arama = new URLSearchParams(location.search), onSecim = false;
+  var gelenLiman = sehir(arama.get('liman') || '');
+  if (gelenLiman) {
+    d.sehir = gelenLiman; onSecim = true;
+    if (!gelenLiman.k) d.mod = 'tur'; else if (!gelenLiman.t) d.mod = 'yat';
+  }
+  if (TEKNE[arama.get('tekne')] && d.mod !== 'tur' && (!d.sehir || d.sehir.k)) { d.tekne = arama.get('tekne'); d.mod = 'yat'; onSecim = true; }
   guncelle();
+  if (onSecim) setTimeout(function () { var e = eksikler(); git(e.length ? HEDEF[e[0]] : 'oz-dug', e.length ? 'start' : 'center'); }, 350);
   var gelis = /^#ulke-([a-z]{2})$/.exec(location.hash);
   if (gelis && V.u[gelis[1]]) setTimeout(function () { git('adim-1'); setTimeout(function () { pencereAc(gelis[1]); }, 450); }, 150);
 
